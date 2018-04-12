@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="PhpIncludePathManager">
-    <include_path>
-      <path value="C:\xampp\htdocs\wp-tests\wp\core" />
-      <path value="C:\xampp\htdocs\wp-tests\wp\wp-content\plugins\woocommerce" />
-    </include_path>
-  </component>
-</project>
