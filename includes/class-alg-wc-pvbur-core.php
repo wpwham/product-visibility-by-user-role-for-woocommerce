@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Core Class
  *
- * @version 1.1.5
+ * @version 1.1.6
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -169,9 +169,25 @@ class Alg_WC_PVBUR_Core {
 	}
 
 	/**
+	 * Triggers the is_visible filter.
+	 *
+	 * @version 1.1.6
+	 * @since   1.1.0
+	 *
+	 * @param $is_visible
+	 * @param $current_user_roles
+	 * @param $product_id
+	 *
+	 * @return mixed|void
+	 */
+	function trigger_is_visible_filter( $is_visible, $current_user_roles, $product_id ) {
+		return apply_filters( 'alg_wc_pvbur_is_visible', $is_visible, $current_user_roles, $product_id );
+	}
+
+	/**
 	 * is_visible.
 	 *
-	 * @version 1.1.5
+	 * @version 1.1.6
 	 * @since   1.1.0
 	 */
 	function is_visible( $current_user_roles, $product_id ) {
@@ -180,14 +196,14 @@ class Alg_WC_PVBUR_Core {
 		if ( is_array( $roles ) && ! empty( $roles ) ) {
 			$_intersect = array_intersect( $roles, $current_user_roles );
 			if ( empty( $_intersect ) ) {
-				return false;
+				return $this->trigger_is_visible_filter( false, $current_user_roles, $product_id );
 			}
 		}
 		$roles = get_post_meta( $product_id, '_' . 'alg_wc_pvbur_invisible', true );
 		if ( is_array( $roles ) && ! empty( $roles ) ) {
 			$_intersect = array_intersect( $roles, $current_user_roles );
 			if ( ! empty( $_intersect ) ) {
-				return false;
+				return $this->trigger_is_visible_filter( false, $current_user_roles, $product_id );
 			}
 		}
 		// Bulk
@@ -196,13 +212,13 @@ class Alg_WC_PVBUR_Core {
 				$visible_products = get_option( 'alg_wc_pvbur_bulk_visible_products_' . $user_role_id, '' );
 				if ( ! empty( $visible_products ) ) {
 					if ( ! in_array( $product_id, $visible_products ) ) {
-						return false;
+						return $this->trigger_is_visible_filter( false, $current_user_roles, $product_id );
 					}
 				}
 				$invisible_products = get_option( 'alg_wc_pvbur_bulk_invisible_products_' . $user_role_id, '' );
 				if ( ! empty( $invisible_products ) ) {
 					if ( in_array( $product_id, $invisible_products ) ) {
-						return false;
+						return $this->trigger_is_visible_filter( false, $current_user_roles, $product_id );
 					}
 				}
 				$taxonomies = array( 'product_cat', 'product_tag' );
@@ -220,20 +236,20 @@ class Alg_WC_PVBUR_Core {
 					if ( ! empty( $visible_terms ) ) {
 						$_intersect = array_intersect( $visible_terms, $product_terms_ids );
 						if ( empty( $_intersect ) ) {
-							return false;
+							return $this->trigger_is_visible_filter( false, $current_user_roles, $product_id );
 						}
 					}
 					$invisible_terms = get_option( 'alg_wc_pvbur_bulk_invisible_' . $taxonomy . 's_' . $user_role_id, '' );
 					if ( ! empty( $invisible_terms ) ) {
 						$_intersect = array_intersect( $invisible_terms, $product_terms_ids );
 						if ( ! empty( $_intersect ) ) {
-							return false;
+							return $this->trigger_is_visible_filter( false, $current_user_roles, $product_id );
 						}
 					}
 				}
 			}
 		}
-		return true;
+		return $this->trigger_is_visible_filter( true, $current_user_roles, $product_id );
 	}
 
 	/**

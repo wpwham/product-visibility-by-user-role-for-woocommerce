@@ -3,12 +3,12 @@
 Plugin Name: Product Visibility by User Role for WooCommerce
 Plugin URI: https://wpcodefactory.com/item/product-visibility-by-user-role-for-woocommerce/
 Description: Display WooCommerce products by customer's user role.
-Version: 1.1.5
+Version: 1.1.6
 Author: Algoritmika Ltd
 Author URI: http://algoritmika.com
 Text Domain: product-visibility-by-user-role-for-woocommerce
 Domain Path: /langs
-Copyright: © 2018 Algoritmika Ltd.
+Copyright: Â© 2018 Algoritmika Ltd.
 WC tested up to: 3.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
