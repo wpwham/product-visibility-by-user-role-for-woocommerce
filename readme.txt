@@ -1,5 +1,5 @@
 === Product Visibility by User Role for WooCommerce ===
-Contributors: algoritmika, anbinder
+Contributors: algoritmika, anbinder, karzin
 Tags: woo commerce, woocommerce, product, visibility, user role, algoritmika, wpcodefactory
 Requires at least: 4.4
 Tested up to: 4.9
