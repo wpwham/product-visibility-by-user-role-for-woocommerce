@@ -180,7 +180,7 @@ class Alg_WC_PVBUR_Core {
 			return;
 		}
 		remove_action( 'pre_get_posts', array( $this, 'product_by_user_role_pre_get_posts' ) );
-		$current_user_roles = $this->get_current_user_all_roles();
+		$current_user_roles = alg_wc_pvbur_get_current_user_all_roles();
 		// Calculate `post__not_in`
 		$post__not_in = $query->get( 'post__not_in' );
 		$args = $query->query;
@@ -202,33 +202,8 @@ class Alg_WC_PVBUR_Core {
 	 * @since   1.0.0
 	 */
 	function product_by_user_role_purchasable( $purchasable, $_product ) {
-		$current_user_roles = $this->get_current_user_all_roles();
+		$current_user_roles = alg_wc_pvbur_get_current_user_all_roles();
 		return ( ! alg_wc_pvbur_product_is_visible( $current_user_roles, $this->get_product_id_or_variation_parent_id( $_product ) ) ? false : $purchasable );
-	}
-
-	/**
-	 * product_by_user_role_visibility.
-	 *
-	 * @version 1.1.0
-	 * @since   1.0.0
-	 */
-	function product_by_user_role_visibility( $visible, $product_id ) {
-		$current_user_roles = $this->get_current_user_all_roles();
-		return ( ! alg_wc_pvbur_product_is_visible( $current_user_roles, $product_id ) ? false : $visible );
-	}
-
-	/**
-	 * get_current_user_all_roles.
-	 *
-	 * @version 1.1.4
-	 * @since   1.0.0
-	 */
-	function get_current_user_all_roles() {
-		if ( ! function_exists( 'wp_get_current_user' ) ) {
-			require_once( ABSPATH . 'wp-includes/pluggable.php' );
-		}
-		$current_user = wp_get_current_user();
-		return ( ! empty( $current_user->roles ) ) ? $current_user->roles : array( 'guest' );
 	}
 
 	/**

@@ -120,3 +120,19 @@ if ( ! function_exists( 'alg_wc_pvbur_product_is_visible' ) ) {
 		return alg_wc_pvbur_trigger_is_visible_filter( true, $current_user_roles, $product_id );
 	}
 }
+
+if ( ! function_exists( 'alg_wc_pvbur_get_current_user_all_roles' ) ) {
+	/**
+	 * get_current_user_all_roles.
+	 *
+	 * @version 1.1.4
+	 * @since   1.0.0
+	 */
+	function alg_wc_pvbur_get_current_user_all_roles() {
+		if ( ! function_exists( 'wp_get_current_user' ) ) {
+			require_once( ABSPATH . 'wp-includes/pluggable.php' );
+		}
+		$current_user = wp_get_current_user();
+		return ( ! empty( $current_user->roles ) ) ? $current_user->roles : array( 'guest' );
+	}
+}
