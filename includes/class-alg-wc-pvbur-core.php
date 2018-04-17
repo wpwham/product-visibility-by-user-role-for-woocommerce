@@ -53,6 +53,17 @@ class Alg_WC_PVBUR_Core {
 	}
 
 	/**
+	 * product_by_user_role_visibility.
+	 *
+	 * @version 1.1.0
+	 * @since   1.0.0
+	 */
+	function product_by_user_role_visibility( $visible, $product_id ) {
+		$current_user_roles = alg_wc_pvbur_get_current_user_all_roles();
+		return ( ! $this->is_visible( $current_user_roles, $product_id ) ? false : $visible );
+	}
+
+	/**
 	 * save_bulk_and_quick_edit_fields.
 	 *
 	 * @version 1.1.5
