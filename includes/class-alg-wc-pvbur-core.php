@@ -60,7 +60,7 @@ class Alg_WC_PVBUR_Core {
 	 */
 	function product_by_user_role_visibility( $visible, $product_id ) {
 		$current_user_roles = alg_wc_pvbur_get_current_user_all_roles();
-		return ( ! $this->is_visible( $current_user_roles, $product_id ) ? false : $visible );
+		return ( ! alg_wc_pvbur_product_is_visible( $current_user_roles, $product_id ) ? false : $visible );
 	}
 
 	/**
