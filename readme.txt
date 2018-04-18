@@ -34,6 +34,8 @@ In free version you can set included or excluded user roles for each product ind
 
 = 1.1.7 - 17/04/2018 =
 * Add composer
+* Sync bulk options with post meta values
+* Change the way "product_by_user_role_pre_get_posts()" works. Now it really hides invisible product from queries fixing issues with pagination
 
 = 1.1.6 - 12/04/2018 =
 * Add 'alg_wc_pvbur_is_visible' filter
@@ -72,3 +74,5 @@ In free version you can set included or excluded user roles for each product ind
 
 = 1.1.7 =
 * Add composer
+* Sync bulk options with post meta values
+* Change the way "product_by_user_role_pre_get_posts()" works. Now it really hides invisible product from queries fixing issues with pagination

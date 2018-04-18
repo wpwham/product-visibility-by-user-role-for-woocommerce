@@ -136,3 +136,74 @@ if ( ! function_exists( 'alg_wc_pvbur_get_current_user_all_roles' ) ) {
 		return ( ! empty( $current_user->roles ) ) ? $current_user->roles : array( 'guest' );
 	}
 }
+
+function alg_wc_pvbur_setup_invisible_products(){
+	$the_query = new WP_Query( array(
+		'post_type'      => 'product',
+		'posts_per_page' => - 1,
+		'fields'         => 'ids',
+		'meta_query'     => array(
+			'relation' => 'OR',
+			array(
+				'key'     => '_alg_wc_pvbur_invisible',
+				'value'   => array( '' ),
+				'compare' => 'NOT IN'
+			),
+			array(
+				'key'     => '_alg_wc_pvbur_visible',
+				'value'   => array( '' ),
+				'compare' => 'NOT IN'
+			),
+		),
+	) );
+
+	if ( ! $the_query->have_posts() ) {
+		return;
+	}
+
+	$roles = array_keys( alg_wc_pvbur_get_user_roles() );
+	$invisible_products = get_option( 'alg_wc_pvbur_invisible_products', array() );
+
+	/*foreach ( $roles as $role ) {
+		$product_visibility[$role]
+	}*/
+
+	foreach ( $the_query->posts as $post_id ) {
+		foreach ( $roles as $role ) {
+			if(! alg_wc_pvbur_product_is_visible( array( $role ), $post_id )){
+				array_push($invisible_products[$role],$post_id);
+			}
+		}
+	}
+
+	update_option( 'alg_wc_pvbur_invisible_products', $invisible_products );
+	wp_reset_postdata();
+
+	// Resets counter
+	/*foreach ( $roles as $role ) {
+		if ( isset( $invisible_categories[ $role ] ) ) {
+			if ( isset( $invisible_categories[ $role ][ $prod_cat_id ] ) ) {
+				unset($invisible_categories[ $role ][ $prod_cat_id ]);
+				//$invisible_categories[ $role ][ $prod_cat_id ] = 0;
+			}
+		}
+	}*/
+
+	/*foreach ( $the_query->posts as $post_id ) {
+
+		foreach ( $roles as $role ) {
+			if ( ! alg_wc_pvbur_product_is_visible( array( $role ), $post_id ) ) {
+				if ( ! isset( $invisible_categories[ $role ] ) ) {
+					$invisible_categories[ $role ] = null;
+				}
+				if ( ! isset( $invisible_categories[ $role ][ $prod_cat_id ] ) ) {
+					$invisible_categories[ $role ][ $prod_cat_id ] = 0;
+				}
+				$invisible_categories[ $role ][ $prod_cat_id ] ++;
+			}
+		}
+	}
+
+	wp_reset_postdata();
+	update_option( 'alg_wc_pvbur_inv_terms_count_by_role', $invisible_categories );*/
+}

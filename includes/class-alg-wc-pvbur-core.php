@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Core Class
  *
- * @version 1.1.6
+ * @version 1.1.7
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -16,7 +16,7 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.1.5
+	 * @version 1.1.7
 	 * @since   1.0.0
 	 */
 	function __construct() {
@@ -34,6 +34,12 @@ class Alg_WC_PVBUR_Core {
 					add_action( 'pre_get_posts',                  array( $this, 'product_by_user_role_pre_get_posts' ) );
 				}
 			}
+
+			if ( is_admin() ) {
+				add_action( 'updated_option', array( $this, 'sync_product_visibility_with_post_meta' ), 10, 3 );
+				add_action( 'save_post_product', array( $this, 'sync_product_visibility_with_bulk_option' ) );
+			}
+
 			// Admin products list
 			if ( 'yes' === get_option( 'alg_wc_pvbur_add_column_visible_user_roles', 'no' ) ) {
 				add_filter( 'manage_edit-product_columns',        array( $this, 'add_product_columns' ),   PHP_INT_MAX );
@@ -50,6 +56,99 @@ class Alg_WC_PVBUR_Core {
 				add_action( 'woocommerce_product_bulk_and_quick_edit', array( $this, 'save_bulk_and_quick_edit_fields' ), PHP_INT_MAX, 2 );
 			}
 		}
+	}
+
+	/**
+	 * Syncs product visibility from bulk option with post meta
+	 *
+	 * @version 1.1.7
+	 * @since   1.1.7
+	 */
+	public function sync_product_visibility_with_post_meta( $option_name, $oldvalue, $newvalue ) {
+		if ( strpos( $option_name, 'alg_wc_pvbur_bulk_' ) === false ) {
+			return;
+		}
+
+		$visibility = strpos( $option_name, '_invisible_' ) !== false ? 'invisible' : 'visible';
+		$find       = '_products_';
+		$pos        = strrpos( $option_name, $find );
+		$role       = $pos === false ? $option_name : substr( $option_name, $pos + strlen( $find ) );
+
+		remove_action( 'updated_option', array( $this, 'sync_product_visibility_with_post_meta' ), 10, 3 );
+
+		$products = $newvalue;
+		foreach ( $products as $product_id ) {
+			$post_meta_value = get_post_meta( $product_id, "_alg_wc_pvbur_{$visibility}", true );
+			if ( empty( $post_meta_value ) ) {
+				$post_meta_value = array();
+			}
+			array_push( $post_meta_value, $role );
+			$post_meta_value = array_unique( $post_meta_value );
+			update_post_meta( $product_id, "_alg_wc_pvbur_{$visibility}", $post_meta_value );
+		}
+
+		if (
+			! is_array( $oldvalue ) ||
+			! is_array( $newvalue )
+		) {
+			return;
+		}
+
+		if ( count( $oldvalue ) > count( $newvalue ) ) {
+			$products = array_diff( $oldvalue, $newvalue );
+			foreach ( $products as $product_id ) {
+				$post_meta_value = get_post_meta( $product_id, "_alg_wc_pvbur_{$visibility}", true );
+				if ( empty( $post_meta_value ) ) {
+					$post_meta_value = array();
+				}
+				$index = array_search( $role, $post_meta_value );
+				if ( $index !== false ) {
+					unset( $post_meta_value[ $index ] );
+					update_post_meta( $product_id, "_alg_wc_pvbur_{$visibility}", $post_meta_value );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Syncs product visibility from post meta with bulk option on product save
+	 *
+	 * @version 1.1.7
+	 * @since   1.1.7
+	 */
+	function sync_product_with_bulk_option_by_visibility_type( $visibility_type = 'invisible', $product_id ) {
+		$roles = array();
+
+		if ( isset( $_REQUEST["alg_wc_pvbur_{$visibility_type}"] ) ) {
+			$roles = $_REQUEST["alg_wc_pvbur_{$visibility_type}"];
+			foreach ( $roles as $role ) {
+				$option = get_option( "alg_wc_pvbur_bulk_{$visibility_type}_products_{$role}", array() );
+				array_push( $option, $product_id );
+				$option = array_unique( $option );
+				update_option( "alg_wc_pvbur_bulk_{$visibility_type}_products_{$role}", $option );
+			}
+		}
+
+		$all_roles = array_keys( alg_wc_pvbur_get_user_roles() );
+		foreach ( array_diff( $all_roles, $roles ) as $role ) {
+			$option = get_option( "alg_wc_pvbur_bulk_{$visibility_type}_products_{$role}", array() );
+			$index  = array_search( $product_id, $option );
+			if ( $index !== false ) {
+				unset( $option[ $index ] );
+				update_option( "alg_wc_pvbur_bulk_{$visibility_type}_products_{$role}", $option );
+			}
+		}
+	}
+
+	/**
+	 * Syncs product visibility with bulk option on product save
+	 *
+	 * @version 1.1.7
+	 * @since   1.1.7
+	 */
+	function sync_product_visibility_with_bulk_option( $product_id ) {
+		$this->sync_product_with_bulk_option_by_visibility_type( 'invisible', $product_id );
+		$this->sync_product_with_bulk_option_by_visibility_type( 'visible', $product_id );
 	}
 
 	/**
@@ -182,7 +281,7 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * product_by_user_role_pre_get_posts.
 	 *
-	 * @version 1.1.0
+	 * @version 1.1.7
 	 * @since   1.0.0
 	 * @todo    (maybe) check `is_admin` and ajax
 	 */
@@ -191,15 +290,16 @@ class Alg_WC_PVBUR_Core {
 			return;
 		}
 		remove_action( 'pre_get_posts', array( $this, 'product_by_user_role_pre_get_posts' ) );
+
 		$current_user_roles = alg_wc_pvbur_get_current_user_all_roles();
-		// Calculate `post__not_in`
-		$post__not_in = $query->get( 'post__not_in' );
-		$args = $query->query;
-		$args['fields'] = 'ids';
-		$loop = new WP_Query( $args );
-		foreach ( $loop->posts as $product_id ) {
-			if ( ! alg_wc_pvbur_product_is_visible( $current_user_roles, $product_id ) ) {
-				$post__not_in[] = $product_id;
+		$post__not_in       = $query->get( 'post__not_in' );
+		foreach ( $current_user_roles as $role ) {
+			$option_inv = get_option( "alg_wc_pvbur_bulk_invisible_products_{$role}", array() );
+			$option_vis = get_option( "alg_wc_pvbur_bulk_visible_products_{$role}", array() );
+			foreach ( array_merge( $option_inv, $option_vis ) as $product_id ) {
+				if ( ! alg_wc_pvbur_product_is_visible( array( $role ), $product_id ) ) {
+					$post__not_in[] = $product_id;
+				}
 			}
 		}
 		$query->set( 'post__not_in', $post__not_in );
