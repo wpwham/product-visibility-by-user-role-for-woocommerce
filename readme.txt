@@ -3,7 +3,7 @@ Contributors: algoritmika, anbinder, karzin
 Tags: woo commerce, woocommerce, product, visibility, user role, algoritmika, wpcodefactory
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -31,6 +31,9 @@ In free version you can set included or excluded user roles for each product ind
 3. Start by visiting plugin settings at WooCommerce > Settings > Product Visibility.
 
 == Changelog ==
+
+= 1.1.8 - 02/05/2018 =
+* Remove pro version checking
 
 = 1.1.7 - 18/04/2018 =
 * Add composer
@@ -72,7 +75,5 @@ In free version you can set included or excluded user roles for each product ind
 
 == Upgrade Notice ==
 
-= 1.1.7 =
-* Add composer
-* Sync bulk options with post meta values
-* Change the way "product_by_user_role_pre_get_posts()" works. Now it really hides invisible product from queries fixing issues with pagination
+= 1.1.8 =
+* Remove pro version checking
