@@ -32,7 +32,7 @@ In free version you can set included or excluded user roles for each product ind
 
 == Changelog ==
 
-= 1.1.8 - 02/05/2018 =
+= 1.1.8 - 03/05/2018 =
 * Remove pro version checking
 * Fix visible products logic
 
