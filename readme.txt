@@ -34,6 +34,7 @@ In free version you can set included or excluded user roles for each product ind
 
 = 1.1.8 - 02/05/2018 =
 * Remove pro version checking
+* Fix visible products logic
 
 = 1.1.7 - 18/04/2018 =
 * Add composer
@@ -77,3 +78,4 @@ In free version you can set included or excluded user roles for each product ind
 
 = 1.1.8 =
 * Remove pro version checking
+* Fix visible products logic

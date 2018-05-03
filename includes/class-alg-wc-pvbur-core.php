@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Core Class
  *
- * @version 1.1.7
+ * @version 1.1.8
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -281,9 +281,10 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * product_by_user_role_pre_get_posts.
 	 *
-	 * @version 1.1.7
+	 * @version 1.1.8
 	 * @since   1.0.0
 	 * @todo    (maybe) check `is_admin` and ajax
+     * @todo    Improve performance by using some transient maybe
 	 */
 	function product_by_user_role_pre_get_posts( $query ) {
 		if ( is_admin() ) {
@@ -291,17 +292,23 @@ class Alg_WC_PVBUR_Core {
 		}
 		remove_action( 'pre_get_posts', array( $this, 'product_by_user_role_pre_get_posts' ) );
 
+		$user_roles         = array_keys( alg_wc_pvbur_get_user_roles() );
 		$current_user_roles = alg_wc_pvbur_get_current_user_all_roles();
-		$post__not_in       = $query->get( 'post__not_in' );
-		foreach ( $current_user_roles as $role ) {
-			$option_inv = get_option( "alg_wc_pvbur_bulk_invisible_products_{$role}", array() );
-			$option_vis = get_option( "alg_wc_pvbur_bulk_visible_products_{$role}", array() );
-			foreach ( array_merge( $option_inv, $option_vis ) as $product_id ) {
-				if ( ! alg_wc_pvbur_product_is_visible( array( $role ), $product_id ) ) {
-					$post__not_in[] = $product_id;
-				}
+
+		$post__not_in = $query->get( 'post__not_in' );
+		$product_ids  = array();
+		foreach ( $user_roles as $role ) {
+			$option_inv  = get_option( "alg_wc_pvbur_bulk_invisible_products_{$role}", array() );
+			$option_vis  = get_option( "alg_wc_pvbur_bulk_visible_products_{$role}", array() );
+			$product_ids = array_merge( $option_inv, $option_vis, $product_ids );
+		}
+		$product_ids = array_unique( $product_ids );
+		foreach ( $product_ids as $product_id ) {
+			if ( ! alg_wc_pvbur_product_is_visible( $current_user_roles, $product_id ) ) {
+				$post__not_in[] = $product_id;
 			}
 		}
+
 		$query->set( 'post__not_in', $post__not_in );
 		add_action( 'pre_get_posts', array( $this, 'product_by_user_role_pre_get_posts' ) );
 	}
