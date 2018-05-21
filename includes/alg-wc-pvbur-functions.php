@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Functions
  *
- * @version 1.1.0
+ * @version 1.1.9
  * @since   1.1.0
  * @author  Algoritmika Ltd.
  */
@@ -33,32 +33,68 @@ if ( ! function_exists( 'alg_wc_pvbur_get_user_roles' ) ) {
 	}
 }
 
-if ( ! function_exists( 'alg_wc_pvbur_trigger_is_visible_filter' ) ) {
+if ( ! function_exists( 'alg_wc_pvbur_get_invisible_products' ) ) {
 	/**
-	 * Triggers the is_visible filter.
+	 * Get invisible products
 	 *
-	 * @version 1.1.6
-	 * @since   1.1.0
-	 *
-	 * @param $is_visible
-	 * @param $current_user_roles
-	 * @param $product_id
-	 *
-	 * @return mixed|void
+	 * @version 1.1.9
+	 * @since   1.1.9
 	 */
-	function alg_wc_pvbur_trigger_is_visible_filter( $is_visible, $current_user_roles, $product_id ){
-		return apply_filters( 'alg_wc_pvbur_is_visible', $is_visible, $current_user_roles, $product_id );
+	function alg_wc_pvbur_get_invisible_products( $roles = array() ) {
+		$query_args = array(
+			'fields'         => 'ids',
+			'post_type'      => 'product',
+			'posts_per_page' => '-1',
+			'meta_query'     => array()
+		);
+
+		$invisible_meta_query = array();
+		$visible_meta_query   = array();
+
+		if ( count( $roles ) > 1 ) {
+			$invisible_meta_query['relation'] = 'OR';
+		}
+
+		foreach ( $roles as $role ) {
+			$invisible_meta_query[] = array(
+				'key'     => '_alg_wc_pvbur_invisible',
+				'value'   => '"' . $role . '"',
+				'compare' => 'LIKE',
+			);
+		}
+
+		foreach ( $roles as $role ) {
+			$visible_meta_query[] = array(
+				'key'     => '_alg_wc_pvbur_visible',
+				'value'   => '"' . $role . '"',
+				'compare' => 'NOT LIKE',
+			);
+		}
+
+		$visible_meta_query[] = array(
+			'key'     => '_alg_wc_pvbur_visible',
+			'value'   => 'i:0;',
+			'compare' => 'LIKE',
+		);
+
+		$query_args['meta_query']['relation'] = 'OR';
+		$query_args['meta_query'][]           = $invisible_meta_query;
+		$query_args['meta_query'][]           = $visible_meta_query;
+
+		$query = new WP_Query( $query_args );
+
+		return $query;
 	}
 }
 
-if ( ! function_exists( 'alg_wc_pvbur_product_is_visible' ) ) {
+if ( ! function_exists( 'alg_wc_pvbur_is_visible' ) ) {
 	/**
-	 * Checks if product is visible
+	 * is_visible.
 	 *
 	 * @version 1.1.6
 	 * @since   1.1.0
 	 */
-	function alg_wc_pvbur_product_is_visible( $current_user_roles, $product_id ) {
+	function alg_wc_pvbur_is_visible( $current_user_roles, $product_id ) {
 		// Per product
 		$roles = get_post_meta( $product_id, '_' . 'alg_wc_pvbur_visible', true );
 		if ( is_array( $roles ) && ! empty( $roles ) ) {
@@ -93,9 +129,9 @@ if ( ! function_exists( 'alg_wc_pvbur_product_is_visible' ) ) {
 				foreach ( $taxonomies as $taxonomy ) {
 					// Getting product terms
 					$product_terms_ids = array();
-					$_terms = get_the_terms( $product_id, $taxonomy );
+					$_terms            = get_the_terms( $product_id, $taxonomy );
 					if ( ! empty( $_terms ) ) {
-						foreach( $_terms as $_term ) {
+						foreach ( $_terms as $_term ) {
 							$product_terms_ids[] = $_term->term_id;
 						}
 					}
@@ -117,93 +153,25 @@ if ( ! function_exists( 'alg_wc_pvbur_product_is_visible' ) ) {
 				}
 			}
 		}
+
 		return alg_wc_pvbur_trigger_is_visible_filter( true, $current_user_roles, $product_id );
 	}
 }
 
-if ( ! function_exists( 'alg_wc_pvbur_get_current_user_all_roles' ) ) {
+if ( ! function_exists( 'alg_wc_pvbur_trigger_is_visible_filter' ) ) {
 	/**
-	 * get_current_user_all_roles.
+	 * Triggers the is_visible filter.
 	 *
-	 * @version 1.1.4
-	 * @since   1.0.0
+	 * @version 1.1.6
+	 * @since   1.1.0
+	 *
+	 * @param $is_visible
+	 * @param $current_user_roles
+	 * @param $product_id
+	 *
+	 * @return mixed|void
 	 */
-	function alg_wc_pvbur_get_current_user_all_roles() {
-		if ( ! function_exists( 'wp_get_current_user' ) ) {
-			require_once( ABSPATH . 'wp-includes/pluggable.php' );
-		}
-		$current_user = wp_get_current_user();
-		return ( ! empty( $current_user->roles ) ) ? $current_user->roles : array( 'guest' );
+	function alg_wc_pvbur_trigger_is_visible_filter( $is_visible, $current_user_roles, $product_id ) {
+		return apply_filters( 'alg_wc_pvbur_is_visible', $is_visible, $current_user_roles, $product_id );
 	}
-}
-
-function alg_wc_pvbur_setup_invisible_products(){
-	$the_query = new WP_Query( array(
-		'post_type'      => 'product',
-		'posts_per_page' => - 1,
-		'fields'         => 'ids',
-		'meta_query'     => array(
-			'relation' => 'OR',
-			array(
-				'key'     => '_alg_wc_pvbur_invisible',
-				'value'   => array( '' ),
-				'compare' => 'NOT IN'
-			),
-			array(
-				'key'     => '_alg_wc_pvbur_visible',
-				'value'   => array( '' ),
-				'compare' => 'NOT IN'
-			),
-		),
-	) );
-
-	if ( ! $the_query->have_posts() ) {
-		return;
-	}
-
-	$roles = array_keys( alg_wc_pvbur_get_user_roles() );
-	$invisible_products = get_option( 'alg_wc_pvbur_invisible_products', array() );
-
-	/*foreach ( $roles as $role ) {
-		$product_visibility[$role]
-	}*/
-
-	foreach ( $the_query->posts as $post_id ) {
-		foreach ( $roles as $role ) {
-			if(! alg_wc_pvbur_product_is_visible( array( $role ), $post_id )){
-				array_push($invisible_products[$role],$post_id);
-			}
-		}
-	}
-
-	update_option( 'alg_wc_pvbur_invisible_products', $invisible_products );
-	wp_reset_postdata();
-
-	// Resets counter
-	/*foreach ( $roles as $role ) {
-		if ( isset( $invisible_categories[ $role ] ) ) {
-			if ( isset( $invisible_categories[ $role ][ $prod_cat_id ] ) ) {
-				unset($invisible_categories[ $role ][ $prod_cat_id ]);
-				//$invisible_categories[ $role ][ $prod_cat_id ] = 0;
-			}
-		}
-	}*/
-
-	/*foreach ( $the_query->posts as $post_id ) {
-
-		foreach ( $roles as $role ) {
-			if ( ! alg_wc_pvbur_product_is_visible( array( $role ), $post_id ) ) {
-				if ( ! isset( $invisible_categories[ $role ] ) ) {
-					$invisible_categories[ $role ] = null;
-				}
-				if ( ! isset( $invisible_categories[ $role ][ $prod_cat_id ] ) ) {
-					$invisible_categories[ $role ][ $prod_cat_id ] = 0;
-				}
-				$invisible_categories[ $role ][ $prod_cat_id ] ++;
-			}
-		}
-	}
-
-	wp_reset_postdata();
-	update_option( 'alg_wc_pvbur_inv_terms_count_by_role', $invisible_categories );*/
 }

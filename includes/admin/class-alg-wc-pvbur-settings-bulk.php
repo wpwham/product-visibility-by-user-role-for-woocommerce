@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Bulk Section Settings
  *
- * @version 1.1.7
+ * @version 1.1.2
  * @since   1.1.0
  * @author  Algoritmika Ltd.
  */
@@ -83,7 +83,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	/**
 	 * add_settings.
 	 *
-	 * @version 1.1.7
+	 * @version 1.1.2
 	 * @since   1.1.0
 	 */
 	function add_settings( $settings ) {
@@ -136,7 +136,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 					'type'     => 'multiselect',
 					'class'    => 'chosen_select',
 					'options'  => $this->get_products(),
-					'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'disabled' => 'disabled' ), 'settings' ),
+					'custom_attributes' => $this->get_custom_attributes()
 				),
 				array(
 					'desc'     => __( 'Invisible', 'product-visibility-by-user-role-for-woocommerce' ),
@@ -145,7 +145,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 					'type'     => 'multiselect',
 					'class'    => 'chosen_select',
 					'options'  => $this->get_products(),
-					'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'disabled' => 'disabled' ), 'settings' ),
+					'custom_attributes' => $this->get_custom_attributes()
 				),
 				array(
 					'title'    => __( 'Product Categories', 'product-visibility-by-user-role-for-woocommerce' ),
@@ -155,7 +155,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 					'type'     => 'multiselect',
 					'class'    => 'chosen_select',
 					'options'  => $this->get_terms( 'product_cat' ),
-					'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'disabled' => 'disabled' ), 'settings' ),
+					'custom_attributes' => $this->get_custom_attributes()
 				),
 				array(
 					'desc'     => __( 'Invisible', 'product-visibility-by-user-role-for-woocommerce' ),
@@ -164,7 +164,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 					'type'     => 'multiselect',
 					'class'    => 'chosen_select',
 					'options'  => $this->get_terms( 'product_cat' ),
-					'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'disabled' => 'disabled' ), 'settings' ),
+					'custom_attributes' => $this->get_custom_attributes()
 				),
 				array(
 					'title'    => __( 'Product Tags', 'product-visibility-by-user-role-for-woocommerce' ),
@@ -174,7 +174,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 					'type'     => 'multiselect',
 					'class'    => 'chosen_select',
 					'options'  => $this->get_terms( 'product_tag' ),
-					'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'disabled' => 'disabled' ), 'settings' ),
+					'custom_attributes' => $this->get_custom_attributes()
 				),
 				array(
 					'desc'     => __( 'Invisible', 'product-visibility-by-user-role-for-woocommerce' ),
@@ -183,7 +183,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 					'type'     => 'multiselect',
 					'class'    => 'chosen_select',
 					'options'  => $this->get_terms( 'product_tag' ),
-					'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'disabled' => 'disabled' ), 'settings' ),
+					'custom_attributes' => $this->get_custom_attributes()
 				),
 				array(
 					'type'     => 'sectionend',
@@ -192,6 +192,14 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 			) );
 		}
 		return array_merge( $bulk_settings, $settings );
+	}
+
+	private function get_custom_attributes() {
+		if ( 'no' === apply_filters( 'alg_wc_pvbur', 'no', 'premium_version' ) ) {
+			return array( 'disabled' => 'disabled' );
+		}
+
+		return array();
 	}
 
 	/**

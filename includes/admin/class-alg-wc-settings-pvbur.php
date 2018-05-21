@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Settings
  *
- * @version 1.1.3
+ * @version 1.1.9
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -58,12 +58,20 @@ class Alg_WC_Settings_PVBUR extends WC_Settings_Page {
 	/**
 	 * Save settings.
 	 *
-	 * @version 1.0.0
+	 * @version 1.1.9
 	 * @since   1.0.0
 	 */
 	function save() {
-		parent::save();
-		$this->maybe_reset_settings();
+		global $current_section;
+		if ( $current_section == 'bulk' ) {
+			if ( 'yes' === apply_filters( 'alg_wc_pvbur', 'no', 'premium_version' ) ) {
+				parent::save();
+				$this->maybe_reset_settings();
+			}
+		} else {
+			parent::save();
+			$this->maybe_reset_settings();
+		}
 	}
 
 	/**
