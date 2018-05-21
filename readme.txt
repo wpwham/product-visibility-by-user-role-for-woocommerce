@@ -36,7 +36,7 @@ In free version you can set included or excluded user roles for each product ind
 * Create "alg_wc_pvbur_get_invisible_products" function
 * Change the way Modify query option works
 * Add 'alg_wc_pvbur_post__not_in' filter
-* Add 'alg_wc_pvbur_hide_products_query' filter
+* Add 'alg_wc_pvbur_hide_products_query' action
 
 = 1.1.8 - 03/05/2018 =
 * Remove pro version checking
@@ -86,4 +86,4 @@ In free version you can set included or excluded user roles for each product ind
 * Create "alg_wc_pvbur_get_invisible_products" function
 * Change the way Modify query option works
 * Add 'alg_wc_pvbur_post__not_in' filter
-* Add 'alg_wc_pvbur_hide_products_query' filter
+* Add 'alg_wc_pvbur_hide_products_query' action
