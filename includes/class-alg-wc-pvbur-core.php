@@ -200,8 +200,8 @@ class Alg_WC_PVBUR_Core {
 		}
 		
 		$post__not_in = array_unique( $post__not_in );		
-		$query->set( 'post__not_in', apply_filters( 'alg_wc_pvbur_post__not_in', $post__not_in ) );
-		do_action( 'alg_wc_pvbur_hide_products_query', $query );
+		$query->set( 'post__not_in', apply_filters( 'alg_wc_pvbur_post__not_in', $post__not_in, $invisible_products->posts  ) );
+		do_action( 'alg_wc_pvbur_hide_products_query', $query, $invisible_products->posts );
 
 		add_action( 'pre_get_posts', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 		add_action( 'woocommerce_product_query', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
