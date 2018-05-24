@@ -41,6 +41,20 @@ if ( ! function_exists( 'alg_wc_pvbur_get_invisible_products' ) ) {
 	 * @since   1.1.9
 	 */
 	function alg_wc_pvbur_get_invisible_products( $roles = array() ) {
+		$query = new WP_Query( alg_wc_pvbur_get_invisible_products_query_args( $roles ) );
+
+		return $query;
+	}
+}
+
+if ( ! function_exists( 'alg_wc_pvbur_get_invisible_products_query_args' ) ) {
+	/**
+	 * alg_wc_pvbur_get_invisible_products_query_args
+	 *
+	 * @version 1.1.9
+	 * @since   1.1.9
+	 */
+	function alg_wc_pvbur_get_invisible_products_query_args( $roles = array() ) {
 		$query_args = array(
 			'fields'         => 'ids',
 			'post_type'      => 'product',
@@ -81,11 +95,11 @@ if ( ! function_exists( 'alg_wc_pvbur_get_invisible_products' ) ) {
 		$query_args['meta_query'][]           = $invisible_meta_query;
 		$query_args['meta_query'][]           = $visible_meta_query;
 
-		$query = new WP_Query( $query_args );
-
-		return $query;
+		return $query_args;
 	}
 }
+
+
 
 if ( ! function_exists( 'alg_wc_pvbur_is_visible' ) ) {
 	/**

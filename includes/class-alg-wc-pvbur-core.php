@@ -174,7 +174,7 @@ class Alg_WC_PVBUR_Core {
 	 *
 	 * @version 1.1.9
 	 * @since   1.1.9
-     * @todo    Improve performance (Create transient that is updated on product update)
+     * @todo    Improve performance (Maybe create transient that is updated on product update)
 	 */
 	function pre_get_posts_hide_invisible_products( $query ) {
 		if (
