@@ -9,7 +9,7 @@ Author URI: http://algoritmika.com
 Text Domain: product-visibility-by-user-role-for-woocommerce
 Domain Path: /langs
 Copyright: © 2018 Algoritmika Ltd.
-WC tested up to: 3.3
+WC tested up to: 3.4
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
