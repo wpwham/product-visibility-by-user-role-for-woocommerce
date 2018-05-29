@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Functions
  *
- * @version 1.1.9
+ * @version 1.2.0
  * @since   1.1.0
  * @author  Algoritmika Ltd.
  */
@@ -105,7 +105,7 @@ if ( ! function_exists( 'alg_wc_pvbur_is_visible' ) ) {
 	/**
 	 * is_visible.
 	 *
-	 * @version 1.1.6
+	 * @version 1.2.0
 	 * @since   1.1.0
 	 */
 	function alg_wc_pvbur_is_visible( $current_user_roles, $product_id ) {
@@ -143,10 +143,10 @@ if ( ! function_exists( 'alg_wc_pvbur_is_visible' ) ) {
 				foreach ( $taxonomies as $taxonomy ) {
 					// Getting product terms
 					$product_terms_ids = array();
-					$_terms            = get_the_terms( $product_id, $taxonomy );
+					$_terms            = wp_get_post_terms( $product_id, $taxonomy, array( 'fields' => 'ids' ) );
 					if ( ! empty( $_terms ) ) {
 						foreach ( $_terms as $_term ) {
-							$product_terms_ids[] = $_term->term_id;
+							$product_terms_ids[] = $_term;
 						}
 					}
 					// Checking
