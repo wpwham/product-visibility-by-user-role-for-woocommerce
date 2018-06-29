@@ -3,7 +3,7 @@ Contributors: algoritmika, anbinder, karzin
 Tags: woo commerce, woocommerce, product, visibility, user role, algoritmika, wpcodefactory
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -31,6 +31,9 @@ In free version you can set included or excluded user roles for each product ind
 3. Start by visiting plugin settings at WooCommerce > Settings > Product Visibility.
 
 == Changelog ==
+
+= 1.2.1 - 29/06/2018 =
+* Add is_search() check to products hiding function to make sure it works on search results too
 
 = 1.2.0 - 29/05/2018 =
 * Improve 'alg_wc_pvbur_is_visible()' function. Get the terms isn't working properly. Replace by wp_get_post_terms();
@@ -86,5 +89,5 @@ In free version you can set included or excluded user roles for each product ind
 
 == Upgrade Notice ==
 
-= 1.2.0 =
-* Improve "alg_wc_pvbur_is_visible()" function. Get the terms isn't working properly. Replace by wp_get_post_terms();
+= 1.2.1 =
+* Add is_search() check to products hiding function to make sure it works on search results too

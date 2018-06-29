@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Core Class
  *
- * @version 1.1.9
+ * @version 1.2.1
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -172,17 +172,18 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * pre_get_posts_hide_invisible_products.
 	 *
-	 * @version 1.1.9
+	 * @version 1.2.1
 	 * @since   1.1.9
      * @todo    Improve performance (Maybe create transient that is updated on product update)
 	 */
 	function pre_get_posts_hide_invisible_products( $query ) {
 		if (
 			is_admin()
-			|| ( current_filter() == 'pre_get_posts' && ! $query->is_single() )
+			|| ( current_filter() == 'pre_get_posts' && ! $query->is_single() && ! $query->is_search() )
 		) {
 			return;
 		}
+
 		remove_action( 'woocommerce_product_query', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 		remove_action( 'pre_get_posts', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 
