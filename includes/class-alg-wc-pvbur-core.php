@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Core Class
  *
- * @version 1.2.1
+ * @version 1.2.0
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -172,7 +172,7 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * pre_get_posts_hide_invisible_products.
 	 *
-	 * @version 1.2.1
+	 * @version 1.2.0
 	 * @since   1.1.9
      * @todo    Improve performance (Maybe create transient that is updated on product update)
 	 */
