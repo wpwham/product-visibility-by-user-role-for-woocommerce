@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Core Class
  *
- * @version 1.2.0
+ * @version 1.2.1
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -16,7 +16,7 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.1.9
+	 * @version 1.2.1
 	 * @since   1.0.0
 	 */
 	function __construct() {
@@ -29,10 +29,6 @@ class Alg_WC_PVBUR_Core {
 				}
 				if ( 'yes' === get_option( 'alg_wc_pvbur_purchasable', 'no' ) ) {
 					add_filter( 'woocommerce_is_purchasable',     array( $this, 'product_by_user_role_purchasable' ), PHP_INT_MAX, 2 );
-				}
-				if ( 'yes' === get_option( 'alg_wc_pvbur_query', 'no' ) ) {
-					add_action( 'woocommerce_product_query', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
-					add_action( 'pre_get_posts',                  array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 				}
 			}
 			// Admin products list
@@ -50,7 +46,45 @@ class Alg_WC_PVBUR_Core {
 				}
 				add_action( 'woocommerce_product_bulk_and_quick_edit', array( $this, 'save_bulk_and_quick_edit_fields' ), PHP_INT_MAX, 2 );
 			}
+
+			add_filter( 'alg_wc_pvbur_can_search', array( $this, 'allow_search_cases' ), 10, 2 );
+
+			if ( 'yes' === get_option( 'alg_wc_pvbur_query', 'no' ) ) {
+				add_action( 'woocommerce_product_query', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
+				add_action( 'pre_get_posts', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
+			}
 		}
+	}
+
+	/**
+	 * Handles cases for invisible products searching
+	 *
+	 * @version 1.2.1
+	 * @since   1.2.1
+	 *
+	 * @param bool $can_search
+	 * @param $query
+	 *
+	 * @return bool
+	 */
+	public function allow_search_cases( $can_search = true, $query ) {
+		$force_search = $query->get( 'alg_wc_pvbur_search' );
+		if (
+			! empty( $force_search ) &&
+			filter_var( $force_search, FILTER_VALIDATE_BOOLEAN ) === true
+		) {
+			return true;
+		}
+
+		if (
+			is_admin() ||
+			( defined( 'DOING_AJAX' ) && DOING_AJAX )
+			|| ( current_filter() == 'pre_get_posts' && ! $query->is_single() && ! $query->is_search() )
+		) {
+			return false;
+		}
+
+		return $can_search;
 	}
 
 	/**
@@ -172,15 +206,12 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * pre_get_posts_hide_invisible_products.
 	 *
-	 * @version 1.2.0
+	 * @version 1.2.1
 	 * @since   1.1.9
      * @todo    Improve performance (Maybe create transient that is updated on product update)
 	 */
 	function pre_get_posts_hide_invisible_products( $query ) {
-		if (
-			is_admin()
-			|| ( current_filter() == 'pre_get_posts' && ! $query->is_single() && ! $query->is_search() )
-		) {
+		if ( false === filter_var( apply_filters( 'alg_wc_pvbur_can_search', true, $query ), FILTER_VALIDATE_BOOLEAN ) ) {
 			return;
 		}
 
