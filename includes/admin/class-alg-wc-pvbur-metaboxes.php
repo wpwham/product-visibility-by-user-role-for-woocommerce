@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Metaboxes
  *
- * @version 1.1.2
+ * @version 1.2.1
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -147,7 +147,7 @@ class Alg_WC_PVBUR_Metaboxes {
 	/**
 	 * save_pvbur_meta_box.
 	 *
-	 * @version 1.0.0
+	 * @version 1.2.1
 	 * @since   1.0.0
 	 */
 	function save_pvbur_meta_box( $post_id, $post ) {
@@ -168,6 +168,7 @@ class Alg_WC_PVBUR_Metaboxes {
 				update_post_meta( $_post_id, $_meta_name, $option_value );
 			}
 		}
+		do_action( 'alg_wc_pvbur_save_metabox', $post_id );
 	}
 
 	/**

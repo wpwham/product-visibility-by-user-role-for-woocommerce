@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Functions
  *
- * @version 1.2.0
+ * @version 1.2.1
  * @since   1.1.0
  * @author  Algoritmika Ltd.
  */
@@ -44,6 +44,30 @@ if ( ! function_exists( 'alg_wc_pvbur_get_invisible_products' ) ) {
 		$query = new WP_Query( alg_wc_pvbur_get_invisible_products_query_args( $roles ) );
 
 		return $query;
+	}
+}
+
+if ( ! function_exists( 'alg_wc_pvbur_get_invisible_products_ids' ) ) {
+	/**
+	 * Get invisible products ids
+	 *
+	 * @version 1.2.1
+	 * @since   1.2.1
+	 */
+	function alg_wc_pvbur_get_invisible_products_ids( $roles = array(), $cache = true ) {
+		if ( $cache ) {
+			$invisible_products_ids_query_name = "awcpvbur_inv_pids_" . md5( implode( "_", $roles ) );
+			if ( false === ( $invisible_product_ids = get_transient( $invisible_products_ids_query_name ) ) ) {
+				$invisible_products    = alg_wc_pvbur_get_invisible_products( $roles );
+				$invisible_product_ids = $invisible_products->posts;
+				set_transient( $invisible_products_ids_query_name, $invisible_product_ids );
+			}
+		} else {
+			$invisible_products    = alg_wc_pvbur_get_invisible_products( $roles );
+			$invisible_product_ids = $invisible_products->posts;
+		}
+
+		return $invisible_product_ids;
 	}
 }
 

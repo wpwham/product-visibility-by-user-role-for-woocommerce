@@ -35,6 +35,9 @@ In free version you can set included or excluded user roles for each product ind
 = 1.2.1 - 25/07/2018 =
 * Allow other plugins to interact with invisible products query using the 'alg_wc_pvbur_can_search' filter or passing a 'alg_wc_pvbur_search' parameter on customs WP_Query queries
 * Add WooCommerce minimum requirement
+* Improve performance of invisible products search by saving the results of alg_wc_pvbur_get_invisible_products() in cache (Only the ids, not WP_Query)
+* Add action 'alg_wc_pvbur_save_metabox' on metabox saving
+* Add new function 'alg_wc_pvbur_get_invisible_products_ids()' to get only the invisible products ids, with a cache option
 
 = 1.2.0 - 29/06/2018 =
 * Improve 'alg_wc_pvbur_is_visible()' function. Get the terms isn't working properly. Replace by wp_get_post_terms();
@@ -94,3 +97,6 @@ In free version you can set included or excluded user roles for each product ind
 = 1.2.1 =
 * Allow other plugins to interact with invisible products query using the 'alg_wc_pvbur_can_search' filter or passing a 'alg_wc_pvbur_search' parameter on customs WP_Query queries
 * Add WooCommerce minimum requirement
+* Improve performance of invisible products search by saving the results of alg_wc_pvbur_get_invisible_products() in cache (Only the ids, not WP_Query)
+* Add action 'alg_wc_pvbur_save_metabox' on metabox saving
+* Add new function 'alg_wc_pvbur_get_invisible_products_ids()' to get only the invisible products ids, with a cache option
