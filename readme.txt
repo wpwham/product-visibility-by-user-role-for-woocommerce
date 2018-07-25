@@ -34,6 +34,7 @@ In free version you can set included or excluded user roles for each product ind
 
 = 1.2.1 - 25/07/2018 =
 * Allow other plugins to interact with invisible products query using the 'alg_wc_pvbur_can_search' filter or passing a 'alg_wc_pvbur_search' parameter on customs WP_Query queries
+* Add WooCommerce minimum requirement
 
 = 1.2.0 - 29/06/2018 =
 * Improve 'alg_wc_pvbur_is_visible()' function. Get the terms isn't working properly. Replace by wp_get_post_terms();
@@ -92,3 +93,4 @@ In free version you can set included or excluded user roles for each product ind
 
 = 1.2.1 =
 * Allow other plugins to interact with invisible products query using the 'alg_wc_pvbur_can_search' filter or passing a 'alg_wc_pvbur_search' parameter on customs WP_Query queries
+* Add WooCommerce minimum requirement
