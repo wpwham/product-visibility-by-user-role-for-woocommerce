@@ -3,7 +3,7 @@ Contributors: algoritmika, anbinder, karzin
 Tags: woo commerce, woocommerce, product, visibility, user role, algoritmika, wpcodefactory
 Requires at least: 4.4
 Tested up to: 4.9
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -31,6 +31,9 @@ In free version you can set included or excluded user roles for each product ind
 3. Start by visiting plugin settings at WooCommerce > Settings > Product Visibility.
 
 == Changelog ==
+
+= 1.2.2 - 13/08/2018 =
+* Improve 'alg_wc_pvbur_can_search' filter preventing the main visibility query to work on wp menu
 
 = 1.2.1 - 25/07/2018 =
 * Allow other plugins to interact with invisible products query using the 'alg_wc_pvbur_can_search' filter or passing a 'alg_wc_pvbur_search' parameter on customs WP_Query queries
@@ -94,9 +97,5 @@ In free version you can set included or excluded user roles for each product ind
 
 == Upgrade Notice ==
 
-= 1.2.1 =
-* Allow other plugins to interact with invisible products query using the 'alg_wc_pvbur_can_search' filter or passing a 'alg_wc_pvbur_search' parameter on customs WP_Query queries
-* Add WooCommerce minimum requirement
-* Improve performance of invisible products search by saving the results of alg_wc_pvbur_get_invisible_products() in cache (Only the ids, not WP_Query)
-* Add action 'alg_wc_pvbur_save_metabox' on metabox saving
-* Add new function 'alg_wc_pvbur_get_invisible_products_ids()' to get only the invisible products ids, with a cache option
+= 1.2.2 =
+* Improve 'alg_wc_pvbur_can_search' filter preventing the main visibility query to work on wp menu
