@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Functions
  *
- * @version 1.2.1
+ * @version 1.2.3
  * @since   1.1.0
  * @author  Algoritmika Ltd.
  */
@@ -75,15 +75,16 @@ if ( ! function_exists( 'alg_wc_pvbur_get_invisible_products_query_args' ) ) {
 	/**
 	 * alg_wc_pvbur_get_invisible_products_query_args
 	 *
-	 * @version 1.1.9
+	 * @version 1.2.3
 	 * @since   1.1.9
 	 */
 	function alg_wc_pvbur_get_invisible_products_query_args( $roles = array() ) {
 		$query_args = array(
-			'fields'         => 'ids',
-			'post_type'      => 'product',
-			'posts_per_page' => '-1',
-			'meta_query'     => array()
+			'fields'           => 'ids',
+			'post_type'        => 'product',
+			'posts_per_page'   => '-1',
+			'suppress_filters' => true,
+			'meta_query'       => array()
 		);
 
 		$invisible_meta_query = array();
