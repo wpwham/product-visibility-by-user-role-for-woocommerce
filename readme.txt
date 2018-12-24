@@ -2,7 +2,7 @@
 Contributors: algoritmika, anbinder, karzin
 Tags: woo commerce, woocommerce, product, visibility, user role, algoritmika, wpcodefactory
 Requires at least: 4.4
-Tested up to: 4.9
+Tested up to: 5.0
 Stable tag: 1.2.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -31,6 +31,9 @@ In free version you can set included or excluded user roles for each product ind
 3. Start by visiting plugin settings at WooCommerce > Settings > Product Visibility.
 
 == Changelog ==
+
+= 1.2.4 - 25/12/2018 =
+* Bulk Settings - Categories / Tags - Term ID and term parent info added.
 
 = 1.2.3 - 06/12/2018 =
 * Add compatibility with WPML plugin

@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Bulk Section Settings
  *
- * @version 1.1.2
+ * @version 1.2.4
  * @since   1.1.0
  * @author  Algoritmika Ltd.
  */
@@ -244,7 +244,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	/**
 	 * get_terms.
 	 *
-	 * @version 1.1.0
+	 * @version 1.2.4
 	 * @since   1.1.0
 	 */
 	function get_terms( $args ) {
@@ -267,7 +267,13 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 		$_terms_options = array();
 		if ( ! empty( $_terms ) && ! is_wp_error( $_terms ) ){
 			foreach ( $_terms as $_term ) {
-				$_terms_options[ $_term->term_id ] = $_term->name;
+				$parent_info = '';
+				if ( 0 != $_term->parent ) {
+					$parent_term = get_term( $_term->parent );
+					$parent_info = ' (' . sprintf( __( 'parent: %s', 'product-visibility-by-user-role-for-woocommerce' ), $parent_term->name ) . ')';
+				}
+				$_terms_options[ $_term->term_id ] = $_term->name .
+					' (' . sprintf( __( 'ID: %s', 'product-visibility-by-user-role-for-woocommerce' ), $_term->term_id ) . ')' . $parent_info;
 			}
 		}
 		return $_terms_options;
