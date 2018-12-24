@@ -248,6 +248,13 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	 * @since   1.1.0
 	 */
 	function get_terms( $args ) {
+		global $sitepress;
+		if ( $sitepress ) {
+			// remove WPML term filters
+			remove_filter('get_terms_args', array( $sitepress, 'get_terms_args_filter' ) );
+			remove_filter('get_term',       array( $sitepress, 'get_term_adjust_id' ) );
+			remove_filter('terms_clauses',  array( $sitepress, 'terms_clauses' ) );
+		}
 		if ( ! is_array( $args ) ) {
 			$_taxonomy = $args;
 			$args = array(
@@ -275,6 +282,12 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 				$_terms_options[ $_term->term_id ] = $_term->name .
 					' (' . sprintf( __( 'ID: %s', 'product-visibility-by-user-role-for-woocommerce' ), $_term->term_id ) . ')' . $parent_info;
 			}
+		}
+		if ( $sitepress ) {
+			// restore WPML term filters
+			add_filter('terms_clauses',  array( $sitepress, 'terms_clauses' ) );
+			add_filter('get_term',       array( $sitepress, 'get_term_adjust_id' ) );
+			add_filter('get_terms_args', array( $sitepress, 'get_terms_args_filter' ) );
 		}
 		return $_terms_options;
 	}
