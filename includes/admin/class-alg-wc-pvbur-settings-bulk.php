@@ -230,6 +230,14 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 			}
 			foreach ( $loop->posts as $post_id ) {
 				$products[ $post_id ] = get_the_title( $post_id );
+				if ( function_exists( 'icl_get_languages' ) && function_exists( 'icl_object_id' ) ) {
+					foreach ( icl_get_languages() as $language_id => $language_data ) {
+						$_post_id = icl_object_id( $post_id, 'product', true, $language_id );
+						if ( $_post_id != $post_id ) {
+							$products[ $_post_id ] = get_the_title( $_post_id );
+						}
+					}
+				}
 			}
 			$offset += $block_size;
 		}
