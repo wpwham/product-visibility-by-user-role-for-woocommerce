@@ -249,6 +249,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	 *
 	 * @version 1.2.4
 	 * @since   1.1.0
+	 * @see     https://wpml.org/forums/topic/get-all-terms-of-all-languages-outside-loop/
 	 */
 	function get_terms( $args ) {
 		global $sitepress;
