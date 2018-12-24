@@ -194,6 +194,9 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 		return array_merge( $bulk_settings, $settings );
 	}
 
+	/**
+	 * get_custom_attributes.
+	 */
 	private function get_custom_attributes() {
 		if ( 'no' === apply_filters( 'alg_wc_pvbur', 'no', 'premium_version' ) ) {
 			return array( 'disabled' => 'disabled' );
