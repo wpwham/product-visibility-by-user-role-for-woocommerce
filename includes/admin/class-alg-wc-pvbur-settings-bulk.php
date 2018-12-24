@@ -208,15 +208,15 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	/**
 	 * get_products.
 	 *
-	 * @version 1.1.0
+	 * @version 1.2.4
 	 * @since   1.1.0
 	 * @todo    (maybe) use `wc_get_products()`
 	 */
-	function get_products( $products = array(), $post_status = 'any', $block_size = 256, $add_variations = false ) {
+	function get_products( $products = array(), $post_status = 'any', $block_size = 512, $add_variations = false ) {
 		$offset = 0;
 		while( true ) {
 			$args = array(
-				'post_type'      => 'product',
+				'post_type'      => ( $add_variations ? array( 'product', 'product_variation' ) : 'product' ),
 				'post_status'    => $post_status,
 				'posts_per_page' => $block_size,
 				'offset'         => $offset,
@@ -230,14 +230,6 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 			}
 			foreach ( $loop->posts as $post_id ) {
 				$products[ $post_id ] = get_the_title( $post_id );
-				if ( $add_variations ) {
-					$_product = wc_get_product( $post_id );
-					if ( $_product->is_type( 'variable' ) ) {
-						foreach ( $_product->get_children() as $child_id ) {
-							$products[ $child_id ] = get_the_title( $child_id );
-						}
-					}
-				}
 			}
 			$offset += $block_size;
 		}
