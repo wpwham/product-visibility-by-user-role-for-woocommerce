@@ -3,7 +3,7 @@ Contributors: algoritmika, anbinder, karzin
 Tags: woo commerce, woocommerce, product, visibility, user role, algoritmika, wpcodefactory
 Requires at least: 4.4
 Tested up to: 5.0
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
