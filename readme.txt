@@ -33,6 +33,7 @@ In free version you can set included or excluded user roles for each product ind
 == Changelog ==
 
 = 1.2.4 - 25/12/2018 =
+* Bulk Settings - Products - Product ID added to listing.
 * Bulk Settings - Products - WPML - Listing all languages products now.
 * Bulk Settings - Products - Code refactoring - Variations listing optimized.
 * Bulk Settings - Categories / Tags - WPML - Listing all languages terms now.
