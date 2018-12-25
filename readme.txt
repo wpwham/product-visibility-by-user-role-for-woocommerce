@@ -1,6 +1,6 @@
 === Product Visibility by User Role for WooCommerce ===
 Contributors: algoritmika, anbinder, karzin
-Tags: woo commerce, woocommerce, product, visibility, user role, algoritmika, wpcodefactory
+Tags: woo commerce, woocommerce, product, visibility, user role
 Requires at least: 4.4
 Tested up to: 5.0
 Stable tag: 1.2.4
@@ -19,7 +19,7 @@ You can choose how products should be hidden:
 * Make products non-purchasable.
 * Hide products completely.
 
-In free version you can set included or excluded user roles for each product individually. If you want to set user roles visibility options in bulk (for multiple products at once, product categories or product tags), please check [Product Visibility by User Role for WooCommerce Pro](https://wpcodefactory.com/item/product-visibility-by-user-role-for-woocommerce/) plugin.
+In free version you can set included or excluded user roles for each product individually. If you want to set user roles visibility options in bulk (for multiple products at once, product categories or product tags), please check [Product Visibility by User Role for WooCommerce Pro](https://wpfactory.com/item/product-visibility-by-user-role-for-woocommerce/) plugin.
 
 = Feedback =
 * We are open to your suggestions and feedback. Thank you for using or trying out one of our plugins!
@@ -38,6 +38,7 @@ In free version you can set included or excluded user roles for each product ind
 * Bulk Settings - Products - Code refactoring - Variations listing optimized.
 * Bulk Settings - Categories / Tags - WPML - Listing all languages terms now.
 * Bulk Settings - Categories / Tags - Term ID and term parent info added.
+* Plugin URI updated.
 
 = 1.2.3 - 06/12/2018 =
 * Add compatibility with WPML plugin

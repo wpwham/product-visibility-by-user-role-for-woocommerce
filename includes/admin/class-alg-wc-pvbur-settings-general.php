@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - General Section Settings
  *
- * @version 1.1.5
+ * @version 1.2.4
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -28,7 +28,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 	/**
 	 * add_settings.
 	 *
-	 * @version 1.1.5
+	 * @version 1.2.4
 	 * @since   1.0.0
 	 */
 	function add_settings( $settings ) {
@@ -118,7 +118,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 				'title'    => __( 'Products bulk edit', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc_tip' => __( 'This will add "User Roles" options to the products bulk edit screen.', 'product-visibility-by-user-role-for-woocommerce' ) .
 					apply_filters( 'alg_wc_pvbur', '<br>' . sprintf( __( 'You will need %s plugin to enable this option.', 'product-visibility-by-user-role-for-woocommerce' ),
-					'<a href="https://wpcodefactory.com/item/product-visibility-by-user-role-for-woocommerce/" target="_blank">' .
+					'<a href="https://wpfactory.com/item/product-visibility-by-user-role-for-woocommerce/" target="_blank">' .
 						__( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) .
 					'</a>' ), 'settings'
 				),

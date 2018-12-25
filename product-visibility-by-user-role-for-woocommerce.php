@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Product Visibility by User Role for WooCommerce
-Plugin URI: https://wpcodefactory.com/item/product-visibility-by-user-role-for-woocommerce/
+Plugin URI: https://wpfactory.com/item/product-visibility-by-user-role-for-woocommerce/
 Description: Display WooCommerce products by customer's user role.
 Version: 1.2.4
 Author: Algoritmika Ltd
@@ -45,7 +45,7 @@ if ( ! class_exists( 'Alg_WC_PVBUR' ) ) :
  * Main Alg_WC_PVBUR Class
  *
  * @class   Alg_WC_PVBUR
- * @version 1.2.3
+ * @version 1.2.4
  * @since   1.0.0
  */
 final class Alg_WC_PVBUR {
@@ -106,7 +106,7 @@ final class Alg_WC_PVBUR {
 	/**
 	 * Show action links on the plugin screen
 	 *
-	 * @version 1.0.0
+	 * @version 1.2.4
 	 * @since   1.0.0
 	 * @param   mixed $links
 	 * @return  array
@@ -115,7 +115,7 @@ final class Alg_WC_PVBUR {
 		$custom_links = array();
 		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_pvbur' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>';
 		if ( 'product-visibility-by-user-role-for-woocommerce.php' === basename( __FILE__ ) ) {
-			$custom_links[] = '<a href="https://wpcodefactory.com/item/product-visibility-by-user-role-for-woocommerce/">' .
+			$custom_links[] = '<a href="https://wpfactory.com/item/product-visibility-by-user-role-for-woocommerce/">' .
 				__( 'Unlock All', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>';
 		}
 		return array_merge( $custom_links, $links );
