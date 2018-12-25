@@ -213,6 +213,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	 * @todo    (maybe) use `wc_get_products()`
 	 */
 	function get_products( $products = array(), $post_status = 'any', $block_size = 512, $add_variations = false ) {
+		$do_add_wpml_translations = ( function_exists( 'icl_get_languages' ) && function_exists( 'icl_object_id' ) );
 		$offset = 0;
 		while( true ) {
 			$args = array(
@@ -231,7 +232,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 			foreach ( $loop->posts as $post_id ) {
 				$products[ $post_id ] = get_the_title( $post_id ) .
 					' (' . sprintf( __( 'ID: %s', 'product-visibility-by-user-role-for-woocommerce' ), $post_id ) . ')';
-				if ( function_exists( 'icl_get_languages' ) && function_exists( 'icl_object_id' ) ) {
+				if ( $do_add_wpml_translations ) {
 					foreach ( icl_get_languages() as $language_id => $language_data ) {
 						$_post_id = icl_object_id( $post_id, 'product', true, $language_id );
 						if ( $_post_id != $post_id ) {
@@ -283,10 +284,10 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 				$parent_info = '';
 				if ( 0 != $_term->parent ) {
 					$parent_term = get_term( $_term->parent );
-					$parent_info = ' (' . sprintf( __( 'parent: %s', 'product-visibility-by-user-role-for-woocommerce' ), $parent_term->name ) . ')';
+					$parent_info = $parent_term->name . ' > ';
 				}
-				$_terms_options[ $_term->term_id ] = $_term->name .
-					' (' . sprintf( __( 'ID: %s', 'product-visibility-by-user-role-for-woocommerce' ), $_term->term_id ) . ')' . $parent_info;
+				$_terms_options[ $_term->term_id ] = $parent_info . $_term->name .
+					' (' . sprintf( __( 'ID: %s', 'product-visibility-by-user-role-for-woocommerce' ), $_term->term_id ) . ')';
 			}
 		}
 		if ( $sitepress ) {
