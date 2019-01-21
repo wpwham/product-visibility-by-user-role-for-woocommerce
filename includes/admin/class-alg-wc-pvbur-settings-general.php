@@ -28,7 +28,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 	/**
 	 * add_settings.
 	 *
-	 * @version 1.2.4
+	 * @version 1.2.5
 	 * @since   1.0.0
 	 */
 	function add_settings( $settings ) {
@@ -39,7 +39,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 				'id'       => 'alg_wc_pvbur_options',
 			),
 			array(
-				'title'    => __( 'Product Visibility by User Role for WooCommerce', 'product-visibility-by-user-role-for-woocommerce' ),
+				'title'    => __( 'Product Visibility by User Role', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc'     => '<strong>' . __( 'Enable plugin', 'product-visibility-by-user-role-for-woocommerce' ) . '</strong>',
 				'id'       => 'alg_wc_pvbur_enabled',
 				'default'  => 'yes',

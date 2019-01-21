@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Bulk Section Settings
  *
- * @version 1.2.4
+ * @version 1.2.5
  * @since   1.1.0
  * @author  Algoritmika Ltd.
  */
@@ -83,7 +83,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	/**
 	 * add_settings.
 	 *
-	 * @version 1.2.4
+	 * @version 1.2.5
 	 * @since   1.1.0
 	 */
 	function add_settings( $settings ) {
@@ -129,6 +129,15 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 					'id'       => 'alg_wc_pvbur_bulk_options_' . $user_role_id,
 				),
 				array(
+					'title'    => __( 'Hide all', 'product-visibility-by-user-role-for-woocommerce' ),
+					'desc_tip' => __( 'Hides all products, product categories/tags from this user role.', 'product-visibility-by-user-role-for-woocommerce' ),
+					'desc'     => __( 'Enable', 'product-visibility-by-user-role-for-woocommerce' ),
+					'id'       => 'alg_wc_pvbur_bulk_hide_all_from_' . $user_role_id,
+					'default'  => 'no',
+					'type'     => 'checkbox',
+					'custom_attributes' => $this->get_custom_attributes(),
+				),
+				array(
 					'title'    => __( 'Products', 'product-visibility-by-user-role-for-woocommerce' ),
 					'desc'     => __( 'Visible', 'product-visibility-by-user-role-for-woocommerce' ),
 					'id'       => 'alg_wc_pvbur_bulk_visible_products_' . $user_role_id,
@@ -136,7 +145,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 					'type'     => 'multiselect',
 					'class'    => 'chosen_select',
 					'options'  => $this->get_products(),
-					'custom_attributes' => $this->get_custom_attributes()
+					'custom_attributes' => $this->get_custom_attributes(),
 				),
 				array(
 					'desc'     => __( 'Invisible', 'product-visibility-by-user-role-for-woocommerce' ),
@@ -145,17 +154,17 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 					'type'     => 'multiselect',
 					'class'    => 'chosen_select',
 					'options'  => $this->get_products(),
-					'custom_attributes' => $this->get_custom_attributes()
+					'custom_attributes' => $this->get_custom_attributes(),
 				),
 				array(
-					'title'    => __( 'Product Categories', 'product-visibility-by-user-role-for-woocommerce' ),
+					'title'    => __( 'Product categories', 'product-visibility-by-user-role-for-woocommerce' ),
 					'desc'     => __( 'Visible', 'product-visibility-by-user-role-for-woocommerce' ),
 					'id'       => 'alg_wc_pvbur_bulk_visible_product_cats_' . $user_role_id,
 					'default'  => '',
 					'type'     => 'multiselect',
 					'class'    => 'chosen_select',
 					'options'  => $this->get_terms( 'product_cat' ),
-					'custom_attributes' => $this->get_custom_attributes()
+					'custom_attributes' => $this->get_custom_attributes(),
 				),
 				array(
 					'desc'     => __( 'Invisible', 'product-visibility-by-user-role-for-woocommerce' ),
@@ -164,17 +173,17 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 					'type'     => 'multiselect',
 					'class'    => 'chosen_select',
 					'options'  => $this->get_terms( 'product_cat' ),
-					'custom_attributes' => $this->get_custom_attributes()
+					'custom_attributes' => $this->get_custom_attributes(),
 				),
 				array(
-					'title'    => __( 'Product Tags', 'product-visibility-by-user-role-for-woocommerce' ),
+					'title'    => __( 'Product tags', 'product-visibility-by-user-role-for-woocommerce' ),
 					'desc'     => __( 'Visible', 'product-visibility-by-user-role-for-woocommerce' ),
 					'id'       => 'alg_wc_pvbur_bulk_visible_product_tags_' . $user_role_id,
 					'default'  => '',
 					'type'     => 'multiselect',
 					'class'    => 'chosen_select',
 					'options'  => $this->get_terms( 'product_tag' ),
-					'custom_attributes' => $this->get_custom_attributes()
+					'custom_attributes' => $this->get_custom_attributes(),
 				),
 				array(
 					'desc'     => __( 'Invisible', 'product-visibility-by-user-role-for-woocommerce' ),
@@ -183,7 +192,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 					'type'     => 'multiselect',
 					'class'    => 'chosen_select',
 					'options'  => $this->get_terms( 'product_tag' ),
-					'custom_attributes' => $this->get_custom_attributes()
+					'custom_attributes' => $this->get_custom_attributes(),
 				),
 				array(
 					'type'     => 'sectionend',
