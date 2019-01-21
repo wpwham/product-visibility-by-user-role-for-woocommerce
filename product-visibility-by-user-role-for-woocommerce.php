@@ -56,7 +56,7 @@ final class Alg_WC_PVBUR {
 	 * @var   string
 	 * @since 1.0.0
 	 */
-	public $version = '1.2.5-dev-20190122-0100';
+	public $version = '1.2.5-dev-20190122-0114';
 
 	/**
 	 * @var   Alg_WC_PVBUR The single instance of the class
