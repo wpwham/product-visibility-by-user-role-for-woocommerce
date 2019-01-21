@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - General Section Settings
  *
- * @version 1.2.4
+ * @version 1.2.5
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -87,6 +87,43 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 				'default'  => 'no',
 				'type'     => 'checkbox',
 			),
+
+			array(
+				'title'    => __( 'Hide menu items', 'product-visibility-by-user-role-for-woocommerce' ),
+				'desc_tip' => __( 'Hides nav menu items from empty products, product categories and tags.', 'product-visibility-by-user-role-for-woocommerce' ) . ' ' . sprintf( __( 'Only products, product categories/tags marked in <a href="%s">bulk settings</a> will be hidden.', 'product-visibility-by-user-role-for-woocommerce' ), admin_url( 'admin.php?page=wc-settings&tab=alg_wc_pvbur&section=bulk' ) ). '<br />' . __( 'This options uses the <strong>wp_get_nav_menu_items</strong> filter', 'product-visibility-by-user-role-for-woocommerce' ) ,
+				'desc'     => __( 'Enable', 'product-visibility-by-user-role-for-woocommerce' ),
+				'id'       => 'alg_wc_pvbur_hide_menu_items',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'disabled' => 'disabled' ), 'settings' ),
+			),
+			array(
+				'title'    => __( 'Hide products terms', 'product-visibility-by-user-role-for-woocommerce' ),
+				'desc_tip' => __( 'Hides products categories and tags from being displayed on front-end.', 'product-visibility-by-user-role-for-woocommerce' ) . ' ' . sprintf( __( 'Only categories/tags marked in <a href="%s">bulk settings</a> will be hidden.', 'product-visibility-by-user-role-for-woocommerce' ), admin_url( 'admin.php?page=wc-settings&tab=alg_wc_pvbur&section=bulk' ) ). '<br />' . __( 'This options works filtering terms from <strong>get_terms()</strong> function', 'product-visibility-by-user-role-for-woocommerce' ) ,
+				'desc'     => __( 'Enable', 'product-visibility-by-user-role-for-woocommerce' ),
+				'id'       => 'alg_wc_pvbur_hide_product_terms',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'disabled' => 'disabled' ), 'settings' ),
+			),
+			array(
+				'title'    => __( 'Redirect', 'product-visibility-by-user-role-for-woocommerce' ),
+				'desc_tip' => sprintf( __( 'This option is useful only if <strong>%s</strong> is enabled', 'product-visibility-by-user-role-for-woocommerce' ), 'Modify Query' ),
+				'desc'     => '<br />' . __( 'Redirects to a page different from 404, in case a product is considered invisible', 'product-visibility-by-user-role-for-woocommerce' ),
+				'id'       => 'alg_wc_pvbur_redirect',
+				'default'  => '',
+				'type'     => 'text',
+				'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'readonly' => 'readonly' ), 'settings' ),
+			),
+			array(
+				'desc'     => __( 'Redirect URL per product', 'product-visibility-by-user-role-for-woocommerce' ),
+				'desc_tip' => __( 'This will add new "Product visibility: Redirect URL" meta box to each product\'s edit page.', 'product-visibility-by-user-role-for-woocommerce' ),
+				'id'       => 'alg_wc_pvbur_redirect_per_product',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'disabled' => 'disabled' ), 'settings' ),
+			),
+
 			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pvbur_general_options',
@@ -117,7 +154,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 			array(
 				'title'    => __( 'Products bulk edit', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc_tip' => __( 'This will add "User Roles" options to the products bulk edit screen.', 'product-visibility-by-user-role-for-woocommerce' ) .
-					apply_filters( 'alg_wc_pvbur', '<br>' . sprintf( __( 'You will need %s plugin to enable this option.', 'product-visibility-by-user-role-for-woocommerce' ),
+					apply_filters( 'alg_wc_pvbur', '<br>' . sprintf( 'You will need %s plugin to enable this option.',
 					'<a href="https://wpfactory.com/item/product-visibility-by-user-role-for-woocommerce/" target="_blank">' .
 						__( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) .
 					'</a>' ), 'settings'
