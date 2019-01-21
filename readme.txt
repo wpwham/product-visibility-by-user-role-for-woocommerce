@@ -33,7 +33,7 @@ In free version you can set included or excluded user roles for each product ind
 == Changelog ==
 
 = 1.2.5 - 22/01/2019 =
--* Admin settings descriptions updated and restyled.
+* Admin settings descriptions updated and restyled.
 
 = 1.2.4 - 25/12/2018 =
 * Bulk Settings - Products - Product ID added to listing.
