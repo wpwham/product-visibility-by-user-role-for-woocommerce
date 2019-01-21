@@ -19,7 +19,7 @@ You can choose how products should be hidden:
 * Make products non-purchasable.
 * Hide products completely.
 
-In free version you can set included or excluded user roles for each product individually. If you want to set user roles visibility options in bulk (for multiple products at once, product categories or product tags), please check [Product Visibility by User Role for WooCommerce Pro](https://wpfactory.com/item/product-visibility-by-user-role-for-woocommerce/) plugin.
+In free version you can set included or excluded user roles for each product individually. If you want to set user roles visibility options in bulk (for multiple products at once, product categories or product tags), please check [Product Visibility by User Role for WooCommerce Pro](https://wpfactory.com/item/product-visibility-by-user-role-for-woocommerce/) plugin. Pro version also has options to hide menu items, hide product terms, set custom redirect page (i.e. instead of default 404).
 
 = Feedback =
 * We are open to your suggestions and feedback. Thank you for using or trying out one of our plugins!
