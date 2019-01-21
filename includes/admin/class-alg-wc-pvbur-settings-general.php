@@ -91,7 +91,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 			),
 			array(
 				'title'    => __( 'Hide menu items', 'product-visibility-by-user-role-for-woocommerce' ),
-				'desc_tip' => __( 'Hides nav menu items from empty products, product categories and tags.', 'product-visibility-by-user-role-for-woocommerce' ) . ' ' .
+				'desc_tip' => __( 'Hides nav menu items (i.e. hidden products, product categories and tags).', 'product-visibility-by-user-role-for-woocommerce' ) . ' ' .
 					sprintf( __( 'Only products, product categories/tags marked in <a href="%s">bulk settings</a> will be hidden.', 'product-visibility-by-user-role-for-woocommerce' ),
 						admin_url( 'admin.php?page=wc-settings&tab=alg_wc_pvbur&section=bulk' ) ) .
 					'<br />' . __( 'This options uses the <code>wp_get_nav_menu_items</code> filter.', 'product-visibility-by-user-role-for-woocommerce' ) .
