@@ -61,8 +61,8 @@ class Alg_WC_PVBUR_Core {
 	}
 
 	/**
-     * Clears invisible products ids cache on metabox saving
-     *
+	 * Clears invisible products ids cache on metabox saving
+	 *
 	 * @version 1.2.1
 	 * @since   1.2.1
 	 * @param $post_id
