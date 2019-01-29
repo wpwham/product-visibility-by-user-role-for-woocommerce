@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Core Class
  *
- * @version 1.2.2
+ * @version 1.2.5
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -160,13 +160,13 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * add_bulk_and_quick_edit_fields.
 	 *
-	 * @version 1.1.5
+	 * @version 1.2.5
 	 * @since   1.1.5
 	 */
 	function add_bulk_and_quick_edit_fields() {
 		$all_roles_options = '';
 		$all_roles_options .= '<option value="alg_no_change" selected>' . __( '— No change —', 'woocommerce' ) . '</option>';
-		foreach ( alg_wc_pvbur_get_user_roles() as $role_id => $role_desc ) {
+		foreach ( alg_wc_pvbur_get_user_roles_for_settings() as $role_id => $role_desc ) {
 			$all_roles_options .= '<option value="' . $role_id . '">' . $role_desc . '</option>';
 		}
 		?><br class="clear" />
@@ -251,8 +251,8 @@ class Alg_WC_PVBUR_Core {
 				}
 			}
 		}
-		
-		$post__not_in = array_unique( $post__not_in );		
+
+		$post__not_in = array_unique( $post__not_in );
 		$query->set( 'post__not_in', apply_filters( 'alg_wc_pvbur_post__not_in', $post__not_in, $invisible_product_ids  ) );
 		do_action( 'alg_wc_pvbur_hide_products_query', $query, $invisible_product_ids );
 
@@ -280,7 +280,7 @@ class Alg_WC_PVBUR_Core {
 	function product_by_user_role_visibility( $visible, $product_id ) {
 		$current_user_roles = alg_wc_pvbur_get_current_user_all_roles();
 		return ( ! alg_wc_pvbur_is_visible( $current_user_roles, $product_id ) ? false : $visible );
-	}	
+	}
 
 	/**
 	 * get_product_id_or_variation_parent_id.

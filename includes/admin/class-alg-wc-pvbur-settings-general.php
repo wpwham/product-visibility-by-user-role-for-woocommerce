@@ -160,6 +160,15 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 				'id'       => 'alg_wc_pvbur_admin_options',
 			),
 			array(
+				'title'    => __( 'User roles to display in settings', 'product-visibility-by-user-role-for-woocommerce' ),
+				'desc_tip' => __( 'Leave blank to show all available user roles.', 'product-visibility-by-user-role-for-woocommerce' ),
+				'id'       => 'alg_wc_pvbur_user_roles_for_settings',
+				'default'  => array(),
+				'type'     => 'multiselect',
+				'class'    => 'chosen_select',
+				'options'  => alg_wc_pvbur_get_user_roles(),
+			),
+			array(
 				'title'    => __( 'Admin products list column', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc_tip' => __( 'This will add "User Roles" column to the admin products list.', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc'     => __( 'Add', 'product-visibility-by-user-role-for-woocommerce' ),

@@ -28,24 +28,37 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	}
 
 	/**
+	 * init_user_roles.
+	 *
+	 * @version 1.2.5
+	 * @since   1.2.5
+	 */
+	function init_user_roles() {
+		if ( ! isset( $this->user_roles ) ) {
+			$this->user_roles = alg_wc_pvbur_get_user_roles_for_settings();
+		}
+	}
+
+	/**
 	 * get_current_subsection.
 	 *
-	 * @version 1.1.2
+	 * @version 1.2.5
 	 * @since   1.1.2
 	 */
 	function get_current_subsection() {
-		return ( isset( $_GET['subsection'] ) ? $_GET['subsection'] : 'guest' );
+		$this->init_user_roles();
+		return ( isset( $_GET['subsection'] ) ? $_GET['subsection'] : array_keys( $this->user_roles )[0] );
 	}
 
 	/**
 	 * output_subsections.
 	 *
-	 * @version 1.1.2
+	 * @version 1.2.5
 	 * @since   1.1.2
 	 */
 	function output_subsections() {
 		$current_subsection = $this->get_current_subsection();
-		$subsections = array_merge( alg_wc_pvbur_get_user_roles(), array( 'alg_wc_pvbur_all_roles' => __( 'All Roles', 'product-visibility-by-user-role-for-woocommerce' ) ) );
+		$subsections = array_merge( $this->user_roles, array( 'alg_wc_pvbur_all_roles' => __( 'All Roles', 'product-visibility-by-user-role-for-woocommerce' ) ) );
 		echo '<p>';
 		echo '<ul class="subsubsub">';
 		$array_keys = array_keys( $subsections );
@@ -115,9 +128,10 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 				'id'       => 'alg_wc_pvbur_bulk_options',
 			),
 		);
-		$user_roles = alg_wc_pvbur_get_user_roles();
-		$title_type = 'alg_wc_pvbur_title_and_save_button';
-		if ( 'alg_wc_pvbur_all_roles' != ( $current_subsection = $this->get_current_subsection() ) ) {
+		$current_subsection = $this->get_current_subsection();
+		$user_roles         = $this->user_roles;
+		$title_type         = 'alg_wc_pvbur_title_and_save_button';
+		if ( 'alg_wc_pvbur_all_roles' != $current_subsection ) {
 			$user_roles = array( $current_subsection => $user_roles[ $current_subsection ] );
 			$title_type = 'title';
 		}

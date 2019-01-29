@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Metaboxes
  *
- * @version 1.2.1
+ * @version 1.2.5
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -174,7 +174,7 @@ class Alg_WC_PVBUR_Metaboxes {
 	/**
 	 * get_meta_box_options.
 	 *
-	 * @version 1.1.1
+	 * @version 1.2.5
 	 * @since   1.0.0
 	 * @todo    (maybe) variations
 	 */
@@ -186,7 +186,7 @@ class Alg_WC_PVBUR_Metaboxes {
 				'name'     => 'alg_wc_pvbur_visible',
 				'default'  => '',
 				'type'     => 'select',
-				'options'  => alg_wc_pvbur_get_user_roles(),
+				'options'  => alg_wc_pvbur_get_user_roles_for_settings(),
 				'multiple' => true,
 				'css'      => 'height:300px;width:100%;',
 			),
@@ -196,7 +196,7 @@ class Alg_WC_PVBUR_Metaboxes {
 				'name'     => 'alg_wc_pvbur_invisible',
 				'default'  => '',
 				'type'     => 'select',
-				'options'  => alg_wc_pvbur_get_user_roles(),
+				'options'  => alg_wc_pvbur_get_user_roles_for_settings(),
 				'multiple' => true,
 				'css'      => 'height:300px;width:100%;',
 			),

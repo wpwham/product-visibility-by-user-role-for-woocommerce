@@ -32,16 +32,17 @@ In free version you can set included or excluded user roles for each product ind
 
 == Changelog ==
 
-= 1.2.5 - 22/01/2019 =
-* Admin settings descriptions updated and restyled.
+= 1.2.5 - 29/01/2019 =
+* Dev - Admin Options - "User roles to display in settings" option added.
+* Dev - Admin settings descriptions updated and restyled.
 
 = 1.2.4 - 25/12/2018 =
-* Bulk Settings - Products - Product ID added to listing.
-* Bulk Settings - Products - WPML - Listing all languages products now.
-* Bulk Settings - Products - Code refactoring - Variations listing optimized.
-* Bulk Settings - Categories / Tags - WPML - Listing all languages terms now.
-* Bulk Settings - Categories / Tags - Term ID and term parent info added.
-* Plugin URI updated.
+* Dev - Bulk Settings - Products - Product ID added to listing.
+* Dev - Bulk Settings - Products - WPML - Listing all languages products now.
+* Dev - Bulk Settings - Products - Code refactoring - Variations listing optimized.
+* Dev - Bulk Settings - Categories / Tags - WPML - Listing all languages terms now.
+* Dev - Bulk Settings - Categories / Tags - Term ID and term parent info added.
+* Dev - Plugin URI updated.
 
 = 1.2.3 - 06/12/2018 =
 * Add compatibility with WPML plugin

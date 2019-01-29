@@ -2,12 +2,34 @@
 /**
  * Product Visibility by User Role for WooCommerce - Functions
  *
- * @version 1.2.3
+ * @version 1.2.5
  * @since   1.1.0
  * @author  Algoritmika Ltd.
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+if ( ! function_exists( 'alg_wc_pvbur_get_user_roles_for_settings' ) ) {
+	/**
+	 * alg_wc_pvbur_get_user_roles_for_settings.
+	 *
+	 * @version 1.2.5
+	 * @since   1.2.5
+	 */
+	function alg_wc_pvbur_get_user_roles_for_settings() {
+		$user_roles_for_settings = get_option( 'alg_wc_pvbur_user_roles_for_settings', array() );
+		$user_roles_all          = alg_wc_pvbur_get_user_roles();
+		if ( ! empty( $user_roles_for_settings ) ) {
+			$user_roles_for_settings_return = array();
+			foreach ( $user_roles_for_settings as $user_role ) {
+				$user_roles_for_settings_return[ $user_role ] = ( isset( $user_roles_all[ $user_role ] ) ? $user_roles_all[ $user_role ] : $user_role );
+			}
+			return $user_roles_for_settings_return;
+		} else {
+			return $user_roles_all;
+		}
+	}
+}
 
 if ( ! function_exists( 'alg_wc_pvbur_get_user_roles' ) ) {
 	/**
