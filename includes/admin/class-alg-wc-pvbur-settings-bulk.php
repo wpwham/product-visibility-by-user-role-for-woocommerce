@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Bulk Section Settings
  *
- * @version 1.2.5
+ * @version 1.4.0
  * @since   1.1.0
  * @author  Algoritmika Ltd.
  */
@@ -231,7 +231,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	/**
 	 * get_products.
 	 *
-	 * @version 1.2.4
+	 * @version 1.4.0
 	 * @since   1.1.0
 	 * @todo    (maybe) use `wc_get_products()`
 	 */
@@ -260,7 +260,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 						$_post_id = icl_object_id( $post_id, 'product', true, $language_id );
 						if ( $_post_id != $post_id ) {
 							$products[ $_post_id ] = get_the_title( $_post_id ) .
-								' (' . sprintf( __( 'ID: %s', 'product-visibility-by-user-role-for-woocommerce' ), $_post_id ) . ')';
+								' (' . sprintf( __( 'ID: %s', 'product-visibility-by-user-role-for-woocommerce' ), $_post_id ) . ')' . ' [' . $language_id . ']';
 						}
 					}
 				}
