@@ -34,6 +34,7 @@ In free version you can set included or excluded user roles for each product ind
 
 = 1.4.0 - 08/02/2019 =
 * Dev - Bulk Settings - Products - Language codes added to the list.
+~* Dev - Major code refactoring.
 
 = 1.2.5 - 29/01/2019 =
 * Dev - Admin Options - "User roles to display in settings" option added.

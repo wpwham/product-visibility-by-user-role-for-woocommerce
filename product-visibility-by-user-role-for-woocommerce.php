@@ -34,7 +34,7 @@ if ( ! class_exists( 'Alg_WC_PVBUR' ) ) :
  * Main Alg_WC_PVBUR Class
  *
  * @class   Alg_WC_PVBUR
- * @version 1.2.4
+ * @version 1.4.0
  * @since   1.0.0
  */
 final class Alg_WC_PVBUR {
@@ -93,7 +93,7 @@ final class Alg_WC_PVBUR {
 	}
 
 	/**
-	 * Show action links on the plugin screen
+	 * Show action links on the plugin screen.
 	 *
 	 * @version 1.2.4
 	 * @since   1.0.0
@@ -113,7 +113,7 @@ final class Alg_WC_PVBUR {
 	/**
 	 * Include required core files used in admin and on the frontend.
 	 *
-	 * @version 1.2.3
+	 * @version 1.4.0
 	 * @since   1.0.0
 	 */
 	function includes() {
@@ -137,7 +137,7 @@ final class Alg_WC_PVBUR {
 			update_option( 'alg_wc_pvbur_version', $this->version );
 		}
 		// Core
-		require_once( 'includes/class-alg-wc-pvbur-core.php' );
+		$this->core = require_once( 'includes/class-alg-wc-pvbur-core.php' );
 
 		// WPML fix
 		require_once( 'includes/class-alg-wc-pvbur-wpml.php' );
