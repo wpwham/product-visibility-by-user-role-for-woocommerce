@@ -17,8 +17,6 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-require_once 'vendor/autoload.php';
-
 // Check if WooCommerce is active
 $plugin = 'woocommerce/woocommerce.php';
 if (
