@@ -53,7 +53,7 @@ final class Alg_WC_PVBUR {
 	 * @var   string
 	 * @since 1.0.0
 	 */
-	public $version = '1.4.0-dev-20190208-1851';
+	public $version = '1.4.0-dev-20190208-2333';
 
 	/**
 	 * @var   Alg_WC_PVBUR The single instance of the class
@@ -81,7 +81,7 @@ final class Alg_WC_PVBUR {
 	/**
 	 * Alg_WC_PVBUR Constructor.
 	 *
-	 * @version 1.0.0
+	 * @version 1.4.0
 	 * @since   1.0.0
 	 * @access  public
 	 */
@@ -93,10 +93,9 @@ final class Alg_WC_PVBUR {
 		// Include required files
 		$this->includes();
 
-		// Settings & Scripts
+		// Admin
 		if ( is_admin() ) {
-			add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
-			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
+			$this->admin();
 		}
 	}
 
@@ -125,46 +124,56 @@ final class Alg_WC_PVBUR {
 	 * @since   1.0.0
 	 */
 	function includes() {
-		// Functions
 		require_once( 'includes/alg-wc-pvbur-functions.php' );
-		// Settings
-		require_once( 'includes/admin/class-alg-wc-pvbur-metaboxes.php' );
-		require_once( 'includes/admin/class-alg-wc-pvbur-settings-section.php' );
-		$this->settings = array();
-		$this->settings['general'] = require_once( 'includes/admin/class-alg-wc-pvbur-settings-general.php' );
-		$this->settings['bulk']    = require_once( 'includes/admin/class-alg-wc-pvbur-settings-bulk.php' );
-		if ( is_admin() && get_option( 'alg_wc_pvbur_version', '' ) !== $this->version ) {
-			foreach ( $this->settings as $section ) {
-				foreach ( $section->get_settings() as $value ) {
-					if ( isset( $value['default'] ) && isset( $value['id'] ) ) {
-						$autoload = isset( $value['autoload'] ) ? ( bool ) $value['autoload'] : true;
-						add_option( $value['id'], $value['default'], '', ( $autoload ? 'yes' : 'no' ) );
-					}
-				}
-			}
-			update_option( 'alg_wc_pvbur_version', $this->version );
-		}
-		// Core
 		$this->core = require_once( 'includes/class-alg-wc-pvbur-core.php' );
-
 		if ( 'product-visibility-by-user-role-for-woocommerce-pro.php' === basename( __FILE__ ) ) {
 			require_once( 'includes/pro/alg-wc-pvbur-pro-functions.php' );
-			require_once( 'includes/pro/class-alg-wc-pvbur-pro-core.php' );
+			$this->core_pro = require_once( 'includes/pro/class-alg-wc-pvbur-pro-core.php' );
 		}
-
-		// WPML fix
 		require_once( 'includes/class-alg-wc-pvbur-wpml.php' );
+	}
+
+	/**
+	 * admin.
+	 *
+	 * @version 1.4.0
+	 * @since   1.4.0
+	 */
+	function admin() {
+		// Action links
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
+		// Settings
+		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
+		require_once( 'includes/settings/class-alg-wc-pvbur-metaboxes.php' );
+		require_once( 'includes/settings/class-alg-wc-pvbur-settings-section.php' );
+		$this->settings = array();
+		$this->settings['general'] = require_once( 'includes/settings/class-alg-wc-pvbur-settings-general.php' );
+		$this->settings['bulk']    = require_once( 'includes/settings/class-alg-wc-pvbur-settings-bulk.php' );
+		// Version updated
+		if ( get_option( 'alg_wc_pvbur_version', '' ) !== $this->version ) {
+			add_action( 'admin_init', array( $this, 'version_updated' ) );
+		}
 	}
 
 	/**
 	 * Add Product Visibility by User Role settings tab to WooCommerce settings.
 	 *
-	 * @version 1.0.0
+	 * @version 1.4.0
 	 * @since   1.0.0
 	 */
 	function add_woocommerce_settings_tab( $settings ) {
-		$settings[] = include( 'includes/admin/class-alg-wc-settings-pvbur.php' );
+		$settings[] = require_once( 'includes/settings/class-alg-wc-settings-pvbur.php' );
 		return $settings;
+	}
+
+	/**
+	 * version_updated.
+	 *
+	 * @version 1.4.0
+	 * @since   1.4.0
+	 */
+	function version_updated() {
+		update_option( 'alg_wc_pvbur_version', $this->version );
 	}
 
 	/**

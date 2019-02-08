@@ -30,8 +30,8 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	/**
 	 * init_user_roles.
 	 *
-	 * @version 1.2.5
-	 * @since   1.2.5
+	 * @version 1.3.0
+	 * @since   1.3.0
 	 */
 	function init_user_roles() {
 		if ( ! isset( $this->user_roles ) ) {
@@ -42,7 +42,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	/**
 	 * get_current_subsection.
 	 *
-	 * @version 1.2.5
+	 * @version 1.3.0
 	 * @since   1.1.2
 	 */
 	function get_current_subsection() {
@@ -53,7 +53,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	/**
 	 * output_subsections.
 	 *
-	 * @version 1.2.5
+	 * @version 1.3.0
 	 * @since   1.1.2
 	 */
 	function output_subsections() {
@@ -94,12 +94,12 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	}
 
 	/**
-	 * add_settings.
+	 * get_settings.
 	 *
-	 * @version 1.2.5
+	 * @version 1.4.0
 	 * @since   1.1.0
 	 */
-	function add_settings( $settings ) {
+	function get_settings() {
 		$bulk_settings = array(
 			array(
 				'title'    => __( 'Bulk Settings', 'product-visibility-by-user-role-for-woocommerce' ),
@@ -214,14 +214,16 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 				),
 			) );
 		}
-		return array_merge( $bulk_settings, $settings );
+		return array_merge( $bulk_settings );
 	}
 
 	/**
 	 * get_custom_attributes.
+	 *
+	 * @version 1.4.0
 	 */
 	private function get_custom_attributes() {
-		if ( 'no' === apply_filters( 'alg_wc_pvbur', 'no', 'premium_version' ) ) {
+		if ( 'no' === apply_filters( 'alg_wc_pvbur', 'no', 'bulk_settings_active' ) ) {
 			return array( 'disabled' => 'disabled' );
 		}
 
@@ -233,7 +235,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	 *
 	 * @version 1.4.0
 	 * @since   1.1.0
-	 * @todo    (maybe) use `wc_get_products()`
+	 * @todo    [dev] (maybe) use `wc_get_products()`
 	 */
 	function get_products( $products = array(), $post_status = 'any', $block_size = 512, $add_variations = false ) {
 		$do_add_wpml_translations = ( function_exists( 'icl_get_languages' ) && function_exists( 'icl_object_id' ) );

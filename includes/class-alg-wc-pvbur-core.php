@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Core Class
  *
- * @version 1.2.5
+ * @version 1.4.0
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -16,7 +16,7 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.2.1
+	 * @version 1.4.0
 	 * @since   1.0.0
 	 */
 	function __construct() {
@@ -25,7 +25,7 @@ class Alg_WC_PVBUR_Core {
 			// Core
 			if ( ! is_admin() || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 				if ( 'yes' === get_option( 'alg_wc_pvbur_visibility', 'yes' ) ) {
-					add_filter( 'woocommerce_product_is_visible', array( $this, 'product_by_user_role_visibility' ), PHP_INT_MAX, 2 );
+					add_filter( 'woocommerce_product_is_visible', array( $this, 'product_by_user_role_visibility' ),  PHP_INT_MAX, 2 );
 				}
 				if ( 'yes' === get_option( 'alg_wc_pvbur_purchasable', 'no' ) ) {
 					add_filter( 'woocommerce_is_purchasable',     array( $this, 'product_by_user_role_purchasable' ), PHP_INT_MAX, 2 );
@@ -39,23 +39,21 @@ class Alg_WC_PVBUR_Core {
 			// Quick and bulk edit
 			if ( 'yes' === apply_filters( 'alg_wc_pvbur', 'no', 'products_bulk_edit' ) || 'yes' === get_option( 'alg_wc_pvbur_add_to_quick_edit', 'no' ) ) {
 				if ( 'yes' === apply_filters( 'alg_wc_pvbur', 'no', 'products_bulk_edit' ) ) {
-					add_action( 'woocommerce_product_bulk_edit_end',  array( $this, 'add_bulk_and_quick_edit_fields' ), PHP_INT_MAX );
+					add_action( 'woocommerce_product_bulk_edit_end',   array( $this, 'add_bulk_and_quick_edit_fields' ),  PHP_INT_MAX );
 				}
 				if ( 'yes' === get_option( 'alg_wc_pvbur_add_to_quick_edit', 'no' ) ) {
-					add_action( 'woocommerce_product_quick_edit_end', array( $this, 'add_bulk_and_quick_edit_fields' ), PHP_INT_MAX );
+					add_action( 'woocommerce_product_quick_edit_end',  array( $this, 'add_bulk_and_quick_edit_fields' ),  PHP_INT_MAX );
 				}
 				add_action( 'woocommerce_product_bulk_and_quick_edit', array( $this, 'save_bulk_and_quick_edit_fields' ), PHP_INT_MAX, 2 );
 			}
-
 			// Setups conditions where invisible products can be searched or prevented
 			add_filter( 'alg_wc_pvbur_can_search', array( $this, 'setups_search_cases' ), 10, 2 );
-
 			// Clears invisible products ids cache
 			add_action( 'alg_wc_pvbur_save_metabox', array( $this, 'clear_invisible_product_ids_cache' ) );
-
+			// Modify query
 			if ( 'yes' === get_option( 'alg_wc_pvbur_query', 'no' ) ) {
 				add_action( 'woocommerce_product_query', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
-				add_action( 'pre_get_posts', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
+				add_action( 'pre_get_posts',             array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 			}
 		}
 	}
@@ -67,7 +65,7 @@ class Alg_WC_PVBUR_Core {
 	 * @since   1.2.1
 	 * @param $post_id
 	 */
-	public function clear_invisible_product_ids_cache( $post_id ) {
+	function clear_invisible_product_ids_cache( $post_id ) {
 		global $wpdb;
 		$transient_like = '%_transient_awcpvbur_inv_pids_%';
 		$sql            = $wpdb->prepare( "DELETE FROM $wpdb->options WHERE option_name like %s", $transient_like );
@@ -85,7 +83,7 @@ class Alg_WC_PVBUR_Core {
 	 *
 	 * @return bool
 	 */
-	public function setups_search_cases( $can_search = true, $query ) {
+	function setups_search_cases( $can_search = true, $query ) {
 		$force_search = $query->get( 'alg_wc_pvbur_search' );
 		if (
 			! empty( $force_search ) &&
@@ -111,10 +109,10 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * save_bulk_and_quick_edit_fields.
 	 *
-	 * @version 1.1.5
+	 * @version 1.4.0
 	 * @since   1.1.5
 	 */
-	public function save_bulk_and_quick_edit_fields( $post_id, $post ) {
+	function save_bulk_and_quick_edit_fields( $post_id, $post ) {
 
 		// If this is an autosave, our form has not been submitted, so we don't want to do anything.
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
@@ -145,13 +143,21 @@ class Alg_WC_PVBUR_Core {
 		// Save.
 		if ( ! isset( $_REQUEST['alg_wc_pvbur_visible'] ) ) {
 			update_post_meta( $post_id, '_' . 'alg_wc_pvbur_visible', array() );
-		} elseif ( is_array( $_REQUEST['alg_wc_pvbur_visible'] ) && ! in_array( 'alg_no_change', $_REQUEST['alg_wc_pvbur_visible'] ) ) {
-			update_post_meta( $post_id, '_' . 'alg_wc_pvbur_visible', $_REQUEST['alg_wc_pvbur_visible'] );
+		} elseif ( is_array( $_REQUEST['alg_wc_pvbur_visible'] ) && ! in_array( 'alg_wc_pvbur_no_change', $_REQUEST['alg_wc_pvbur_visible'] ) ) {
+			if ( in_array( 'alg_wc_pvbur_clear', $_REQUEST['alg_wc_pvbur_visible'] ) ) {
+				update_post_meta( $post_id, '_' . 'alg_wc_pvbur_visible', array() );
+			} else {
+				update_post_meta( $post_id, '_' . 'alg_wc_pvbur_visible', $_REQUEST['alg_wc_pvbur_visible'] );
+			}
 		}
 		if ( ! isset( $_REQUEST['alg_wc_pvbur_invisible'] ) ) {
 			update_post_meta( $post_id, '_' . 'alg_wc_pvbur_invisible', array() );
-		} elseif ( is_array( $_REQUEST['alg_wc_pvbur_invisible'] ) && ! in_array( 'alg_no_change', $_REQUEST['alg_wc_pvbur_invisible'] ) ) {
-			update_post_meta( $post_id, '_' . 'alg_wc_pvbur_invisible', $_REQUEST['alg_wc_pvbur_invisible'] );
+		} elseif ( is_array( $_REQUEST['alg_wc_pvbur_invisible'] ) && ! in_array( 'alg_wc_pvbur_no_change', $_REQUEST['alg_wc_pvbur_invisible'] ) ) {
+			if ( in_array( 'alg_wc_pvbur_clear', $_REQUEST['alg_wc_pvbur_invisible'] ) ) {
+				update_post_meta( $post_id, '_' . 'alg_wc_pvbur_invisible', array() );
+			} else {
+				update_post_meta( $post_id, '_' . 'alg_wc_pvbur_invisible', $_REQUEST['alg_wc_pvbur_invisible'] );
+			}
 		}
 
 		return $post_id;
@@ -160,12 +166,13 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * add_bulk_and_quick_edit_fields.
 	 *
-	 * @version 1.2.5
+	 * @version 1.4.0
 	 * @since   1.1.5
 	 */
 	function add_bulk_and_quick_edit_fields() {
 		$all_roles_options = '';
-		$all_roles_options .= '<option value="alg_no_change" selected>' . __( '— No change —', 'woocommerce' ) . '</option>';
+		$all_roles_options .= '<option value="alg_wc_pvbur_no_change" selected>' . __( '— No change —', 'woocommerce' )                                 . '</option>';
+		$all_roles_options .= '<option value="alg_wc_pvbur_clear">'              . __( '— Clear —', 'product-visibility-by-user-role-for-woocommerce' ) . '</option>';
 		foreach ( alg_wc_pvbur_get_user_roles_for_settings() as $role_id => $role_desc ) {
 			$all_roles_options .= '<option value="' . $role_id . '">' . $role_desc . '</option>';
 		}
@@ -200,8 +207,8 @@ class Alg_WC_PVBUR_Core {
 	 *
 	 * @version 1.1.0
 	 * @since   1.0.0
-	 * @todo    (maybe) full role name (instead of ID)
-	 * @todo    (maybe) display "bulk settings"
+	 * @todo    [dev] (maybe) full role name (instead of ID)
+	 * @todo    [dev] (maybe) display "bulk settings"
 	 */
 	function render_product_column( $column ) {
 		if ( 'alg_wc_pvbur_user_roles' === $column ) {

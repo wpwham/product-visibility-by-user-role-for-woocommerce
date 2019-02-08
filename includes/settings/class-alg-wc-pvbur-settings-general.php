@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - General Section Settings
  *
- * @version 1.2.5
+ * @version 1.4.0
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  */
@@ -26,12 +26,13 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 	}
 
 	/**
-	 * add_settings.
+	 * get_settings.
 	 *
-	 * @version 1.2.5
+	 * @version 1.4.0
 	 * @since   1.0.0
+	 * @todo    [dev] (maybe) add "Admin" section
 	 */
-	function add_settings( $settings ) {
+	function get_settings() {
 		$main_settings = array(
 			array(
 				'title'    => __( 'Product Visibility by User Role Options', 'product-visibility-by-user-role-for-woocommerce' ),
@@ -56,16 +57,14 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 			array(
 				'title'    => __( 'General Options', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc'     => '<strong>' .
-					__( 'To set user roles for each product, check "Product visibility" meta box on each product\'s edit page.',
-						'product-visibility-by-user-role-for-woocommerce' ) .
+					__( 'To set user roles for each product, check "Product visibility" meta box on each product\'s edit page.', 'product-visibility-by-user-role-for-woocommerce' ) .
 				'</strong>',
 				'type'     => 'title',
 				'id'       => 'alg_wc_pvbur_general_options',
 			),
 			array(
 				'title'    => __( 'Hide catalog visibility', 'product-visibility-by-user-role-for-woocommerce' ),
-				'desc_tip' => __( 'This will hide selected products in shop and search results. However product still will be accessible via direct link.',
-					'product-visibility-by-user-role-for-woocommerce' ),
+				'desc_tip' => __( 'This will hide selected products in shop and search results. However product still will be accessible via direct link.', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc'     => __( 'Enable', 'product-visibility-by-user-role-for-woocommerce' ),
 				'id'       => 'alg_wc_pvbur_visibility',
 				'default'  => 'yes',
@@ -73,8 +72,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 			),
 			array(
 				'title'    => __( 'Make non-purchasable', 'product-visibility-by-user-role-for-woocommerce' ),
-				'desc_tip' => __( 'This will make selected products non-purchasable (i.e. product can\'t be added to the cart).',
-					'product-visibility-by-user-role-for-woocommerce' ),
+				'desc_tip' => __( 'This will make selected products non-purchasable (i.e. product can\'t be added to the cart).', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc'     => __( 'Enable', 'product-visibility-by-user-role-for-woocommerce' ),
 				'id'       => 'alg_wc_pvbur_purchasable',
 				'default'  => 'no',
@@ -82,8 +80,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 			),
 			array(
 				'title'    => __( 'Modify query', 'product-visibility-by-user-role-for-woocommerce' ),
-				'desc_tip' => __( 'This will hide selected products completely (including direct link).',
-					'product-visibility-by-user-role-for-woocommerce' ),
+				'desc_tip' => __( 'This will hide selected products completely (including direct link).', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc'     => __( 'Enable', 'product-visibility-by-user-role-for-woocommerce' ),
 				'id'       => 'alg_wc_pvbur_query',
 				'default'  => 'no',
@@ -149,6 +146,37 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 				'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'disabled' => 'disabled' ), 'settings' ),
 			),
 			array(
+				'title'    => __( 'Replace description', 'product-visibility-by-user-role-for-woocommerce' ),
+				'desc_tip' => __( 'This will replace the content in the "Description" tab for the selected products.', 'product-visibility-by-user-role-for-woocommerce' ) .
+					apply_filters( 'alg_wc_pvbur', '<br>' . sprintf( 'You will need %s plugin to enable this option.',
+						'<a href="https://wpfactory.com/item/product-visibility-by-user-role-for-woocommerce/" target="_blank">' .
+							__( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) .
+						'</a>' ), 'settings' ),
+				'desc'     => __( 'Enable', 'product-visibility-by-user-role-for-woocommerce' ),
+				'id'       => 'alg_wc_pvbur_replace_content',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'disabled' => 'disabled' ), 'settings' ),
+			),
+			array(
+				'desc'     => sprintf( __( 'Content to replace with, e.g.: %s', 'product-visibility-by-user-role-for-woocommerce' ),
+					'<code>' .
+						esc_html(
+							'<strong>' .
+								sprintf( __( '<a target="_blank" href="%s">Log in</a> to see the product description.', 'product-visibility-by-user-role-for-woocommerce' ),
+									wp_login_url() ) .
+							'</strong>'
+						) .
+					'</code>'
+				),
+				'id'       => 'alg_wc_pvbur_content',
+				'default'  => '',
+				'type'     => 'textarea',
+				'css'      => 'width:100%;height:150px;',
+				'alg_wc_pvbur_raw' => true,
+				'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'readonly' => 'readonly' ), 'settings' ),
+			),
+			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pvbur_general_options',
 			),
@@ -202,7 +230,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 				'id'       => 'alg_wc_pvbur_admin_options',
 			),
 		);
-		return array_merge( $main_settings, $general_settings, $admin_settings, $settings );
+		return array_merge( $main_settings, $general_settings, $admin_settings );
 	}
 
 }

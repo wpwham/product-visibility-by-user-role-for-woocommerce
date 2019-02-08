@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Functions
  *
- * @version 1.2.5
+ * @version 1.3.0
  * @since   1.1.0
  * @author  Algoritmika Ltd.
  */
@@ -13,8 +13,8 @@ if ( ! function_exists( 'alg_wc_pvbur_get_user_roles_for_settings' ) ) {
 	/**
 	 * alg_wc_pvbur_get_user_roles_for_settings.
 	 *
-	 * @version 1.2.5
-	 * @since   1.2.5
+	 * @version 1.3.0
+	 * @since   1.3.0
 	 */
 	function alg_wc_pvbur_get_user_roles_for_settings() {
 		$user_roles_for_settings = get_option( 'alg_wc_pvbur_user_roles_for_settings', array() );
