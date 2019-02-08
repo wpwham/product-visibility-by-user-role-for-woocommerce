@@ -25,6 +25,17 @@ if (
 	return;
 }
 
+if ( 'product-visibility-by-user-role-for-woocommerce.php' === basename( __FILE__ ) ) {
+	// Check if Pro is active, if so then return
+	$plugin = 'product-visibility-by-user-role-for-woocommerce-pro/product-visibility-by-user-role-for-woocommerce-pro.php';
+	if (
+		in_array( $plugin, apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) ) ) ||
+		( is_multisite() && array_key_exists( $plugin, get_site_option( 'active_sitewide_plugins', array() ) ) )
+	) {
+		return;
+	}
+}
+
 if ( ! class_exists( 'Alg_WC_PVBUR' ) ) :
 
 /**
