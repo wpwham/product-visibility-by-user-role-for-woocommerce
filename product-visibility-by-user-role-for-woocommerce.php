@@ -136,6 +136,11 @@ final class Alg_WC_PVBUR {
 		// Core
 		$this->core = require_once( 'includes/class-alg-wc-pvbur-core.php' );
 
+		if ( 'product-visibility-by-user-role-for-woocommerce-pro.php' === basename( __FILE__ ) ) {
+			require_once( 'includes/pro/alg-wc-pvbur-pro-functions.php' );
+			require_once( 'includes/pro/class-alg-wc-pvbur-pro-core.php' );
+		}
+
 		// WPML fix
 		require_once( 'includes/class-alg-wc-pvbur-wpml.php' );
 	}
