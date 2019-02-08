@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Functions
  *
- * @version 1.4.0
+ * @version 1.2.5
  * @since   1.1.0
  * @author  Algoritmika Ltd.
  */
