@@ -3,7 +3,7 @@ Contributors: algoritmika, anbinder, karzin
 Tags: woo commerce, woocommerce, product, visibility, user role
 Requires at least: 4.4
 Tested up to: 5.0
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -32,7 +32,7 @@ In free version you can set included or excluded user roles for each product ind
 
 == Changelog ==
 
-= 1.4.0 - 08/02/2019 =
+= 1.4.0 - 10/02/2019 =
 * Dev - General Options - "Replace description" options added.
 * Dev - Admin Options - Product quick/bulk edit - "Clear" option added.
 * Dev - Bulk Settings - Products - Language codes added to the list.
