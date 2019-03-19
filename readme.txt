@@ -1,9 +1,9 @@
 === Product Visibility by User Role for WooCommerce ===
-Contributors: algoritmika, anbinder, karzin
+Contributors: wpwham
 Tags: woo commerce, woocommerce, product, visibility, user role
 Requires at least: 4.4
-Tested up to: 5.0
-Stable tag: 1.4.0
+Tested up to: 5.1
+Stable tag: 1.4.1
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -31,6 +31,9 @@ In free version you can set included or excluded user roles for each product ind
 3. Start by visiting plugin settings at "WooCommerce > Settings > Product Visibility".
 
 == Changelog ==
+
+= 1.4.1 - 19/03/2019 =
+* Dev - Plugin author data updated.
 
 = 1.4.0 - 10/02/2019 =
 * Dev - General Options - "Replace description" options added.
