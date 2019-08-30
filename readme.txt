@@ -2,7 +2,7 @@
 Contributors: wpwham
 Tags: woo commerce, woocommerce, product, visibility, user role
 Requires at least: 4.4
-Tested up to: 5.1
+Tested up to: 5.2
 Stable tag: 1.4.1
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -19,10 +19,11 @@ You can choose how products should be hidden:
 * Make products non-purchasable.
 * Hide products completely.
 
-In free version you can set included or excluded user roles for each product individually. If you want to set user roles visibility options in bulk (for multiple products at once, product categories or product tags), please check [Product Visibility by User Role for WooCommerce Pro](https://wpfactory.com/item/product-visibility-by-user-role-for-woocommerce/) plugin. Pro version also has options to hide menu items, hide product terms, set custom redirect page (i.e. instead of default 404).
+In free version you can set included or excluded user roles for each product individually. If you want to set user roles visibility options in bulk (for multiple products at once, product categories or product tags), please check [Product Visibility by User Role for WooCommerce Pro](https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/) plugin. Pro version also has options to hide menu items, hide product terms, set custom redirect page (i.e. instead of default 404).
 
 = Feedback =
 * We are open to your suggestions and feedback. Thank you for using or trying out one of our plugins!
+* Drop us a line at [https://wpwham.com](https://wpwham.com).
 
 == Installation ==
 

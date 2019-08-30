@@ -113,7 +113,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 			array(
 				'title'    => __( 'Enable/Disable', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc_tip' => apply_filters( 'alg_wc_pvbur', sprintf( __( 'You will need %s plugin to enable this section.', 'product-visibility-by-user-role-for-woocommerce' ),
-					'<a href="https://wpfactory.com/item/product-visibility-by-user-role-for-woocommerce/" target="_blank">' .
+					'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/" target="_blank">' .
 						__( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) .
 					'</a>' ), 'settings'
 				),
