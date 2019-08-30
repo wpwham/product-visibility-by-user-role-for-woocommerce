@@ -1,21 +1,35 @@
-#: product-visibility-by-user-role-for-woocommerce.php:112
-msgid "Settings"
+#, fuzzy
+msgid ""
 msgstr ""
-
-#: product-visibility-by-user-role-for-woocommerce.php:115
-msgid "Unlock All"
-msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Product Visibility by User Role for WooCommerce\n"
+"POT-Creation-Date: 2019-08-30 01:36-0700\n"
+"PO-Revision-Date: 2019-08-30 01:36-0700\n"
+"Last-Translator: \n"
+"Language-Team: WP Wham <support@wpwham.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: product-visibility-by-user-role-for-woocommerce.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: includes/alg-wc-pvbur-functions.php:47
 msgid "Guest"
 msgstr ""
 
 #: includes/class-alg-wc-pvbur-core.php:174
-msgid " No change "
+msgid "— No change —"
 msgstr ""
 
 #: includes/class-alg-wc-pvbur-core.php:175
-msgid " Clear "
+msgid "— Clear —"
 msgstr ""
 
 #: includes/class-alg-wc-pvbur-core.php:181
@@ -362,4 +376,33 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-settings-pvbur.php:94
 msgid "Your settings have been reset."
+msgstr ""
+
+#: product-visibility-by-user-role-for-woocommerce.php:112
+msgid "Settings"
+msgstr ""
+
+#: product-visibility-by-user-role-for-woocommerce.php:115
+msgid "Unlock All"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Product Visibility by User Role for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid ""
+"https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Display WooCommerce products by customer's user role."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WP Wham"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://wpwham.com/"
 msgstr ""
