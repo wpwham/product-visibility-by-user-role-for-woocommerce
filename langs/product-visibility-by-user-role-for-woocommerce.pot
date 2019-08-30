@@ -1,0 +1,365 @@
+#: product-visibility-by-user-role-for-woocommerce.php:112
+msgid "Settings"
+msgstr ""
+
+#: product-visibility-by-user-role-for-woocommerce.php:115
+msgid "Unlock All"
+msgstr ""
+
+#: includes/alg-wc-pvbur-functions.php:47
+msgid "Guest"
+msgstr ""
+
+#: includes/class-alg-wc-pvbur-core.php:174
+msgid " No change "
+msgstr ""
+
+#: includes/class-alg-wc-pvbur-core.php:175
+msgid " Clear "
+msgstr ""
+
+#: includes/class-alg-wc-pvbur-core.php:181
+msgid "User roles: Visible"
+msgstr ""
+
+#: includes/class-alg-wc-pvbur-core.php:187
+msgid "User roles: Invisible"
+msgstr ""
+
+#: includes/class-alg-wc-pvbur-core.php:201
+msgid "User Roles"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-metaboxes.php:36
+msgid "Product visibility"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-metaboxes.php:184
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:156
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:175
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:194
+msgid "Visible"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-metaboxes.php:185
+msgid ""
+"Select user roles that product is visible for. If no roles selected - "
+"product will be visible for all roles."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-metaboxes.php:194
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:165
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:184
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:203
+msgid "Invisible"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-metaboxes.php:195
+msgid ""
+"Select user roles that product is hidden for. If no roles selected - product "
+"will be visible for all roles."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:24
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:105
+msgid "Bulk Settings"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:61
+msgid "All Roles"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:82
+msgid "Save all changes"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:106
+msgid ""
+"This section allows you to set which products, product categories or tags "
+"are visible or invisible to certain role."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:107
+msgid ""
+"If you fill in \"Visible\" option, then users with selected role will be "
+"able to see only chosen products."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:108
+msgid ""
+"If you fill in \"Invisible\" option, then chosen products will be hidden for "
+"users with that role."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:109
+msgid ""
+"If you leave any of the options empty - option will be ignored (i.e. all "
+"products will be visible)."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:114
+msgid "Enable/Disable"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:115
+#, php-format
+msgid "You will need %s plugin to enable this section."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:117
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:97
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:113
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:128
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:141
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:153
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:220
+msgid "Product Visibility by User Role for WooCommerce Pro"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:120
+msgid "Enable \"Bulk Settings\" section"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:146
+msgid "Hide all"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:147
+msgid "Hides all products, product categories/tags from this user role."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:148
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:68
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:76
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:84
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:99
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:115
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:155
+msgid "Enable"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:155
+msgid "Products"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:174
+msgid "Product categories"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:193
+msgid "Product tags"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:259
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:265
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:315
+#, php-format
+msgid "ID: %s"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:24
+msgid "General"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:38
+msgid "Product Visibility by User Role Options"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:43
+msgid "Product Visibility by User Role"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:44
+msgid "Enable plugin"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:46
+msgid "Documentation"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:58
+msgid "General Options"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:60
+msgid ""
+"To set user roles for each product, check \"Product visibility\" meta box on "
+"each product's edit page."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:66
+msgid "Hide catalog visibility"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:67
+msgid ""
+"This will hide selected products in shop and search results. However product "
+"still will be accessible via direct link."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:74
+msgid "Make non-purchasable"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:75
+msgid ""
+"This will make selected products non-purchasable (i.e. product can't be "
+"added to the cart)."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:82
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:124
+msgid "Modify query"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:83
+msgid "This will hide selected products completely (including direct link)."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:90
+msgid "Hide menu items"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:91
+msgid ""
+"Hides nav menu items (i.e. hidden products, product categories and tags)."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:92
+#, php-format
+msgid ""
+"Only products, product categories/tags marked in <a href=\"%s\">bulk "
+"settings</a> will be hidden."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:94
+msgid "This options uses the <code>wp_get_nav_menu_items</code> filter."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:106
+msgid "Hide products terms"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:107
+msgid "Hides products categories and tags from being displayed on front-end."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:108
+#, php-format
+msgid ""
+"Only categories/tags marked in <a href=\"%s\">bulk settings</a> will be "
+"hidden."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:110
+msgid ""
+"This options works filtering terms from <code>get_terms()</code> function."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:122
+msgid "Redirect"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:123
+#, php-format
+msgid "This option is useful only if <strong>%s</strong> is enabled"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:125
+msgid ""
+"Redirects to a page different from 404, in case a product is considered "
+"invisible."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:137
+msgid "Redirect URL per product"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:138
+msgid ""
+"This will add new \"Product visibility: Redirect URL\" meta box to each "
+"product's edit page."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:149
+msgid "Replace description"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:150
+msgid ""
+"This will replace the content in the \"Description\" tab for the selected "
+"products."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:162
+#, php-format
+msgid "Content to replace with, e.g.: %s"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:166
+#, php-format
+msgid ""
+"<a target=\"_blank\" href=\"%s\">Log in</a> to see the product description."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:186
+msgid "Admin Options"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:191
+msgid "User roles to display in settings"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:192
+msgid "Leave blank to show all available user roles."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:200
+msgid "Admin products list column"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:201
+msgid "This will add \"User Roles\" column to the admin products list."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:202
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:210
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:222
+msgid "Add"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:208
+msgid "Product quick edit"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:209
+msgid "This will add \"User Roles\" options to the product quick edit screen."
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:216
+msgid "Products bulk edit"
+msgstr ""
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:217
+msgid "This will add \"User Roles\" options to the products bulk edit screen."
+msgstr ""
+
+#: includes/settings/class-alg-wc-settings-pvbur.php:24
+msgid "Product Visibility"
+msgstr ""
+
+#: includes/settings/class-alg-wc-settings-pvbur.php:49
+msgid "Reset Settings"
+msgstr ""
+
+#: includes/settings/class-alg-wc-settings-pvbur.php:54
+msgid "Reset section settings"
+msgstr ""
+
+#: includes/settings/class-alg-wc-settings-pvbur.php:55
+msgid "Reset"
+msgstr ""
+
+#: includes/settings/class-alg-wc-settings-pvbur.php:94
+msgid "Your settings have been reset."
+msgstr ""
