@@ -55,6 +55,60 @@ if ( ! function_exists( 'alg_wc_pvbur_get_user_roles' ) ) {
 	}
 }
 
+if ( ! function_exists( 'alg_wc_pvbur_get_all_products' ) ) {
+	/**
+	 * Get all products
+	 *
+	 * @since   1.5.3
+	 */
+	function alg_wc_pvbur_get_all_products( $roles = array() ) {
+		$query = new WP_Query( alg_wc_pvbur_get_all_products_query_args( $roles ) );
+
+		return $query;
+	}
+}
+
+if ( ! function_exists( 'alg_wc_pvbur_get_all_products_ids' ) ) {
+	/**
+	 * Get all products ids
+	 *
+	 * @since   1.5.3
+	 */
+	function alg_wc_pvbur_get_all_products_ids( $roles = array(), $cache = true ) {
+		if ( $cache ) {
+			$invisible_products_ids_query_name = "awcpvbur_all_pids_" . md5( implode( "_", $roles ) );
+			if ( false === ( $invisible_product_ids = get_transient( $invisible_products_ids_query_name ) ) ) {
+				$invisible_products    = alg_wc_pvbur_get_all_products( $roles );
+				$invisible_product_ids = $invisible_products->posts;
+				set_transient( $invisible_products_ids_query_name, $invisible_product_ids );
+			}
+		} else {
+			$invisible_products    = alg_wc_pvbur_get_all_products( $roles );
+			$invisible_product_ids = $invisible_products->posts;
+		}
+
+		return $invisible_product_ids;
+	}
+}
+
+if ( ! function_exists( 'alg_wc_pvbur_get_all_products_query_args' ) ) {
+	/**
+	 * alg_wc_pvbur_get_all_products_query_args
+	 *
+	 * @since   1.5.3
+	 */
+	function alg_wc_pvbur_get_all_products_query_args( $roles = array() ) {
+		$query_args = array(
+			'fields'           => 'ids',
+			'post_type'        => array( 'product', 'product_variation' ),
+			'posts_per_page'   => '-1',
+			'suppress_filters' => true,
+			'meta_query'       => array()
+		);
+		return $query_args;
+	}
+}
+
 if ( ! function_exists( 'alg_wc_pvbur_get_invisible_products' ) ) {
 	/**
 	 * Get invisible products
