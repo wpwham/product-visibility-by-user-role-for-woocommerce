@@ -48,28 +48,16 @@ class Alg_WC_PVBUR_Core {
 			}
 			// Setups conditions where invisible products can be searched or prevented
 			add_filter( 'alg_wc_pvbur_can_search', array( $this, 'setups_search_cases' ), 10, 2 );
-			// Clears invisible products ids cache
-			add_action( 'alg_wc_pvbur_save_metabox', array( $this, 'clear_invisible_product_ids_cache' ) );
+			
+			// Clear product ids caches
+			add_action( 'save_post_product', 'wpw_pvbur_clear_cache' );
+			
 			// Modify query
 			if ( 'yes' === get_option( 'alg_wc_pvbur_query', 'no' ) ) {
 				add_action( 'woocommerce_product_query', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 				add_action( 'pre_get_posts',             array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 			}
 		}
-	}
-
-	/**
-	 * Clears invisible products ids cache on metabox saving
-	 *
-	 * @version 1.2.1
-	 * @since   1.2.1
-	 * @param $post_id
-	 */
-	function clear_invisible_product_ids_cache( $post_id ) {
-		global $wpdb;
-		$transient_like = '%_transient_awcpvbur_inv_pids_%';
-		$sql            = $wpdb->prepare( "DELETE FROM $wpdb->options WHERE option_name like %s", $transient_like );
-		$results        = $wpdb->query( $sql );
 	}
 
 	/**

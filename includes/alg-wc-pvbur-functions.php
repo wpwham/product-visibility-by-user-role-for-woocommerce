@@ -252,3 +252,15 @@ if ( ! function_exists( 'alg_wc_pvbur_get_current_user_all_roles' ) ) {
 		return ( ! empty( $current_user->roles ) ) ? $current_user->roles : array( 'guest' );
 	}
 }
+
+if ( ! function_exists( 'wpw_pvbur_clear_cache' ) ) {
+	/**
+	 * wpw_pvbur_clear_cache.
+	 *
+	 * @since   1.5.4
+	 */
+	function wpw_pvbur_clear_cache() {
+		global $wpdb;
+		return $wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_awcpvbur_%'" );
+	}
+}
