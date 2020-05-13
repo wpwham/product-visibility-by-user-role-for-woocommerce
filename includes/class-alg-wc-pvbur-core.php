@@ -85,7 +85,7 @@ class Alg_WC_PVBUR_Core {
 			( defined( 'DOING_AJAX' ) && DOING_AJAX ) ||
 			( current_filter() == 'pre_get_posts' && ! $query->is_single() && ! $query->is_search() ) ||
 			! $query->is_main_query() ||
-			empty( $query->query ) ||
+			// empty( $query->query ) ||
 			( isset( $query->query['post_type'] ) && $query->query['post_type'] == 'nav_menu_item' )
 		) {
 			return false;
