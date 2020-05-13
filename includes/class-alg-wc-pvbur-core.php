@@ -79,14 +79,16 @@ class Alg_WC_PVBUR_Core {
 		) {
 			return true;
 		}
-
-		if (
+		
+		// don't check for visible/invisible products in these situations:
+		if ( 
 			is_admin() ||
-			// ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ||
-			( current_filter() == 'pre_get_posts' && ! $query->is_single() && ! $query->is_search() ) ||
-			! $query->is_main_query() ||
-			// empty( $query->query ) ||
-			( isset( $query->query['post_type'] ) && $query->query['post_type'] == 'nav_menu_item' )
+			! (
+				( isset( $query->query['post_type'] ) && $query->query['post_type'] === 'product' )
+				|| ( isset( $query->query_vars['post_type'] ) && $query->query_vars['post_type'] === 'product' )
+				|| isset( $query->query['product_cat'] )
+				|| isset( $query->query['product_tag'] )
+			)
 		) {
 			return false;
 		}
