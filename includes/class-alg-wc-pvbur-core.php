@@ -82,7 +82,7 @@ class Alg_WC_PVBUR_Core {
 
 		if (
 			is_admin() ||
-			( defined( 'DOING_AJAX' ) && DOING_AJAX ) ||
+			// ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ||
 			( current_filter() == 'pre_get_posts' && ! $query->is_single() && ! $query->is_search() ) ||
 			! $query->is_main_query() ||
 			// empty( $query->query ) ||
