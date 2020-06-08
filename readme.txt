@@ -3,7 +3,7 @@ Contributors: wpwham
 Tags: woo commerce, woocommerce, product, visibility, user role
 Requires at least: 4.4
 Tested up to: 5.4
-Stable tag: 1.5.5
+Stable tag: 1.5.6
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -32,6 +32,10 @@ In free version you can set included or excluded user roles for each product ind
 3. Start by visiting plugin settings at "WooCommerce > Settings > Product Visibility".
 
 == Changelog ==
+
+= 1.5.6 - 2020-06-08 =
+* FIX: non-translatable string
+* UPDATE: bump tested versions
 
 = 1.5.5 - 2020-05-12 =
 * FIX: filter ajax requests (may solve issues with certain themes and/or widgets that query items via ajax).
