@@ -1,0 +1,474 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Product Visibility by User Role for WooCommerce\n"
+"POT-Creation-Date: 2020-06-21 02:23+0430\n"
+"PO-Revision-Date: 2020-06-21 02:37+0430\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: product-visibility-by-user-role-for-woocommerce.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/alg-wc-pvbur-functions.php:47
+msgid "Guest"
+msgstr "مهمان"
+
+#: includes/class-alg-wc-pvbur-core.php:164
+msgid "— No change —"
+msgstr "—بدون تغییر —"
+
+#: includes/class-alg-wc-pvbur-core.php:165
+msgid "— Clear —"
+msgstr "—پاک کردن —"
+
+#: includes/class-alg-wc-pvbur-core.php:171
+msgid "User roles: Visible"
+msgstr "نقش کاربری: قابل مشاهده"
+
+#: includes/class-alg-wc-pvbur-core.php:177
+msgid "User roles: Invisible"
+msgstr "نقش کاربری: مخفی"
+
+#: includes/class-alg-wc-pvbur-core.php:191
+msgid "User Roles"
+msgstr "نقش‌های کاربری"
+
+#: includes/settings/class-alg-wc-pvbur-metaboxes.php:36
+msgid "Product visibility"
+msgstr "نمایش محصول"
+
+#: includes/settings/class-alg-wc-pvbur-metaboxes.php:184
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:156
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:175
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:194
+msgid "Visible"
+msgstr "قابل مشاهده"
+
+#: includes/settings/class-alg-wc-pvbur-metaboxes.php:185
+msgid ""
+"Select user roles that product is visible for. If no roles selected - product "
+"will be visible for all roles."
+msgstr ""
+"نقش‌های کاربری را که می خواهید محصول برای آنها قابل مشاهده باشد را انتخاب کنید. "
+"اگر نقشی را انتخاب نکنید محصول برای کلیه نقش‌ها قابل مشاهده خواهد بود."
+
+#: includes/settings/class-alg-wc-pvbur-metaboxes.php:194
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:165
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:184
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:203
+msgid "Invisible"
+msgstr "مخفی"
+
+#: includes/settings/class-alg-wc-pvbur-metaboxes.php:195
+msgid ""
+"Select user roles that product is hidden for. If no roles selected - product "
+"will be visible for all roles."
+msgstr ""
+"نقش کاربری را که می خواهید محصول برای آن نقش مخفی باشد را انتخاب کنید. اگر "
+"نقشی را انتخاب نکنید، محصول برای کلیه نقش ها قابل مشاهده خواهد بود."
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:24
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:105
+msgid "Bulk Settings"
+msgstr "تنظیمات جمعی"
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:61
+msgid "All Roles"
+msgstr "تمام نقش های کاربری"
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:82
+msgid "Save all changes"
+msgstr "ذخیره تمام تغییرات"
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:106
+msgid ""
+"This section allows you to set which products, product categories or tags are "
+"visible or invisible to certain role."
+msgstr ""
+"این بخش به شما اجازه می دهد تا تنظیم کنید که کدام محصولات، دسته بندی‌ها یا کدام "
+"برچسب‌ها برای نقش های کاربری خاص قابل مشاهده یا مخفی باشد."
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:107
+msgid ""
+"If you fill in \"Visible\" option, then users with selected role will be able "
+"to see only chosen products."
+msgstr ""
+"اگر گزینه \"قابل مشاهده\" را انتخاب کنید، کاربران با نقش کاربری انتخاب شده "
+"قادر خواهند بود تا فقط محصولات انتخاب شده را مشاهده نمایند."
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:108
+msgid ""
+"If you fill in \"Invisible\" option, then chosen products will be hidden for "
+"users with that role."
+msgstr ""
+"اگر گزینه \"مخفی\" را انتخاب کنید، محصولات انتخاب شده از دید  کاربران با آن "
+"نقش کاربری مخفی خواهند بود."
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:109
+msgid ""
+"If you leave any of the options empty - option will be ignored (i.e. all "
+"products will be visible)."
+msgstr ""
+"اگر هر یک از گزینه‌ها را خالی (بدون تنظیم) رها کنید، گزینه نادیده گرفته خواهد "
+"شد (یعنی تمام محصولات قابل مشاهده خواهند بود)"
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:114
+msgid "Enable/Disable"
+msgstr "فعال/غیرفعال"
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:115
+#, php-format
+msgid "You will need %s plugin to enable this section."
+msgstr "این بخش فقط در نسخه پرمیوم افزونه  %s در دسترس می باشد."
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:117
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:98
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:117
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:135
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:151
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:166
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:236
+msgid "Product Visibility by User Role for WooCommerce Pro"
+msgstr "نمایش محصولات ووکامرس بر اساس نقش کاربری"
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:120
+msgid "Enable \"Bulk Settings\" section"
+msgstr "بخش تنظیمات جمعی را فعال کن"
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:146
+msgid "Hide all"
+msgstr "مخفی کردن همه"
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:147
+msgid "Hides all products, product categories/tags from this user role."
+msgstr ""
+"\"تمام محصولات، دسته بندی‌های محصولات و برچسب‌ها را برای این نقش کاربری مخفی کن."
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:148
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:68
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:76
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:84
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:102
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:121
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:170
+msgid "Enable"
+msgstr "فعال"
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:155
+msgid "Products"
+msgstr "محصولات"
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:174
+msgid "Product categories"
+msgstr "دسته بندی‌های محصولات"
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:193
+msgid "Product tags"
+msgstr "برچسب‌های محصولات"
+
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:259
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:265
+#: includes/settings/class-alg-wc-pvbur-settings-bulk.php:315
+#, php-format
+msgid "ID: %s"
+msgstr "ID: %s"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:24
+msgid "General"
+msgstr "عمومی"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:38
+msgid "Product Visibility by User Role Options"
+msgstr "تنظیمات نمایش محصولات براساس نقش کاربری"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:43
+msgid "Product Visibility by User Role"
+msgstr "نمایش محصولات براساس نقش کاربری"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:44
+msgid "Enable plugin"
+msgstr "افزونه را فعال کن"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:46
+msgid "Documentation"
+msgstr "مستندات"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:58
+msgid "General Options"
+msgstr "تنظیمات عمومی"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:60
+msgid ""
+"To set user roles for each product, check \"Product visibility\" meta box on "
+"each product's edit page."
+msgstr ""
+"توجه: شما می توانید جهت تنظیم نمایش هر کدام از محصولات براساس نقش کاربری "
+"(بصورت مجزا فقط برای یک محصول)، از صفحه ویرایش همان محصول استفاده نمایید. برای "
+"درک این منظور به قسمت \"نمایش محصول\" در صفحه ویرایش یکی از محصولاتتان  نگاهی "
+"بیندازید. در آنجا می‌توانید انتخاب یا تنظیم  نمایید که محصول برای کدام کاربران "
+"قابل مشاهده یا مخفی باشد."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:66
+msgid "Hide catalog visibility"
+msgstr "نمایش کاتالوگ را مخفی کن"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:67
+msgid ""
+"This will hide selected products in shop and search results. However product "
+"still will be accessible via direct link."
+msgstr ""
+"این گزینه محصولات انتخاب شده را در صفحه فروشگاه و در نتایج جستجو مخفی خواهد "
+"کرد. البته محصول هنوز با لینک مستقیم قابل مشاهده خواهد بود."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:74
+msgid "Make non-purchasable"
+msgstr "تبدیل به غیر قابل خرید"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:75
+msgid ""
+"This will make selected products non-purchasable (i.e. product can't be added "
+"to the cart)."
+msgstr ""
+"این گزینه محصولات انتخابی را را تبدیل به غیر قابل خرید خواهد کرد ( این یعنی "
+"اینکه محصول قابل افزودن به سبد خرید نخواهد بود)"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:82
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:130
+msgid "Modify query"
+msgstr "تغییر کوئری"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:83
+msgid "This will hide selected products completely (including direct link)."
+msgstr ""
+"این گزینه محصولات انتخاب شده را بطور مطلق مخفی خواهد کرد (یعنی حتی با لینک "
+"مستقیم نیز قابل مشاهده نخواهند بود)"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:90
+msgid "Hide menu items"
+msgstr "آیتم‌های منو را مخفی کن"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:91
+msgid "Hides nav menu items (i.e. hidden products, product categories and tags)."
+msgstr ""
+"تمام آیتم‌های منو ناوبری را مخفی می کند (یعنی اینکه محصولات، دسته بندی‌های "
+"محصولات و برچسب‌ها مخفی خواهند بود)."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:92
+#, php-format
+msgid ""
+"Only products, product categories/tags marked in <a href=\"%s\">bulk settings</"
+"a> will be hidden."
+msgstr ""
+"توجه کنید که فقط محصولات، دسته بندی های محصولات/برچسب های نشان شده در <a href="
+"\"%s\"> تنظیمات جمعی </a> مخفی خواهد شد."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:94
+msgid "This options uses the <code>wp_get_nav_menu_items</code> filter."
+msgstr "این گزینه از کد <code>wp_get_nav_menu_items</code> استفاده می کند."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:97
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:116
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:134
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:150
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:165
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:235
+#, php-format
+msgid "You will need %s plugin to enable this option."
+msgstr "این گزینه فقط در نسخه پرمیوم افزونه  %s در دسترس می‌باشد."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:109
+msgid "Hide products terms"
+msgstr "شرایط و ضوابط پیکربندی شده برای ویژگی های محصولات را مخفی کن"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:110
+msgid "Hides products categories and tags from being displayed on front-end."
+msgstr ""
+"دسته بندی ها و برچسب های محصولات را برای نمایش در سمت کاربر مخفی می کند\".\"."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:111
+#, php-format
+msgid ""
+"Only categories/tags marked in <a href=\"%s\">bulk settings</a> will be hidden."
+msgstr ""
+"تنها دسته بندی ها/برچسب های نشان شده با <a href=\"%s\"> تنظیمات جمعی </a> مخفی "
+"خواهد شد."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:113
+msgid ""
+"This options works filtering terms from <code>get_terms()</code> function."
+msgstr "این گزینه‌ها از تابع <code>get_terms()</code> استفاده می‌کنند."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:128
+msgid "Redirect"
+msgstr "هدایت (ریدایرکت)"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:129
+#, php-format
+msgid "This option is useful only if <strong>%s</strong> is enabled"
+msgstr "این گزینه تنها زمانی عمل می کند که <strong>%s</strong> فعال شده باشد"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:131
+msgid ""
+"Redirects to a page different from 404, in case a product is considered "
+"invisible."
+msgstr ""
+"جلوگیری از مشاهده صفحه 404 هنگامی که کاربری به هر طریقی قصد مشاهده محصولی را "
+"دارد که برای نقش کاربری وی مخفی در نظر گرفته شده است."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:146
+msgid "Redirect URL per product"
+msgstr ""
+"هر محصول مخفی شده از کاربر با نقش کاربری خاص را به این آدرس هدایت کن.(آدرس "
+"ریدایرکت عمومی)"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:147
+msgid ""
+"This will add new \"Product visibility: Redirect URL\" meta box to each "
+"product's edit page."
+msgstr ""
+"اگر این گزینه فعال باشد متا باکس آدرس هدایت اختصاصی (redirect URL) برای هر "
+"محصول را در صفحه ویرایش آن محصول خواهید داشت.\n"
+"در آنچا خواهید توانست بجای آدرس عمومی، آدرس ریدایرکت  مخصوص آن محصول را وارد "
+"نمایید."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:161
+msgid "Replace description"
+msgstr "اصلاح شرح"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:162
+msgid ""
+"This will replace the content in the \"Description\" tab for the selected "
+"products."
+msgstr ""
+"این گزینه محتوای موجود در دگمه  \"شرح\" را برای محصولات انتخابی اصلاح می‌کند."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:177
+#, php-format
+msgid "Content to replace with, e.g.: %s"
+msgstr "محتوای دلخواه برای جایگزینی، بعنوان مثال.:  %s"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:181
+#, php-format
+msgid ""
+"<a target=\"_blank\" href=\"%s\">Log in</a> to see the product description."
+msgstr "<a target=\"_blank\" href=\"%s\">ورود </a> برای مشاهده شرح محصول."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:201
+msgid "Admin Options"
+msgstr "تنظیمات مدیریتی"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:206
+msgid "User roles to display in settings"
+msgstr ""
+"نقش‌های کاربری برای نمایش در تنظیمات (کدام نقش‌های کاربری در صفحه ویرایش محصول/"
+"نمایش محصول برای انتخاب در دسترس باشند)"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:207
+msgid "Leave blank to show all available user roles."
+msgstr "برای نمایش تمام نقش‌های کاربری در دسترس، خالی رها کنید."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:215
+msgid "Admin products list column"
+msgstr "ستون نقش‌های کاربری در صفحه محصولات"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:216
+msgid "This will add \"User Roles\" column to the admin products list."
+msgstr ""
+"این گزینه ستونی بنام نقش‌های کاربری را درصفحه محصولات  قرار می دهد. اگر نقش یا "
+"نقش‌های کاربری خاصی برای یک محصول تنظیم شده باشد آنها را نمایش می دهد."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:217
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:225
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:240
+msgid "Add"
+msgstr "قرار دادن"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:223
+msgid "Product quick edit"
+msgstr "ویرایش سریع محصول"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:224
+msgid "This will add \"User Roles\" options to the product quick edit screen."
+msgstr ""
+"این گزینه تنظیمات را برای \"نقش‌های کاربری\" در صفحه محصولات و در زیر مجموعه "
+"ویرایش سریع  قرار می‌دهد."
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:231
+msgid "Products bulk edit"
+msgstr "ویرایش دسته جمعی محصولات"
+
+#: includes/settings/class-alg-wc-pvbur-settings-general.php:232
+msgid "This will add \"User Roles\" options to the products bulk edit screen."
+msgstr ""
+"این گزینه، تنظیمات نقش‌های کاربری را در صفحه ویرایش دسته‌جمعی محصولات (در صفحه "
+"محصولات) اضافه می کند."
+
+#: includes/settings/class-alg-wc-settings-pvbur.php:24
+msgid "Product Visibility"
+msgstr "قابل مشاهده بودن محصولات"
+
+#: includes/settings/class-alg-wc-settings-pvbur.php:37
+msgid "Your settings have been saved."
+msgstr "تنظیمات شما ذخیره شدند."
+
+#: includes/settings/class-alg-wc-settings-pvbur.php:61
+msgid "Reset Settings"
+msgstr "بازگردانی به تنظیمات پیش فرض"
+
+#: includes/settings/class-alg-wc-settings-pvbur.php:66
+msgid "Reset section settings"
+msgstr ""
+"اگر تیک بزنید پس از ذخیره تغییرات، تمام تنظیمات شما از بین رفته و به تنظیمات "
+"پیش‌فرض افزونه باز خواهند گشت"
+
+#: includes/settings/class-alg-wc-settings-pvbur.php:67
+msgid "Reset"
+msgstr "بازگردانی به تنظیمات پیش‌فرض افزونه"
+
+#: includes/settings/class-alg-wc-settings-pvbur.php:106
+msgid "Your settings have been reset."
+msgstr "تنظیمات شما مجددا به تنظیمات پیش فرض بازگشت."
+
+#: product-visibility-by-user-role-for-woocommerce.php:112
+msgid "Settings"
+msgstr "تنظیمات"
+
+#: product-visibility-by-user-role-for-woocommerce.php:115
+msgid "Unlock All"
+msgstr "ارتقا به نسخه پرمیوم"
+
+#. Plugin Name of the plugin/theme
+msgid "Product Visibility by User Role for WooCommerce"
+msgstr "نمایش محصولات ووکامرس بر اساس نقش کاربری"
+
+#. Plugin URI of the plugin/theme
+msgid ""
+"https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Display WooCommerce products by customer's user role."
+msgstr ""
+"نمایش محصولات ووکامرس بر اساس نقش کاربری مشتری به شما امکان می‌دهد تا امکان "
+"نمایش یا عدم نمایش محصولات، دسته بندی‌ها و برچسب های ووکامرس را برای هر نقش "
+"کاربری خاص فعال یا غیر فعال نمایید."
+
+#. Author of the plugin/theme
+msgid "WP Wham"
+msgstr "سازنده افزونه: WP Wham   ترجمه: فرهاد فریبرزی"
+
+#. Author URI of the plugin/theme
+msgid "https://wpwham.com/"
+msgstr ""
