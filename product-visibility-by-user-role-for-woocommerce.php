@@ -3,7 +3,7 @@
 Plugin Name: Product Visibility by User Role for WooCommerce
 Plugin URI: https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/
 Description: Display WooCommerce products by customer's user role.
-Version: 1.5.7
+Version: 1.5.8
 Author: WP Wham
 Author URI: https://wpwham.com/
 Text Domain: product-visibility-by-user-role-for-woocommerce
@@ -53,7 +53,7 @@ final class Alg_WC_PVBUR {
 	 * @var   string
 	 * @since 1.0.0
 	 */
-	public $version = '1.5.7';
+	public $version = '1.5.8';
 
 	/**
 	 * @var   Alg_WC_PVBUR The single instance of the class

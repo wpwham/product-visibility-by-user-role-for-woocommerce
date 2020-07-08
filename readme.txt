@@ -3,7 +3,7 @@ Contributors: wpwham
 Tags: woo commerce, woocommerce, product, visibility, user role
 Requires at least: 4.4
 Tested up to: 5.4
-Stable tag: 1.5.7
+Stable tag: 1.5.8
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -33,12 +33,16 @@ In free version you can set included or excluded user roles for each product ind
 
 == Changelog ==
 
+= 1.5.8 - 2020-07-08 =
+* FIX: bug (since v1.5.5) allowing hidden products to appear in search.
+* UPDATE: add Persian translations (thanks to Farhad Fariborzi).
+
 = 1.5.7 - 2020-06-20 =
-* FIX: some updates missing from v1.5.6 package
+* FIX: some updates missing from v1.5.6 package.
 
 = 1.5.6 - 2020-06-08 =
-* FIX: non-translatable string
-* UPDATE: bump tested versions
+* FIX: non-translatable string.
+* UPDATE: bump tested versions.
 
 = 1.5.5 - 2020-05-12 =
 * FIX: filter ajax requests (may solve issues with certain themes and/or widgets that query items via ajax).
@@ -50,13 +54,13 @@ In free version you can set included or excluded user roles for each product ind
 * FIX: conflict with Social Warfare plugin (Social Warfare is doing something strange with WP_Query, but their plugin hasn't been updated in months so it's faster for us just to patch it from our side).
 
 = 1.5.2 - 2019-12-17 =
-* UPDATE: bump tested versions
+* UPDATE: bump tested versions.
 
 = 1.5.1 - 2019-11-15 =
-* UPDATE: bump tested versions
+* UPDATE: bump tested versions.
 
 = 1.5.0 - 2019-08-30 =
-* UPDATE: updated .pot file for translations
+* UPDATE: updated .pot file for translations.
 
 = 1.4.1 - 2019-03-19 =
 * Dev - Plugin author data updated.
