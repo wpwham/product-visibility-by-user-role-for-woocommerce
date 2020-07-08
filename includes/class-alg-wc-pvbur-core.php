@@ -80,6 +80,11 @@ class Alg_WC_PVBUR_Core {
 			return true;
 		}
 		
+		// always filter search
+		if ( is_search() ) {
+			return true;
+		}
+		
 		// don't check for visible/invisible products in these situations:
 		if ( 
 			is_admin() ||
