@@ -76,18 +76,18 @@ if ( ! function_exists( 'alg_wc_pvbur_get_all_products_ids' ) ) {
 	 */
 	function alg_wc_pvbur_get_all_products_ids( $roles = array(), $cache = true ) {
 		if ( $cache ) {
-			$invisible_products_ids_query_name = "awcpvbur_all_pids_" . md5( implode( "_", $roles ) );
-			if ( false === ( $invisible_product_ids = get_transient( $invisible_products_ids_query_name ) ) ) {
-				$invisible_products    = alg_wc_pvbur_get_all_products( $roles );
-				$invisible_product_ids = $invisible_products->posts;
-				set_transient( $invisible_products_ids_query_name, $invisible_product_ids );
+			$products_ids_query_name = "awcpvbur_all_pids_" . md5( implode( "_", $roles ) );
+			if ( false === ( $product_ids = get_transient( $products_ids_query_name ) ) ) {
+				$products    = alg_wc_pvbur_get_all_products( $roles );
+				$product_ids = $products->posts;
+				set_transient( $products_ids_query_name, $product_ids );
 			}
 		} else {
-			$invisible_products    = alg_wc_pvbur_get_all_products( $roles );
-			$invisible_product_ids = $invisible_products->posts;
+			$products    = alg_wc_pvbur_get_all_products( $roles );
+			$product_ids = $products->posts;
 		}
 
-		return $invisible_product_ids;
+		return $product_ids;
 	}
 }
 
