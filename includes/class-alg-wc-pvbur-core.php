@@ -28,7 +28,7 @@ class Alg_WC_PVBUR_Core {
 				if ( 'yes' === get_option( 'alg_wc_pvbur_visibility', 'yes' ) ) {
 					add_filter( 'woocommerce_product_is_visible', array( $this, 'product_by_user_role_visibility' ),  PHP_INT_MAX, 2 );
 				}
-				if ( 'yes' === get_option( 'alg_wc_pvbur_purchasable', 'no' ) ) {
+				if ( get_option( 'alg_wc_pvbur_purchasable', 'yes' ) === 'yes' ) {
 					add_filter( 'woocommerce_is_purchasable',     array( $this, 'product_by_user_role_purchasable' ), PHP_INT_MAX, 2 );
 				}
 			}
@@ -54,7 +54,7 @@ class Alg_WC_PVBUR_Core {
 			add_action( 'save_post_product', 'wpw_pvbur_clear_cache' );
 			
 			// Modify query
-			if ( 'yes' === get_option( 'alg_wc_pvbur_query', 'no' ) ) {
+			if ( get_option( 'alg_wc_pvbur_query', 'yes' ) === 'yes' ) {
 				add_action( 'woocommerce_product_query', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 				add_action( 'pre_get_posts',             array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 			}

@@ -75,7 +75,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 				'desc_tip' => __( 'This will make selected products non-purchasable (i.e. product can\'t be added to the cart).', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc'     => __( 'Enable', 'product-visibility-by-user-role-for-woocommerce' ),
 				'id'       => 'alg_wc_pvbur_purchasable',
-				'default'  => 'no',
+				'default'  => 'yes',
 				'type'     => 'checkbox',
 			),
 			array(
@@ -83,7 +83,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 				'desc_tip' => __( 'This will hide selected products completely (including direct link).', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc'     => __( 'Enable', 'product-visibility-by-user-role-for-woocommerce' ),
 				'id'       => 'alg_wc_pvbur_query',
-				'default'  => 'no',
+				'default'  => 'yes',
 				'type'     => 'checkbox',
 			),
 			array(
