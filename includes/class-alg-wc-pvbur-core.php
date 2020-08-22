@@ -241,23 +241,30 @@ class Alg_WC_PVBUR_Core {
 		remove_action( 'woocommerce_product_query', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 		remove_action( 'pre_get_posts', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 
-		$post__not_in          = $query->get( 'post__not_in' );
-		$post__not_in          = empty( $post__not_in ) ? array() : $post__not_in;
-		$current_user_roles    = alg_wc_pvbur_get_current_user_all_roles();
-		$invisible_product_ids = alg_wc_pvbur_get_invisible_products_ids( $current_user_roles,true );
-
-		if ( is_array( $invisible_product_ids ) && count( $invisible_product_ids ) > 0 ) {
-			foreach ( $invisible_product_ids as $invisible_product_id ) {
-				$filter = apply_filters( 'alg_wc_pvbur_is_visible', false, $current_user_roles, $invisible_product_id );
-				if ( ! filter_var( $filter, FILTER_VALIDATE_BOOLEAN ) ) {
-					$post__not_in[] = $invisible_product_id;
+		$all_product_ids    = alg_wc_pvbur_get_all_products_ids( true );
+		$current_user_roles = alg_wc_pvbur_get_current_user_all_roles();
+		$post__not_in       = $query->get( 'post__not_in' );
+		$post__not_in       = empty( $post__not_in ) ? array() : $post__not_in;
+		
+		if ( is_array( $all_product_ids ) && count( $all_product_ids ) > 0 ) {
+			$cached_post__not_in_key = 'awcpvbur_pni_' . md5( implode( '_', $current_user_roles ) );
+			if ( false === ( $cached_post__not_in = get_transient( $cached_post__not_in_key ) ) ) {
+				$cached_post__not_in = array();
+				foreach ( $all_product_ids as $product_id ) {
+					if ( ! alg_wc_pvbur_is_visible( $current_user_roles, $product_id ) ) {
+						$cached_post__not_in[] = $product_id;
+					}
 				}
+				set_transient( $cached_post__not_in_key, $cached_post__not_in );
+			}
+			if ( is_array( $cached_post__not_in ) ) {
+				$post__not_in = array_merge( $post__not_in, $cached_post__not_in );
 			}
 		}
-
+		
 		$post__not_in = array_unique( $post__not_in );
-		$query->set( 'post__not_in', apply_filters( 'alg_wc_pvbur_post__not_in', $post__not_in, $invisible_product_ids  ) );
-		do_action( 'alg_wc_pvbur_hide_products_query', $query, $invisible_product_ids );
+		$query->set( 'post__not_in', apply_filters( 'alg_wc_pvbur_post__not_in', $post__not_in, $post__not_in  ) );
+		do_action( 'alg_wc_pvbur_hide_products_query', $query, $post__not_in );
 
 		add_action( 'pre_get_posts', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 		add_action( 'woocommerce_product_query', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
