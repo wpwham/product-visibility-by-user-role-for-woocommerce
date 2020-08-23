@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Core Class
  *
- * @version 1.5.8
+ * @version 1.6.0
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  * @author  WP Wham
@@ -17,7 +17,7 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.4.0
+	 * @version 1.6.0
 	 * @since   1.0.0
 	 */
 	function __construct() {
@@ -253,7 +253,7 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * pre_get_posts_hide_invisible_products.
 	 *
-	 * @version 1.2.1
+	 * @version 1.6.0
 	 * @since   1.1.9
 	 */
 	function pre_get_posts_hide_invisible_products( $query ) {

@@ -2,8 +2,8 @@
 Contributors: wpwham
 Tags: woo commerce, woocommerce, product, visibility, user role
 Requires at least: 4.4
-Tested up to: 5.4
-Stable tag: 1.5.8
+Tested up to: 5.5
+Stable tag: 1.6.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -32,6 +32,14 @@ In free version you can set included or excluded user roles for each product ind
 3. Start by visiting plugin settings at "WooCommerce > Settings > Product Visibility".
 
 == Changelog ==
+
+= 1.6.0 - 2020-07-08 =
+* NEW: per-product settings now always take priority over bulk settings.
+* NEW: adjust term counts (i.e. category counts) to account for hidden products.
+* FIX: when users have multiple roles, we now look at all roles together before deciding visibility. (Previously we decided based on the first matching role only).
+* UPDATE: display our settings in WC status report.
+* UPDATE: major code refactoring.
+* UPDATE: updated .pot file for translations.
 
 = 1.5.8 - 2020-07-08 =
 * FIX: bug (since v1.5.5) allowing hidden products to appear in search.
@@ -173,3 +181,8 @@ In free version you can set included or excluded user roles for each product ind
 
 = 1.0.0 - 2017-08-30 =
 * Initial Release.
+
+== Upgrade Notice ==
+
+= 1.6.0 =
+As of this update, per-product visibility settings will ALWAYS take priority over bulk settings (category/tag-level settings).  If you use both, please double check your settings to make sure you are still getting the desired result, or make any adjustments if needed.

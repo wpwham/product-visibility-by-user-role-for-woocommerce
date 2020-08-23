@@ -2,9 +2,10 @@
 /**
  * Product Visibility by User Role for WooCommerce - Functions
  *
- * @version 1.3.0
+ * @version 1.6.0
  * @since   1.1.0
  * @author  Algoritmika Ltd.
+ * @author  WP Wham
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
