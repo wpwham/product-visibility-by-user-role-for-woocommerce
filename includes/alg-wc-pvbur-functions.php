@@ -66,6 +66,7 @@ if ( ! function_exists( 'alg_wc_pvbur_get_all_products' ) ) {
 		$args = array(
 			'fields'           => 'ids',
 			'post_type'        => array( 'product', 'product_variation' ),
+			'post_status'      => 'publish',
 			'posts_per_page'   => '-1',
 			'suppress_filters' => true,
 			'meta_query'       => array()

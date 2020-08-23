@@ -57,8 +57,31 @@ class Alg_WC_PVBUR_Core {
 			if ( get_option( 'alg_wc_pvbur_query', 'yes' ) === 'yes' ) {
 				add_action( 'woocommerce_product_query', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 				add_action( 'pre_get_posts',             array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
+				add_filter( 'get_terms',                 array( $this, 'get_terms_adjust_counts' ),               20, 1 );
 			}
 		}
+	}
+
+	/**
+	 * Adjust term counts to account for hidden products.
+	 *
+	 * @version 1.6.0
+	 * @since   1.6.0
+	 */
+	function get_terms_adjust_counts( $terms ) {
+		$current_user_roles = alg_wc_pvbur_get_current_user_all_roles();
+		$cached_term_count_differential_key = 'awcpvbur_tcd_' . md5( implode( '_', $current_user_roles ) );
+		$term_count_differentials = get_transient( $cached_term_count_differential_key );
+		foreach ( $terms as $i => $term ) {
+			if (
+				is_a( $term, 'WP_Term' ) &&
+				in_array( $term->taxonomy, array( 'product_cat', 'product_tag' ) ) &&
+				isset( $term_count_differentials[ $term->taxonomy ][ $term->term_id ] )
+			) {
+				$terms[$i]->count = $terms[$i]->count - $term_count_differentials[ $term->taxonomy ][ $term->term_id ];
+			}
+		}
+		return $terms;
 	}
 
 	/**
@@ -247,15 +270,33 @@ class Alg_WC_PVBUR_Core {
 		$post__not_in       = empty( $post__not_in ) ? array() : $post__not_in;
 		
 		if ( is_array( $all_product_ids ) && count( $all_product_ids ) > 0 ) {
-			$cached_post__not_in_key = 'awcpvbur_pni_' . md5( implode( '_', $current_user_roles ) );
+			$cached_post__not_in_key            = 'awcpvbur_pni_' . md5( implode( '_', $current_user_roles ) );
+			$cached_term_count_differential_key = 'awcpvbur_tcd_' . md5( implode( '_', $current_user_roles ) );
 			if ( false === ( $cached_post__not_in = get_transient( $cached_post__not_in_key ) ) ) {
-				$cached_post__not_in = array();
+				$cached_post__not_in     = array();
+				$term_count_differential = array();
 				foreach ( $all_product_ids as $product_id ) {
 					if ( ! alg_wc_pvbur_is_visible( $current_user_roles, $product_id ) ) {
+						// exclude product id from queries
 						$cached_post__not_in[] = $product_id;
+						// figure out which categories/tags to adjust the count down
+						$taxonomies = array( 'product_cat', 'product_tag' );
+						foreach ( $taxonomies as $taxonomy ) {
+							// Getting product terms
+							$term_ids = wp_get_post_terms( $product_id, $taxonomy, array( 'fields' => 'ids' ) );
+							if ( ! empty( $term_ids ) ) {
+								foreach ( $term_ids as $term_id ) {
+									if ( ! isset( $term_count_differential[ $taxonomy ][ $term_id ] ) ) {
+										$term_count_differential[ $taxonomy ][ $term_id ] = 0;
+									}
+									$term_count_differential[ $taxonomy ][ $term_id ]++;
+								}
+							}
+						}
 					}
 				}
 				set_transient( $cached_post__not_in_key, $cached_post__not_in );
+				set_transient( $cached_term_count_differential_key, $term_count_differential );
 			}
 			if ( is_array( $cached_post__not_in ) ) {
 				$post__not_in = array_merge( $post__not_in, $cached_post__not_in );
