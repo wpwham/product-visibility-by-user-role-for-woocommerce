@@ -192,6 +192,40 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 				'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'readonly' => 'readonly' ), 'settings' ),
 			),
 			array(
+				'title'    => __( 'Replace short description', 'product-visibility-by-user-role-for-woocommerce' ),
+				'desc_tip' => __( 'This will replace the content in the "Product Short Description" tab for the selected products.', 'product-visibility-by-user-role-for-woocommerce' ) .
+					apply_filters( 'alg_wc_pvbur',
+						'<br>' . sprintf( 
+							__( 'You will need %s plugin to enable this option.', 'product-visibility-by-user-role-for-woocommerce' ),
+							'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/" target="_blank">' . __( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>' 
+						),
+						'settings' 
+					),
+				'desc'     => __( 'Enable', 'product-visibility-by-user-role-for-woocommerce' ),
+				'id'       => 'alg_wc_pvbur_replace_short_content',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+				'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'disabled' => 'disabled' ), 'settings' ),
+			),
+			array(
+				'desc'     => sprintf( __( 'Content to replace with, e.g.: %s', 'product-visibility-by-user-role-for-woocommerce' ),
+					'<code>' .
+						esc_html(
+							'<strong>' .
+								sprintf( __( '<a target="_blank" href="%s">Log in</a> to see the product description.', 'product-visibility-by-user-role-for-woocommerce' ),
+									wp_login_url() ) .
+							'</strong>'
+						) .
+					'</code>'
+				),
+				'id'       => 'alg_wc_pvbur_short_content',
+				'default'  => '',
+				'type'     => 'textarea',
+				'css'      => 'width:100%;height:150px;',
+				'alg_wc_pvbur_raw' => true,
+				'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'readonly' => 'readonly' ), 'settings' ),
+			),
+			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_pvbur_general_options',
 			),
