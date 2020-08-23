@@ -134,6 +134,66 @@ final class Alg_WC_PVBUR {
 	}
 
 	/**
+	 * add settings to WC status report
+	 *
+	 * @version 1.6.0
+	 * @since   1.6.0
+	 * @author  WP Wham
+	 */
+	public static function add_settings_to_status_report() {
+		#region add_settings_to_status_report
+		$protected_settings  = array( 'wpwham_product_visibility_user_role_license', 'wpw_pvbur_filler' );
+		$settings_general    = Alg_WC_PVBUR_Settings_General::get_settings();
+		$settings_bulk       = array();
+		$settings_bulk_class = new Alg_WC_PVBUR_Settings_Bulk();
+		$settings_bulk_class->init_user_roles();
+		foreach ( $settings_bulk_class->user_roles as $k => $v ) {
+			$_GET['subsection'] = $k; // hacky way to get all the possible settings pages from here
+			$settings_bulk = array_merge(
+				$settings_bulk,
+				array( array( 'id' => 'wpw_pvbur_filler', 'type' => 'filler', 'title' => "Bulk settings for role $k" ) ),
+				$settings_bulk_class->get_settings()
+			);
+		}
+		$settings = array_merge( $settings_general, $settings_bulk );
+		?>
+		<table class="wc_status_table widefat" cellspacing="0">
+			<thead>
+				<tr>
+					<th colspan="3" data-export-label="Product Visibility by User Role Settings"><h2><?php esc_html_e( 'Product Visibility by User Role Settings', 'product-visibility-by-user-role-for-woocommerce' ); ?></h2></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ( $settings as $setting ): ?>
+				<?php 
+				if ( in_array( $setting['type'], array( 'title', 'sectionend' ) ) ) { 
+					continue;
+				}
+				if ( isset( $setting['title'] ) ) {
+					$title = $setting['title'];
+				} elseif ( isset( $setting['desc'] ) ) {
+					$title = $setting['desc'];
+				} else {
+					$title = $setting['id'];
+				}
+				$value = get_option( $setting['id'] ); 
+				if ( in_array( $setting['id'], $protected_settings ) ) {
+					$value = $value > '' ? '(set)' : 'not set';
+				}
+				?>
+				<tr>
+					<td data-export-label="<?php echo esc_attr( $title ); ?>"><?php esc_html_e( $title, 'product-visibility-by-user-role-for-woocommerce' ); ?>:</td>
+					<td class="help">&nbsp;</td>
+					<td><?php echo is_array( $value ) ? print_r( $value, true ) : $value; ?></td>
+				</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+		<?php
+		#endregion add_settings_to_status_report
+	}
+
+	/**
 	 * admin.
 	 *
 	 * @version 1.4.0
@@ -149,6 +209,7 @@ final class Alg_WC_PVBUR {
 		$this->settings = array();
 		$this->settings['general'] = require_once( 'includes/settings/class-alg-wc-pvbur-settings-general.php' );
 		$this->settings['bulk']    = require_once( 'includes/settings/class-alg-wc-pvbur-settings-bulk.php' );
+		add_action( 'woocommerce_system_status_report', array( $this, 'add_settings_to_status_report' ) );
 		// Version updated
 		if ( get_option( 'alg_wc_pvbur_version', '' ) !== $this->version ) {
 			add_action( 'admin_init', array( $this, 'version_updated' ) );

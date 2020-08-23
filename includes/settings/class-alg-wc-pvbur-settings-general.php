@@ -32,7 +32,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 	 * @since   1.0.0
 	 * @todo    [dev] (maybe) add "Admin" section
 	 */
-	function get_settings() {
+	public static function get_settings() {
 		$main_settings = array(
 			array(
 				'title'    => __( 'Product Visibility by User Role Options', 'product-visibility-by-user-role-for-woocommerce' ),
