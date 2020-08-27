@@ -137,7 +137,7 @@ if ( ! function_exists( 'alg_wc_pvbur_is_visible' ) ) {
 			foreach ( $current_user_roles as $user_role_id ) {
 				$visible_products = array_merge(
 					$visible_products,
-					get_option( 'alg_wc_pvbur_bulk_visible_products_' . $user_role_id, '' )
+					get_option( 'alg_wc_pvbur_bulk_visible_products_' . $user_role_id, array() )
 				);
 			}
 			if ( ! empty( $visible_products ) ) {
@@ -149,7 +149,7 @@ if ( ! function_exists( 'alg_wc_pvbur_is_visible' ) ) {
 			foreach ( $current_user_roles as $user_role_id ) {
 				$invisible_products = array_merge(
 					$invisible_products,
-					get_option( 'alg_wc_pvbur_bulk_invisible_products_' . $user_role_id, '' )
+					get_option( 'alg_wc_pvbur_bulk_invisible_products_' . $user_role_id, array() )
 				);
 			}
 			if ( ! empty( $invisible_products ) ) {
@@ -172,7 +172,7 @@ if ( ! function_exists( 'alg_wc_pvbur_is_visible' ) ) {
 				foreach ( $current_user_roles as $user_role_id ) {
 					$visible_terms = array_merge(
 						$visible_terms,
-						get_option( 'alg_wc_pvbur_bulk_visible_' . $taxonomy . 's_' . $user_role_id, '' )
+						get_option( 'alg_wc_pvbur_bulk_visible_' . $taxonomy . 's_' . $user_role_id, array() )
 					);
 				}
 				if ( ! empty( $visible_terms ) ) {
@@ -185,7 +185,7 @@ if ( ! function_exists( 'alg_wc_pvbur_is_visible' ) ) {
 				foreach ( $current_user_roles as $user_role_id ) {
 					$invisible_terms = array_merge(
 						$invisible_terms,
-						get_option( 'alg_wc_pvbur_bulk_invisible_' . $taxonomy . 's_' . $user_role_id, '' )
+						get_option( 'alg_wc_pvbur_bulk_invisible_' . $taxonomy . 's_' . $user_role_id, array() )
 					);
 				}
 				if ( ! empty( $invisible_terms ) ) {
