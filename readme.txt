@@ -3,7 +3,7 @@ Contributors: wpwham
 Tags: woo commerce, woocommerce, product, visibility, user role
 Requires at least: 4.4
 Tested up to: 5.5
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -33,7 +33,10 @@ In free version you can set included or excluded user roles for each product ind
 
 == Changelog ==
 
-= 1.6.0 - 2020-07-08 =
+= 1.6.1 - 2020-08-28 =
+* FIX: php warning.
+
+= 1.6.0 - 2020-08-22 =
 * NEW: per-product settings now always take priority over bulk settings.
 * NEW: adjust term counts (i.e. category counts) to account for hidden products.
 * FIX: when users have multiple roles, we now look at all roles together before deciding visibility. (Previously we decided based on the first matching role only).

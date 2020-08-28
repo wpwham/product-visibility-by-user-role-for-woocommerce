@@ -104,7 +104,7 @@ if ( ! function_exists( 'alg_wc_pvbur_is_visible' ) ) {
 	/**
 	 * is_visible.
 	 *
-	 * @version 1.6.0
+	 * @version 1.6.1
 	 * @since   1.1.0
 	 */
 	function alg_wc_pvbur_is_visible( $current_user_roles, $product_id ) {
