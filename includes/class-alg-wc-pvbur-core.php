@@ -257,6 +257,7 @@ class Alg_WC_PVBUR_Core {
 	 * @since   1.1.9
 	 */
 	function pre_get_posts_hide_invisible_products( $query ) {
+		
 		if ( false === filter_var( apply_filters( 'alg_wc_pvbur_can_search', true, $query ), FILTER_VALIDATE_BOOLEAN ) ) {
 			return;
 		}
@@ -266,8 +267,17 @@ class Alg_WC_PVBUR_Core {
 
 		$all_product_ids    = alg_wc_pvbur_get_all_products_ids( true );
 		$current_user_roles = alg_wc_pvbur_get_current_user_all_roles();
+		$post__in           = $query->get( 'post__in' );
+		$post__in           = empty( $post__in ) ? array() : $post__in;
 		$post__not_in       = $query->get( 'post__not_in' );
 		$post__not_in       = empty( $post__not_in ) ? array() : $post__not_in;
+		
+		$use_post__in = false; // by default we prefer to use post__not_in
+		if ( ! empty( $post__in ) ) {
+			// however, if $post__in has stuff in it, that means some other plugin must be tinkering
+			// with the query.  We'll have to switch to post__in ourselves and hope for the best...
+			$use_post__in = true;
+		}
 		
 		if ( is_array( $all_product_ids ) && count( $all_product_ids ) > 0 ) {
 			$cached_post__not_in_key            = 'awcpvbur_pni_' . md5( implode( '_', $current_user_roles ) );
@@ -299,12 +309,19 @@ class Alg_WC_PVBUR_Core {
 				set_transient( $cached_term_count_differential_key, $term_count_differential );
 			}
 			if ( is_array( $cached_post__not_in ) ) {
-				$post__not_in = array_merge( $post__not_in, $cached_post__not_in );
+				$post__not_in = array_unique( array_merge( $post__not_in, $cached_post__not_in ) );
 			}
 		}
 		
-		$post__not_in = array_unique( $post__not_in );
-		$query->set( 'post__not_in', apply_filters( 'alg_wc_pvbur_post__not_in', $post__not_in, $post__not_in  ) );
+		if ( $use_post__in ) {
+			$post__in = array_diff( $post__in, $post__not_in );
+			$query->set( 'post__in', apply_filters( 'alg_wc_pvbur_post__in', $post__in ) );
+			$query->set( 'post__not_in', array() );
+		} else {
+			$query->set( 'post__in', array() );
+			$query->set( 'post__not_in', apply_filters( 'alg_wc_pvbur_post__not_in', $post__not_in ) );
+		}
+		
 		do_action( 'alg_wc_pvbur_hide_products_query', $query, $post__not_in );
 
 		add_action( 'pre_get_posts', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
