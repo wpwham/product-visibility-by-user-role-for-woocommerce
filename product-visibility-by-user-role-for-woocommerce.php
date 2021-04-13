@@ -124,13 +124,18 @@ final class Alg_WC_PVBUR {
 	 * @since   1.0.0
 	 */
 	function includes() {
+		
+		// Functions
 		require_once( 'includes/alg-wc-pvbur-functions.php' );
+		
+		// Core
 		$this->core = require_once( 'includes/class-alg-wc-pvbur-core.php' );
-		if ( 'product-visibility-by-user-role-for-woocommerce-pro.php' === basename( __FILE__ ) ) {
-			require_once( 'includes/pro/alg-wc-pvbur-pro-functions.php' );
-			$this->core_pro = require_once( 'includes/pro/class-alg-wc-pvbur-pro-core.php' );
-		}
+		
+		// 3rd party compatibility
 		require_once( 'includes/class-alg-wc-pvbur-wpml.php' );
+		require_once( 'includes/class-wpwham-pvur-third-party-compatibility.php' );
+		$this->compatibility = WPWham_PVUR_Third_Party_Compatibility::get_instance();
+		
 	}
 
 	/**
