@@ -272,13 +272,6 @@ class Alg_WC_PVBUR_Core {
 		$post__not_in       = $query->get( 'post__not_in' );
 		$post__not_in       = empty( $post__not_in ) ? array() : $post__not_in;
 		
-		$use_post__in = false; // by default we prefer to use post__not_in
-		if ( ! empty( $post__in ) ) {
-			// however, if $post__in has stuff in it, that means some other plugin must be tinkering
-			// with the query.  We'll have to switch to post__in ourselves and hope for the best...
-			$use_post__in = true;
-		}
-		
 		if ( is_array( $all_product_ids ) && count( $all_product_ids ) > 0 ) {
 			$cached_post__not_in_key            = 'awcpvbur_pni_' . md5( implode( '_', $current_user_roles ) );
 			$cached_term_count_differential_key = 'awcpvbur_tcd_' . md5( implode( '_', $current_user_roles ) );
@@ -313,9 +306,19 @@ class Alg_WC_PVBUR_Core {
 			}
 		}
 		
-		if ( $use_post__in ) {
+		// By default we prefer to use post__not_in.
+		// However, if $post__in still has stuff in it, it means some other plugin must be tinkering
+		// with the query.  So we need to consider it:
+		if ( ! empty( $post__in ) ) {
 			$post__in = array_diff( $post__in, $post__not_in );
-			$query->set( 'post__in', apply_filters( 'alg_wc_pvbur_post__in', $post__in ) );
+			$post__in = apply_filters( 'alg_wc_pvbur_post__in', $post__in );
+			// if every item of the current query is excluded, $post__in will be empty at this point
+		}
+		
+		// Since we can't use post__in and post__not_in at the same time, if $post__in still has
+		// stuff in it we'll have to switch to post__in ourselves at this point and hope for the best...
+		if ( ! empty( $post__in ) ) {
+			$query->set( 'post__in', $post__in );
 			$query->set( 'post__not_in', array() );
 		} else {
 			$query->set( 'post__in', array() );
