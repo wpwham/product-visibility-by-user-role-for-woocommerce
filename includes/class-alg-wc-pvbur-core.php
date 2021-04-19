@@ -111,9 +111,10 @@ class Alg_WC_PVBUR_Core {
 		
 		// don't check for visible/invisible products in these situations:
 		if ( 
-			is_admin() ||
-			! (
+			is_admin()
+			|| ! (
 				( isset( $query->query['post_type'] ) && $query->query['post_type'] === 'product' )
+				|| ( isset( $query->query['post_type'] ) && is_array( $query->query['post_type'] ) && in_array( 'product', $query->query['post_type'] ) )
 				|| ( isset( $query->query_vars['post_type'] ) && $query->query_vars['post_type'] === 'product' )
 				|| isset( $query->query['product_cat'] )
 				|| isset( $query->query['product_tag'] )
