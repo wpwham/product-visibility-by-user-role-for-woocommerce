@@ -2,9 +2,10 @@
 /**
  * Product Visibility by User Role for WooCommerce - Bulk Section Settings
  *
- * @version 1.4.0
+ * @version 1.7.2
  * @since   1.1.0
  * @author  Algoritmika Ltd.
+ * @author  WP Wham
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -96,7 +97,7 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.4.0
+	 * @version 1.7.2
 	 * @since   1.1.0
 	 */
 	function get_settings() {

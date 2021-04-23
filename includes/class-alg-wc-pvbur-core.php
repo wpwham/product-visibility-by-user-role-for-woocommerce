@@ -87,7 +87,7 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * Setups conditions where invisible products can be searched or prevented
 	 *
-	 * @version 1.5.8
+	 * @version 1.7.2
 	 * @since   1.2.1
 	 *
 	 * @param bool $can_search

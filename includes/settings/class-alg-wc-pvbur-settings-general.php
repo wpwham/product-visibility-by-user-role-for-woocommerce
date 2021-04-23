@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - General Section Settings
  *
- * @version 1.6.0
+ * @version 1.7.2
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  * @author  WP Wham
@@ -29,7 +29,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 	/**
 	 * get_settings.
 	 *
-	 * @version 1.6.0
+	 * @version 1.7.2
 	 * @since   1.0.0
 	 * @todo    [dev] (maybe) add "Admin" section
 	 */

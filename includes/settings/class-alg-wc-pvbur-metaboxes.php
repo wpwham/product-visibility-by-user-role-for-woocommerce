@@ -2,9 +2,10 @@
 /**
  * Product Visibility by User Role for WooCommerce - Metaboxes
  *
- * @version 1.3.0
+ * @version 1.7.2
  * @since   1.0.0
  * @author  Algoritmika Ltd.
+ * @author  WP Wham
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -44,9 +45,8 @@ class Alg_WC_PVBUR_Metaboxes {
 	/**
 	 * display_pvbur_metabox.
 	 *
-	 * @version 1.1.0
+	 * @version 1.7.2
 	 * @since   1.0.0
-	 * @todo    [dev] (maybe) placeholder for textarea
 	 */
 	function display_pvbur_metabox() {
 		$current_post_id = get_the_ID();
