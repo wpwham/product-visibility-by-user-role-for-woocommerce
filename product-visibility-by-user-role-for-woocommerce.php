@@ -116,6 +116,46 @@ final class Alg_WC_PVBUR {
 		}
 		return array_merge( $custom_links, $links );
 	}
+	
+	/**
+	 * @since   1.7.2
+	 */
+	public function enqueue_scripts() {
+		global $pagenow;
+		
+		// check if its a page where we need this
+		if (
+			$pagenow === 'post.php'
+			|| ( $pagenow === 'post-new.php' && isset( $_REQUEST['post_type'] ) && $_REQUEST['post_type'] === 'product' )
+			|| ( $pagenow === 'admin.php' && isset( $_REQUEST['tab'] ) && $_REQUEST['tab'] === 'alg_wc_pvbur' && isset( $_REQUEST['section'] ) && $_REQUEST['section'] === 'bulk' )
+		) {
+			wp_enqueue_script(
+				'wpwham-product-visibility-user-role-admin',
+				$this->plugin_url() . '/includes/js/admin.js',
+				array( 'jquery' ),
+				$this->version,
+				false
+			);
+			wp_localize_script(
+				'wpwham-product-visibility-user-role-admin',
+				'wpwham_product_visibility_user_role_admin',
+				array(
+					'i18n' => array(
+						'logical_error'                          => __( 'Error: Visible and Invisible are mutually-exclusive, you cannot use both at the same time.', 'product-visibility-by-user-role-for-woocommerce' ),
+						'see_documentation'                      => sprintf( __( 'Need help? Check our <a href="%s" target="_blank">Documentation</a>.', 'product-visibility-by-user-role-for-woocommerce' ), 'https://wpwham.com/documentation/product-visibility-by-user-role-for-woocommerce/' ),
+						'why_is_invisible_disabled'              => __( 'You have chosen to specify the roles you want <strong>visible</strong>.  All others are automatically <strong>invisible</strong>.  You don\'t have to specify both.', 'product-visibility-by-user-role-for-woocommerce' ),
+						'why_is_visible_disabled'                => __( 'You have chosen to specify the roles you want <strong>invisible</strong>.  All others are automatically <strong>visible</strong>.  You don\'t have to specify both.', 'product-visibility-by-user-role-for-woocommerce' ),
+						'why_is_invisible_products_disabled'     => __( 'You have chosen to specify the products you want <strong>visible</strong>.  All others are automatically <strong>invisible</strong>.  You don\'t have to specify both.', 'product-visibility-by-user-role-for-woocommerce' ),
+						'why_is_visible_products_disabled'       => __( 'You have chosen to specify the products you want <strong>invisible</strong>.  All others are automatically <strong>visible</strong>.  You don\'t have to specify both.', 'product-visibility-by-user-role-for-woocommerce' ),
+						'why_is_invisible_product_cats_disabled' => __( 'You have chosen to specify the categories you want <strong>visible</strong>.  All others are automatically <strong>invisible</strong>.  You don\'t have to specify both.', 'product-visibility-by-user-role-for-woocommerce' ),
+						'why_is_visible_product_cats_disabled'   => __( 'You have chosen to specify the categories you want <strong>invisible</strong>.  All others are automatically <strong>visible</strong>.  You don\'t have to specify both.', 'product-visibility-by-user-role-for-woocommerce' ),
+						'why_is_invisible_product_tags_disabled' => __( 'You have chosen to specify the tags you want <strong>visible</strong>.  All others are automatically <strong>invisible</strong>.  You don\'t have to specify both.', 'product-visibility-by-user-role-for-woocommerce' ),
+						'why_is_visible_product_tags_disabled'   => __( 'You have chosen to specify the tags you want <strong>invisible</strong>.  All others are automatically <strong>visible</strong>.  You don\'t have to specify both.', 'product-visibility-by-user-role-for-woocommerce' ),
+					),
+				)
+			);
+		}
+	}
 
 	/**
 	 * Include required core files used in admin and on the frontend.
@@ -201,10 +241,11 @@ final class Alg_WC_PVBUR {
 	/**
 	 * admin.
 	 *
-	 * @version 1.6.0
+	 * @version 1.7.2
 	 * @since   1.4.0
 	 */
 	function admin() {
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		// Action links
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
 		// Settings

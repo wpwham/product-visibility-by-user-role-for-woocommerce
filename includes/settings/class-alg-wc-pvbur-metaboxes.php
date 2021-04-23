@@ -141,6 +141,7 @@ class Alg_WC_PVBUR_Metaboxes {
 		}
 		$html .= '</table>';
 		$html .= '<input type="hidden" name="alg_wc_pvbur_save_post" value="alg_wc_pvbur_save_post">';
+		$html .= '<p id="wpwham-product-visibility-by-user-role-meta-box-messages" style="display: none; font-style: italic;"></p>';
 		echo $html;
 	}
 
