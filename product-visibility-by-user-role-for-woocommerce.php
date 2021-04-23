@@ -111,7 +111,7 @@ final class Alg_WC_PVBUR {
 		$custom_links = array();
 		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_pvbur' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>';
 		if ( 'product-visibility-by-user-role-for-woocommerce.php' === basename( __FILE__ ) ) {
-			$custom_links[] = '<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/">' .
+			$custom_links[] = '<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/?utm_source=plugins_page&utm_campaign=free&utm_medium=product_visibility_user_role">' .
 				__( 'Unlock All', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>';
 		}
 		return array_merge( $custom_links, $links );
@@ -142,7 +142,7 @@ final class Alg_WC_PVBUR {
 				array(
 					'i18n' => array(
 						'logical_error'                          => __( 'Error: Visible and Invisible are mutually-exclusive, you cannot use both at the same time.', 'product-visibility-by-user-role-for-woocommerce' ),
-						'see_documentation'                      => sprintf( __( 'Need help? Check our <a href="%s" target="_blank">Documentation</a>.', 'product-visibility-by-user-role-for-woocommerce' ), 'https://wpwham.com/documentation/product-visibility-by-user-role-for-woocommerce/' ),
+						'see_documentation'                      => sprintf( __( 'Need help? Check our <a href="%s" target="_blank">Documentation</a>.', 'product-visibility-by-user-role-for-woocommerce' ), 'https://wpwham.com/documentation/product-visibility-by-user-role-for-woocommerce/?utm_source=documentation_link&utm_campaign=free&utm_medium=product_visibility_user_role' ),
 						'why_is_invisible_disabled'              => __( 'You have chosen to specify the roles you want <strong>visible</strong>.  All others are automatically <strong>invisible</strong>.  You don\'t have to specify both.', 'product-visibility-by-user-role-for-woocommerce' ),
 						'why_is_visible_disabled'                => __( 'You have chosen to specify the roles you want <strong>invisible</strong>.  All others are automatically <strong>visible</strong>.  You don\'t have to specify both.', 'product-visibility-by-user-role-for-woocommerce' ),
 						'why_is_invisible_products_disabled'     => __( 'You have chosen to specify the products you want <strong>visible</strong>.  All others are automatically <strong>invisible</strong>.  You don\'t have to specify both.', 'product-visibility-by-user-role-for-woocommerce' ),

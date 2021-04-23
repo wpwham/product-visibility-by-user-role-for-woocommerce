@@ -43,7 +43,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 			array(
 				'title'    => __( 'Product Visibility by User Role', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc'     => '<strong>' . __( 'Enable plugin', 'product-visibility-by-user-role-for-woocommerce' ) . '</strong>',
-				'desc_tip' => '<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/" target="_blank" class="button">' .
+				'desc_tip' => '<a href="https://wpwham.com/documentation/product-visibility-by-user-role-for-woocommerce/?utm_source=documentation_link&utm_campaign=free&utm_medium=product_visibility_user_role" target="_blank" class="button">' .
 					__( 'Documentation', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>',
 				'id'       => 'alg_wc_pvbur_enabled',
 				'default'  => 'yes',
@@ -96,7 +96,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 					apply_filters( 'alg_wc_pvbur',
 						'<br>' . sprintf( 
 							__( 'You will need %s plugin to enable this option.', 'product-visibility-by-user-role-for-woocommerce' ),
-							'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/" target="_blank">' . __( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>' 
+							'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/?utm_source=settings_general&utm_campaign=free&utm_medium=product_visibility_user_role" target="_blank">' . __( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>' 
 						),
 						'settings' 
 					),
@@ -115,7 +115,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 					apply_filters( 'alg_wc_pvbur',
 						'<br>' . sprintf( 
 							__( 'You will need %s plugin to enable this option.', 'product-visibility-by-user-role-for-woocommerce' ),
-							'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/" target="_blank">' . __( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>' 
+							'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/?utm_source=settings_general&utm_campaign=free&utm_medium=product_visibility_user_role" target="_blank">' . __( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>' 
 						),
 						'settings' 
 					),
@@ -133,7 +133,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 					apply_filters( 'alg_wc_pvbur',
 						'<br>' . sprintf( 
 							__( 'You will need %s plugin to enable this option.', 'product-visibility-by-user-role-for-woocommerce' ),
-							'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/" target="_blank">' . __( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>' 
+							'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/?utm_source=settings_general&utm_campaign=free&utm_medium=product_visibility_user_role" target="_blank">' . __( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>' 
 						),
 						'settings' 
 					),
@@ -149,7 +149,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 					apply_filters( 'alg_wc_pvbur',
 						'<br>' . sprintf( 
 							__( 'You will need %s plugin to enable this option.', 'product-visibility-by-user-role-for-woocommerce' ),
-							'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/" target="_blank">' . __( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>' 
+							'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/?utm_source=settings_general&utm_campaign=free&utm_medium=product_visibility_user_role" target="_blank">' . __( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>' 
 						),
 						'settings' 
 					),
@@ -164,7 +164,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 					apply_filters( 'alg_wc_pvbur',
 						'<br>' . sprintf( 
 							__( 'You will need %s plugin to enable this option.', 'product-visibility-by-user-role-for-woocommerce' ),
-							'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/" target="_blank">' . __( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>' 
+							'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/?utm_source=settings_general&utm_campaign=free&utm_medium=product_visibility_user_role" target="_blank">' . __( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>' 
 						),
 						'settings' 
 					),
@@ -198,7 +198,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 					apply_filters( 'alg_wc_pvbur',
 						'<br>' . sprintf( 
 							__( 'You will need %s plugin to enable this option.', 'product-visibility-by-user-role-for-woocommerce' ),
-							'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/" target="_blank">' . __( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>' 
+							'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/?utm_source=settings_general&utm_campaign=free&utm_medium=product_visibility_user_role" target="_blank">' . __( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>' 
 						),
 						'settings' 
 					),
@@ -268,7 +268,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 					apply_filters( 'alg_wc_pvbur',
 						'<br>' . sprintf( 
 							__( 'You will need %s plugin to enable this option.', 'product-visibility-by-user-role-for-woocommerce' ),
-							'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/" target="_blank">' . __( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>' 
+							'<a href="https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/?utm_source=settings_general&utm_campaign=free&utm_medium=product_visibility_user_role" target="_blank">' . __( 'Product Visibility by User Role for WooCommerce Pro', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>' 
 						),
 						'settings' 
 					),
