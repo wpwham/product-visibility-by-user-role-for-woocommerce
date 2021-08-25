@@ -11,7 +11,7 @@
 	$( document ).ready( function(){
 		
 		function logicExplainer( $visibleEl, $invisibleEl, $messageEl, message ) {
-			if ( $visibleEl.val().length && $invisibleEl.val().length ) {
+			if ( $visibleEl && $visibleEl.val() && $visibleEl.val().length && $invisibleEl && $invisibleEl.val() && $invisibleEl.val().length ) {
 				$messageEl.html( message ).show();
 			} else if ( $visibleEl.val().length ) {
 				$invisibleEl.prop( 'disabled', true );
