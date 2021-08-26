@@ -13,10 +13,10 @@
 		function logicExplainer( $visibleEl, $invisibleEl, $messageEl, message ) {
 			if ( $visibleEl && $visibleEl.val() && $visibleEl.val().length && $invisibleEl && $invisibleEl.val() && $invisibleEl.val().length ) {
 				$messageEl.html( message ).show();
-			} else if ( $visibleEl.val().length ) {
+			} else if ( $visibleEl && $visibleEl.val() && $visibleEl.val().length ) {
 				$invisibleEl.prop( 'disabled', true );
 				$messageEl.hide();
-			} else if ( $invisibleEl.val().length ) {
+			} else if ( $invisibleEl && $invisibleEl.val() && $invisibleEl.val().length ) {
 				$visibleEl.prop( 'disabled', true );
 				$messageEl.hide();
 			} else {
