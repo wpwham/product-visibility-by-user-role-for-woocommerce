@@ -59,8 +59,54 @@ class Alg_WC_PVBUR_Core {
 				add_action( 'pre_get_posts',             array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 				add_filter( 'get_terms',                 array( $this, 'get_terms_adjust_counts' ),               20, 1 );
 			}
+                        
+                        add_filter( 'woocommerce_layered_nav_count',                 array( $this, 'adjust_layered_nav_counts' ),               20, 3 );
+                        
 		}
 	}
+        
+	/**
+	 * Filter term counts for an attribute in Woo layered nav to account for hidden products.
+         * 
+	 * @param  string $link_html The nav link html.
+	 * @param  int $count  number of products with attribute
+	 * @param  obj $term  Terms
+	 * @return string   filtered $link_html
+         * 
+	 * @version 1.7.2
+	 * @since   1.7.2
+	 */        
+        function adjust_layered_nav_counts( $link_html, $count, $term  ) {
+            
+                    $current_user_roles                 = alg_wc_pvbur_get_current_user_all_roles();
+                    $cached_term_count_differential_key = 'awcpvbur_tcd_' . md5( implode( '_', $current_user_roles ) );
+                    $term_count_differentials           = get_transient( $cached_term_count_differential_key );
+
+                    if( is_array( $term_count_differentials ) && !empty( $term_count_differentials ) ):
+
+                            foreach( $term_count_differentials as  $term_count_differential ){                           
+
+                                    if( is_array( $term_count_differential ) && !empty( $term_count_differential )  ):                                                   
+
+                                            foreach( $term_count_differential as  $term_id => $number ){
+
+                                                if( $term->term_id == $term_id ):
+
+                                                       $count = (int)$count - (int)$number;
+                                                       return '<span class="count">' . absint( $count ) . '</span>';                                      
+
+                                                endif;    
+
+                                            }
+
+                                    endif;    
+
+                            }
+
+                    endif;       
+            
+        }        
+        
 
 	/**
 	 * Adjust term counts to account for hidden products.
