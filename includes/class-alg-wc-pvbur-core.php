@@ -58,13 +58,24 @@ class Alg_WC_PVBUR_Core {
 				add_action( 'woocommerce_product_query', array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 				add_action( 'pre_get_posts',             array( $this, 'pre_get_posts_hide_invisible_products' ), PHP_INT_MAX );
 				add_filter( 'get_terms',                 array( $this, 'get_terms_adjust_counts' ),               20, 1 );
+				// add_filter( 'woocommerce_layered_nav_count', array( $this, 'adjust_layered_nav_counts' ), 20, 3 );
+				add_filter( 'woocommerce_get_filtered_term_product_counts_query', array( $this, 'adjust_layered_nav_query' ), 20, 1 );
 			}
-                        
-                        add_filter( 'woocommerce_layered_nav_count',                 array( $this, 'adjust_layered_nav_counts' ),               20, 3 );
-                        
 		}
 	}
-        
+	
+	
+	public function adjust_layered_nav_query( $query  ) {
+		
+		$current_user_roles      = alg_wc_pvbur_get_current_user_all_roles();
+		$cached_post__not_in_key = 'awcpvbur_pni_' . md5( implode( '_', $current_user_roles ) );
+		if ( ( $cached_post__not_in = get_transient( $cached_post__not_in_key ) ) !== false ) {
+			$query['where'] .= " \nAND wp_posts.ID NOT IN ( " . implode( ',', $cached_post__not_in ) . ") ";
+		}
+		
+		return $query;
+	}
+		
 	/**
 	 * Filter term counts for an attribute in Woo layered nav to account for hidden products.
          * 
@@ -93,7 +104,7 @@ class Alg_WC_PVBUR_Core {
                                                 if( $term->term_id == $term_id ):
 
                                                        $count = (int)$count - (int)$number;
-                                                       return '<span class="count">' . absint( $count ) . '</span>';                                      
+                                                       return '<span class="count">(' . absint( $count ) . ')</span>';                                      
 
                                                 endif;    
 
@@ -104,9 +115,23 @@ class Alg_WC_PVBUR_Core {
                             }
 
                     endif;       
-            
-        }        
-        
+            return $link_html;
+        }
+	
+	/**
+	 * Get all WC product attributes taxonomies.
+	 *
+	 * @version 1.x.x
+	 * @since   1.x.x
+	 */
+	public function get_all_product_attributes_taxonomies() {
+		$attributes_taxonomies = array();
+		if ( function_exists( 'wc_get_attribute_taxonomies' ) ) {
+			$attributes = array_keys( wp_list_pluck( wc_get_attribute_taxonomies(), 'attribute_label', 'attribute_name' ) );
+			$attributes_taxonomies = array_filter( array_map( 'wc_attribute_taxonomy_name', $attributes ));
+		}
+		return $attributes_taxonomies;
+	}
 
 	/**
 	 * Adjust term counts to account for hidden products.
@@ -118,10 +143,14 @@ class Alg_WC_PVBUR_Core {
 		$current_user_roles = alg_wc_pvbur_get_current_user_all_roles();
 		$cached_term_count_differential_key = 'awcpvbur_tcd_' . md5( implode( '_', $current_user_roles ) );
 		$term_count_differentials = get_transient( $cached_term_count_differential_key );
+		$taxonomies = array_merge(
+			array( 'product_cat', 'product_tag' ),
+			$this->get_all_product_attributes_taxonomies()
+		);
 		foreach ( $terms as $i => $term ) {
 			if (
 				is_a( $term, 'WP_Term' ) &&
-				in_array( $term->taxonomy, array( 'product_cat', 'product_tag' ) ) &&
+				in_array( $term->taxonomy, $taxonomies ) &&
 				isset( $term_count_differentials[ $term->taxonomy ][ $term->term_id ] )
 			) {
 				$terms[$i]->count = $terms[$i]->count - $term_count_differentials[ $term->taxonomy ][ $term->term_id ];
@@ -330,7 +359,10 @@ class Alg_WC_PVBUR_Core {
 						// exclude product id from queries
 						$cached_post__not_in[] = $product_id;
 						// figure out which categories/tags to adjust the count down
-						$taxonomies = array( 'product_cat', 'product_tag' );
+						$taxonomies = array_merge(
+							array( 'product_cat', 'product_tag' ),
+							$this->get_all_product_attributes_taxonomies()
+						);
 						foreach ( $taxonomies as $taxonomy ) {
 							// Getting product terms
 							$term_ids = wp_get_post_terms( $product_id, $taxonomy, array( 'fields' => 'ids' ) );
