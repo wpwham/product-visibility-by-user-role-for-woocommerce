@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Core Class
  *
- * @version 1.7.1
+ * @version 1.7.3
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  * @author  WP Wham
@@ -17,7 +17,7 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.6.0
+	 * @version 1.7.3
 	 * @since   1.0.0
 	 */
 	function __construct() {
@@ -64,8 +64,16 @@ class Alg_WC_PVBUR_Core {
 		}
 	}
 	
-	
-	public function adjust_layered_nav_query( $query  ) {
+	/**
+	 * Filter WC layered nav widget's query to account for hidden products.
+	 *
+	 * Adjusts the count and hides the attribute completely if the count becomes 0.
+	 * See also adjust_layered_nav_counts().
+	 *
+	 * @version 1.7.3
+	 * @since   1.7.3
+	 */
+	public function adjust_layered_nav_query( $query ) {
 		
 		$current_user_roles      = alg_wc_pvbur_get_current_user_all_roles();
 		$cached_post__not_in_key = 'awcpvbur_pni_' . md5( implode( '_', $current_user_roles ) );
@@ -75,54 +83,58 @@ class Alg_WC_PVBUR_Core {
 		
 		return $query;
 	}
-		
+	
 	/**
 	 * Filter term counts for an attribute in Woo layered nav to account for hidden products.
-         * 
+	 * 
+	 * Alternate solution to the layered nav widget issue -- this way would leave all attributes
+	 * displayed, but possibly with a (0) count.  Not currently used, but available as an
+	 * alternative to adjust_layered_nav_query() if we need it later.
+	 * 
 	 * @param  string $link_html The nav link html.
 	 * @param  int $count  number of products with attribute
 	 * @param  obj $term  Terms
 	 * @return string   filtered $link_html
-         * 
-	 * @version 1.7.2
-	 * @since   1.7.2
-	 */        
-        function adjust_layered_nav_counts( $link_html, $count, $term  ) {
-            
-                    $current_user_roles                 = alg_wc_pvbur_get_current_user_all_roles();
-                    $cached_term_count_differential_key = 'awcpvbur_tcd_' . md5( implode( '_', $current_user_roles ) );
-                    $term_count_differentials           = get_transient( $cached_term_count_differential_key );
-
-                    if( is_array( $term_count_differentials ) && !empty( $term_count_differentials ) ):
-
-                            foreach( $term_count_differentials as  $term_count_differential ){                           
-
-                                    if( is_array( $term_count_differential ) && !empty( $term_count_differential )  ):                                                   
-
-                                            foreach( $term_count_differential as  $term_id => $number ){
-
-                                                if( $term->term_id == $term_id ):
-
-                                                       $count = (int)$count - (int)$number;
-                                                       return '<span class="count">(' . absint( $count ) . ')</span>';                                      
-
-                                                endif;    
-
-                                            }
-
-                                    endif;    
-
-                            }
-
-                    endif;       
-            return $link_html;
-        }
+	 * 
+	 * @version 1.7.3
+	 * @since   1.7.3
+	 */
+	public function adjust_layered_nav_counts( $link_html, $count, $term ) {
+		
+		$current_user_roles                 = alg_wc_pvbur_get_current_user_all_roles();
+		$cached_term_count_differential_key = 'awcpvbur_tcd_' . md5( implode( '_', $current_user_roles ) );
+		$term_count_differentials           = get_transient( $cached_term_count_differential_key );
+		
+		if ( is_array( $term_count_differentials ) && !empty( $term_count_differentials ) ) {
+			
+			foreach( $term_count_differentials as  $term_count_differential ) {
+				
+				if ( is_array( $term_count_differential ) && !empty( $term_count_differential ) ) {
+					
+					foreach( $term_count_differential as  $term_id => $number ){
+						
+						if ( $term->term_id == $term_id ) {
+							
+							$count = (int)$count - (int)$number;
+							return '<span class="count">(' . absint( $count ) . ')</span>';
+							
+						}
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		return $link_html;
+	}
 	
 	/**
 	 * Get all WC product attributes taxonomies.
 	 *
-	 * @version 1.x.x
-	 * @since   1.x.x
+	 * @version 1.7.3
+	 * @since   1.7.3
 	 */
 	public function get_all_product_attributes_taxonomies() {
 		$attributes_taxonomies = array();
@@ -132,11 +144,11 @@ class Alg_WC_PVBUR_Core {
 		}
 		return $attributes_taxonomies;
 	}
-
+	
 	/**
 	 * Adjust term counts to account for hidden products.
 	 *
-	 * @version 1.6.0
+	 * @version 1.7.3
 	 * @since   1.6.0
 	 */
 	function get_terms_adjust_counts( $terms ) {
@@ -158,11 +170,11 @@ class Alg_WC_PVBUR_Core {
 		}
 		return $terms;
 	}
-
+	
 	/**
 	 * Setups conditions where invisible products can be searched or prevented
 	 *
-	 * @version 1.7.2
+	 * @version 1.7.3
 	 * @since   1.2.1
 	 *
 	 * @param bool $can_search
@@ -197,10 +209,10 @@ class Alg_WC_PVBUR_Core {
 		) {
 			return false;
 		}
-
+		
 		return $can_search;
 	}
-
+	
 	/**
 	 * save_bulk_and_quick_edit_fields.
 	 *
@@ -329,7 +341,7 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * pre_get_posts_hide_invisible_products.
 	 *
-	 * @version 1.7.1
+	 * @version 1.7.3
 	 * @since   1.1.9
 	 */
 	function pre_get_posts_hide_invisible_products( $query ) {
