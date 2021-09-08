@@ -141,7 +141,7 @@ class Alg_WC_PVBUR_Core {
 	 *
 	 * @return bool
 	 */
-	function setups_search_cases( $can_search = true, $query ) {
+	public function setups_search_cases( $can_search, $query ) {
 		$force_search = $query->get( 'alg_wc_pvbur_search' );
 		if (
 			! empty( $force_search ) &&
