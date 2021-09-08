@@ -43,7 +43,10 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 			array(
 				'title'    => __( 'Product Visibility by User Role', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc'     => '<strong>' . __( 'Enable plugin', 'product-visibility-by-user-role-for-woocommerce' ) . '</strong>',
-				'desc_tip' => '<a href="https://wpwham.com/documentation/product-visibility-by-user-role-for-woocommerce/?utm_source=documentation_link&utm_campaign=free&utm_medium=product_visibility_user_role" target="_blank" class="button">' .
+				'desc_tip' => 
+					__( 'Product Visibility by User Role for WooCommerce', 'product-visibility-by-user-role-for-woocommerce' )
+					. ' v' . WPWHAM_PRODUCT_VISIBILITY_BY_USER_ROLE_VERSION . '.<br />'
+					. '<a href="https://wpwham.com/documentation/product-visibility-by-user-role-for-woocommerce/?utm_source=documentation_link&utm_campaign=free&utm_medium=product_visibility_user_role" target="_blank" class="button">' .
 					__( 'Documentation', 'product-visibility-by-user-role-for-woocommerce' ) . '</a>',
 				'id'       => 'alg_wc_pvbur_enabled',
 				'default'  => 'yes',

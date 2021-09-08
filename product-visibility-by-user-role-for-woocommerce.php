@@ -36,6 +36,8 @@ if ( 'product-visibility-by-user-role-for-woocommerce.php' === basename( __FILE_
 	}
 }
 
+define( 'WPWHAM_PRODUCT_VISIBILITY_BY_USER_ROLE_VERSION', '1.7.2' );
+
 if ( ! class_exists( 'Alg_WC_PVBUR' ) ) :
 
 /**
