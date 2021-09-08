@@ -2,8 +2,8 @@
 Contributors: wpwham
 Tags: woo commerce, woocommerce, product, visibility, user role
 Requires at least: 4.4
-Tested up to: 5.7
-Stable tag: 1.7.2
+Tested up to: 5.8
+Stable tag: 1.7.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -32,6 +32,11 @@ In free version you can set included or excluded user roles for each product ind
 3. Start by visiting plugin settings at "WooCommerce > Settings > Product Visibility".
 
 == Changelog ==
+
+= 1.7.3 - 2021-09-08 =
+* FIX: issue with product attribute counts not updating in WC layered nav widget.
+* UPDATE: PHP 8 now officially supported.
+* UPDATE: updated .pot file for translations.
 
 = 1.7.2 - 2021-04-23 =
 * FIX: bug with setup_search_cases where post_type could be array.

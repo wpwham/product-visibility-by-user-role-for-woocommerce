@@ -1,7 +1,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - admin scripts
  *
- * @version 1.7.2
+ * @version 1.7.3
  * @since   1.7.2
  * @author  WP Wham
  */
