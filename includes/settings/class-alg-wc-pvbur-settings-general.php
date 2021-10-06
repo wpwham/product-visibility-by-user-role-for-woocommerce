@@ -68,7 +68,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 			),
 			array(
 				'title'    => __( 'Hide catalog visibility', 'product-visibility-by-user-role-for-woocommerce' ),
-				'desc_tip' => __( 'This will hide selected products in shop and search results. However product still will be accessible via direct link.', 'product-visibility-by-user-role-for-woocommerce' ),
+				'desc_tip' => __( 'This will hide selected products in shop and search results only. Hidden products will still be accessible via direct link, unless "Modify query" is enabled.', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc'     => __( 'Enable', 'product-visibility-by-user-role-for-woocommerce' ),
 				'id'       => 'alg_wc_pvbur_visibility',
 				'default'  => 'yes',
@@ -84,7 +84,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 			),
 			array(
 				'title'    => __( 'Modify query', 'product-visibility-by-user-role-for-woocommerce' ),
-				'desc_tip' => __( 'This will hide selected products completely (including direct link).', 'product-visibility-by-user-role-for-woocommerce' ),
+				'desc_tip' => __( 'This will hide selected products completely. Accessing via direct link will return an "error 404 / product not found" page.', 'product-visibility-by-user-role-for-woocommerce' ),
 				'desc'     => __( 'Enable', 'product-visibility-by-user-role-for-woocommerce' ),
 				'id'       => 'alg_wc_pvbur_query',
 				'default'  => 'yes',
@@ -95,7 +95,7 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 				'desc_tip' => __( 'Hides nav menu items (i.e. hidden products, product categories and tags).', 'product-visibility-by-user-role-for-woocommerce' ) . ' ' .
 					sprintf( __( 'Only products, product categories/tags marked in <a href="%s">bulk settings</a> will be hidden.', 'product-visibility-by-user-role-for-woocommerce' ),
 						admin_url( 'admin.php?page=wc-settings&tab=alg_wc_pvbur&section=bulk' ) ) .
-					'<br />' . __( 'This options uses the <code>wp_get_nav_menu_items</code> filter.', 'product-visibility-by-user-role-for-woocommerce' ) .
+					'<br />' . __( 'This option uses the <code>wp_get_nav_menu_items</code> filter.', 'product-visibility-by-user-role-for-woocommerce' ) .
 					apply_filters( 'alg_wc_pvbur',
 						'<br>' . sprintf( 
 							__( 'You will need %s plugin to enable this option.', 'product-visibility-by-user-role-for-woocommerce' ),
@@ -110,11 +110,11 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 				'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'disabled' => 'disabled' ), 'settings' ),
 			),
 			array(
-				'title'    => __( 'Hide products terms', 'product-visibility-by-user-role-for-woocommerce' ),
-				'desc_tip' => __( 'Hides products categories and tags from being displayed on front-end.', 'product-visibility-by-user-role-for-woocommerce' ) . ' ' .
+				'title'    => __( 'Hide product categories/tags', 'product-visibility-by-user-role-for-woocommerce' ),
+				'desc_tip' => __( 'Hides product categories and tags from being displayed on front-end.', 'product-visibility-by-user-role-for-woocommerce' ) . ' ' .
 					sprintf( __( 'Only categories/tags marked in <a href="%s">bulk settings</a> will be hidden.', 'product-visibility-by-user-role-for-woocommerce' ),
 						admin_url( 'admin.php?page=wc-settings&tab=alg_wc_pvbur&section=bulk' ) ) .
-					'<br />' . __( 'This options works filtering terms from <code>get_terms()</code> function.', 'product-visibility-by-user-role-for-woocommerce' ) .
+					'<br />' . __( 'Accessing via direct link will return an "error 404 / category not found" page.', 'product-visibility-by-user-role-for-woocommerce' ) .
 					apply_filters( 'alg_wc_pvbur',
 						'<br>' . sprintf( 
 							__( 'You will need %s plugin to enable this option.', 'product-visibility-by-user-role-for-woocommerce' ),
@@ -130,9 +130,9 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 			),
 			array(
 				'title'    => __( 'Redirect', 'product-visibility-by-user-role-for-woocommerce' ),
-				'desc_tip' => sprintf( __( 'This option is useful only if <strong>%s</strong> is enabled', 'product-visibility-by-user-role-for-woocommerce' ),
+				'desc_tip' => sprintf( __( 'Leave blank for no redirect.  This option is useful only if <strong>%s</strong> is enabled', 'product-visibility-by-user-role-for-woocommerce' ),
 					__( 'Modify query', 'product-visibility-by-user-role-for-woocommerce' ) ),
-				'desc'     => '<br />' . __( 'Redirects to a page different from 404, in case a product is considered invisible.', 'product-visibility-by-user-role-for-woocommerce' ) .
+				'desc'     => __( 'Instead of showing your 404 page, redirect to a custom URL.  Applies only to products, product categories, and tags which were made invisible by our plugin.', 'product-visibility-by-user-role-for-woocommerce' ) .
 					apply_filters( 'alg_wc_pvbur',
 						'<br>' . sprintf( 
 							__( 'You will need %s plugin to enable this option.', 'product-visibility-by-user-role-for-woocommerce' ),
@@ -147,8 +147,8 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 				'custom_attributes' => apply_filters( 'alg_wc_pvbur', array( 'readonly' => 'readonly' ), 'settings' ),
 			),
 			array(
-				'desc'     => __( 'Redirect URL per product', 'product-visibility-by-user-role-for-woocommerce' ),
-				'desc_tip' => __( 'This will add new "Product visibility: Redirect URL" meta box to each product\'s edit page.', 'product-visibility-by-user-role-for-woocommerce' ) .
+				'desc'     => __( 'Enable Redirect URLs per product', 'product-visibility-by-user-role-for-woocommerce' ),
+				'desc_tip' => __( 'This will add a "Product visibility: Redirect URL" metabox to each product\'s edit page, allowing you to set different redirects per product.', 'product-visibility-by-user-role-for-woocommerce' ) .
 					apply_filters( 'alg_wc_pvbur',
 						'<br>' . sprintf( 
 							__( 'You will need %s plugin to enable this option.', 'product-visibility-by-user-role-for-woocommerce' ),
