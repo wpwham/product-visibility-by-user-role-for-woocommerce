@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Product Visibility by User Role for WooCommerce\n"
-"POT-Creation-Date: 2021-09-08 04:15-0700\n"
+"POT-Creation-Date: 2022-06-01 23:00-0700\n"
 "PO-Revision-Date: 2019-08-30 01:36-0700\n"
 "Last-Translator: \n"
 "Language-Team: WP Wham <support@wpwham.com>\n"
@@ -24,23 +24,23 @@ msgstr ""
 msgid "Guest"
 msgstr ""
 
-#: includes/class-alg-wc-pvbur-core.php:269
+#: includes/class-alg-wc-pvbur-core.php:281
 msgid "— No change —"
 msgstr ""
 
-#: includes/class-alg-wc-pvbur-core.php:270
+#: includes/class-alg-wc-pvbur-core.php:282
 msgid "— Clear —"
 msgstr ""
 
-#: includes/class-alg-wc-pvbur-core.php:276
+#: includes/class-alg-wc-pvbur-core.php:288
 msgid "User roles: Visible"
 msgstr ""
 
-#: includes/class-alg-wc-pvbur-core.php:282
+#: includes/class-alg-wc-pvbur-core.php:294
 msgid "User roles: Invisible"
 msgstr ""
 
-#: includes/class-alg-wc-pvbur-core.php:296
+#: includes/class-alg-wc-pvbur-core.php:308
 msgid "User Roles"
 msgstr ""
 
@@ -212,8 +212,9 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:71
 msgid ""
-"This will hide selected products in shop and search results. However product "
-"still will be accessible via direct link."
+"This will hide selected products in shop and search results only. Hidden "
+"products will still be accessible via direct link, unless \"Modify query\" "
+"is enabled."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:78
@@ -232,7 +233,9 @@ msgid "Modify query"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:87
-msgid "This will hide selected products completely (including direct link)."
+msgid ""
+"This will hide selected products completely. Accessing via direct link will "
+"return an \"error 404 / product not found\" page."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:94
@@ -252,7 +255,7 @@ msgid ""
 msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:98
-msgid "This options uses the <code>wp_get_nav_menu_items</code> filter."
+msgid "This option uses the <code>wp_get_nav_menu_items</code> filter."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:101
@@ -267,11 +270,11 @@ msgid "You will need %s plugin to enable this option."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:113
-msgid "Hide products terms"
+msgid "Hide product categories/tags"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:114
-msgid "Hides products categories and tags from being displayed on front-end."
+msgid "Hides product categories and tags from being displayed on front-end."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:115
@@ -283,7 +286,8 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:117
 msgid ""
-"This options works filtering terms from <code>get_terms()</code> function."
+"Accessing via direct link will return an \"error 404 / category not found\" "
+"page."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:132
@@ -292,23 +296,26 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:133
 #, php-format
-msgid "This option is useful only if <strong>%s</strong> is enabled"
+msgid ""
+"Leave blank for no redirect.  This option is useful only if <strong>%s</"
+"strong> is enabled"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:135
 msgid ""
-"Redirects to a page different from 404, in case a product is considered "
-"invisible."
+"Instead of showing your 404 page, redirect to a custom URL.  Applies only to "
+"products, product categories, and tags which were made invisible by our "
+"plugin."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:150
-msgid "Redirect URL per product"
+msgid "Enable Redirect URLs per product"
 msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:151
 msgid ""
-"This will add new \"Product visibility: Redirect URL\" meta box to each "
-"product's edit page."
+"This will add a \"Product visibility: Redirect URL\" metabox to each "
+"product's edit page, allowing you to set different redirects per product."
 msgstr ""
 
 #: includes/settings/class-alg-wc-pvbur-settings-general.php:165
