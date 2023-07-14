@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - General Section Settings
  *
- * @version 1.7.3
+ * @version 1.8.1
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  * @author  WP Wham
@@ -13,7 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( ! class_exists( 'Alg_WC_PVBUR_Settings_General' ) ) :
 
 class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
-
+	
+	public $id   = '';
+	public $desc = '';
+	
 	/**
 	 * Constructor.
 	 *
