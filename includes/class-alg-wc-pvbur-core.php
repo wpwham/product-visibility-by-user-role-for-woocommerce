@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Core Class
  *
- * @version 1.7.3
+ * @version 1.8.1
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  * @author  WP Wham
@@ -176,7 +176,7 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * Setups conditions where invisible products can be searched or prevented
 	 *
-	 * @version 1.7.3
+	 * @version 1.8.1
 	 * @since   1.2.1
 	 *
 	 * @param bool $can_search

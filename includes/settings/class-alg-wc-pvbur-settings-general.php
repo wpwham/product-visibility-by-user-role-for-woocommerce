@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - General Section Settings
  *
- * @version 1.7.3
+ * @version 1.8.1
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  * @author  WP Wham
