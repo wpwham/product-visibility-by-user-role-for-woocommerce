@@ -48,7 +48,11 @@ if ( ! class_exists( 'Alg_WC_PVBUR' ) ) :
  * @since   1.0.0
  */
 final class Alg_WC_PVBUR {
-
+	
+	public $core          = null;
+	public $settings      = null;
+	public $compatibility = null;
+	
 	/**
 	 * Plugin version.
 	 *

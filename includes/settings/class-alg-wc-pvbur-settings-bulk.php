@@ -13,7 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( ! class_exists( 'Alg_WC_PVBUR_Settings_Bulk' ) ) :
 
 class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
-
+	
+	public $id   = '';
+	public $desc = '';
+	
 	/**
 	 * Constructor.
 	 *
