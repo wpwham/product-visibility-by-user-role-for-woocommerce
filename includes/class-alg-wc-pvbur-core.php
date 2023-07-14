@@ -192,7 +192,7 @@ class Alg_WC_PVBUR_Core {
 		}
 		
 		// always filter search
-		if ( is_search() ) {
+		if ( $query->is_search() ) {
 			return true;
 		}
 		
