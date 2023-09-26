@@ -38,6 +38,12 @@ if ( 'product-visibility-by-user-role-for-woocommerce.php' === basename( __FILE_
 
 define( 'WPWHAM_PRODUCT_VISIBILITY_BY_USER_ROLE_VERSION', '1.8.1' );
 
+add_action( 'before_woocommerce_init', function() {
+	if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+	}
+} );
+
 if ( ! class_exists( 'Alg_WC_PVBUR' ) ) :
 
 /**
