@@ -115,7 +115,7 @@ final class Alg_WC_PVBUR {
 	 * @since   1.8.3
 	 */
 	public function load_localization() {
-		load_plugin_textdomain( 'product-open-pricing-for-woocommerce', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
+		load_plugin_textdomain( 'product-visibility-by-user-role-for-woocommerce', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
 	}
 
 	/**
