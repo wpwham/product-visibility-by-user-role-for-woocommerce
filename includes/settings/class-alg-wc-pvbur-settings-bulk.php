@@ -25,7 +25,10 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 	 */
 	function __construct() {
 		$this->id   = 'bulk';
-		$this->desc = __( 'Bulk Settings', 'product-visibility-by-user-role-for-woocommerce' );
+		$this->desc = 'Bulk Settings';
+		add_action( 'init', function() {
+			$this->desc = __( 'Bulk Settings', 'product-visibility-by-user-role-for-woocommerce' );
+		} );
 		parent::__construct();
 		add_action( 'woocommerce_admin_field_' . 'alg_wc_pvbur_title_and_save_button', array( $this, 'output_alg_wc_pvbur_title_and_save_button' ) );
 		add_action( 'alg_wc_pvbur_output_sections_' . 'bulk',                          array( $this, 'output_subsections' ) );

@@ -21,7 +21,10 @@ class Alg_WC_Settings_PVBUR extends WC_Settings_Page {
 	 */
 	function __construct() {
 		$this->id    = 'alg_wc_pvbur';
-		$this->label = __( 'Product Visibility', 'product-visibility-by-user-role-for-woocommerce' );
+		$this->label = 'Product Visibility';
+		add_action( 'init', function() {
+			$this->label = __( 'Product Visibility', 'product-visibility-by-user-role-for-woocommerce' );
+		} );
 		parent::__construct();
 		add_filter( 'woocommerce_admin_settings_sanitize_option', array( $this, 'maybe_unsanitize_option' ), PHP_INT_MAX, 3 );
 		add_action( 'admin_notices', array( $this, 'settings_saved_admin_notice' ) );

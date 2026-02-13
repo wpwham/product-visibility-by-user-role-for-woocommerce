@@ -25,7 +25,10 @@ class Alg_WC_PVBUR_Settings_General extends Alg_WC_PVBUR_Settings_Section {
 	 */
 	function __construct() {
 		$this->id   = '';
-		$this->desc = __( 'General', 'product-visibility-by-user-role-for-woocommerce' );
+		$this->desc = 'General';
+		add_action( 'init', function() {
+			$this->desc = __( 'General', 'product-visibility-by-user-role-for-woocommerce' );
+		} );
 		parent::__construct();
 	}
 
