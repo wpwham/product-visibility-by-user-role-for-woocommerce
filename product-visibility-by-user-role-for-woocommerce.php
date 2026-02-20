@@ -96,27 +96,29 @@ final class Alg_WC_PVBUR {
 	 * @since   1.0.0
 	 * @access  public
 	 */
-	function __construct() {
-
-		// Set up localisation
-		add_action( 'init', array( $this, 'load_localization' ) );
-
+	public function __construct() {
+		
 		// Include required files
-		$this->includes();
-
+		require_once( 'includes/alg-wc-pvbur-functions.php' );
+		$this->core = require_once( 'includes/class-alg-wc-pvbur-core.php' );
+		
+		// Global
+		add_action( 'init', array( $this, 'includes' ) );
+		
 		// Admin
-		if ( is_admin() ) {
-			$this->admin();
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'woocommerce_system_status_report', array( $this, 'add_settings_to_status_report' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
+		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
+		
+		// Updates
+		if ( get_option( 'alg_wc_pvbur_version', '' ) !== $this->version ) {
+			add_action( 'admin_init', array( $this, 'version_updated' ) );
 		}
+		
 	}
 	
-	/**
-	 * @since   1.8.3
-	 */
-	public function load_localization() {
-		load_plugin_textdomain( 'product-visibility-by-user-role-for-woocommerce', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
-	}
-
+	
 	/**
 	 * Show action links on the plugin screen.
 	 *
@@ -181,13 +183,17 @@ final class Alg_WC_PVBUR {
 	 * @version 1.7.1
 	 * @since   1.0.0
 	 */
-	function includes() {
+	public function includes() {
 		
-		// Functions
-		require_once( 'includes/alg-wc-pvbur-functions.php' );
+		// Localization
+		load_plugin_textdomain( 'product-visibility-by-user-role-for-woocommerce', false, dirname( plugin_basename( __FILE__ ) ) . '/langs/' );
 		
-		// Core
-		$this->core = require_once( 'includes/class-alg-wc-pvbur-core.php' );
+		// Settings
+		require_once( 'includes/settings/class-alg-wc-pvbur-metaboxes.php' );
+		require_once( 'includes/settings/class-alg-wc-pvbur-settings-section.php' );
+		$this->settings = array();
+		$this->settings['general'] = require_once( 'includes/settings/class-alg-wc-pvbur-settings-general.php' );
+		$this->settings['bulk']    = require_once( 'includes/settings/class-alg-wc-pvbur-settings-bulk.php' );
 		
 		// 3rd party compatibility
 		require_once( 'includes/class-alg-wc-pvbur-wpml.php' );
@@ -195,7 +201,8 @@ final class Alg_WC_PVBUR {
 		$this->compatibility = WPWham_PVUR_Third_Party_Compatibility::get_instance();
 		
 	}
-
+	
+	
 	/**
 	 * add settings to WC status report
 	 *
@@ -254,30 +261,6 @@ final class Alg_WC_PVBUR {
 		</table>
 		<?php
 		#endregion add_settings_to_status_report
-	}
-
-	/**
-	 * admin.
-	 *
-	 * @version 1.7.2
-	 * @since   1.4.0
-	 */
-	function admin() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-		// Action links
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
-		// Settings
-		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
-		require_once( 'includes/settings/class-alg-wc-pvbur-metaboxes.php' );
-		require_once( 'includes/settings/class-alg-wc-pvbur-settings-section.php' );
-		$this->settings = array();
-		$this->settings['general'] = require_once( 'includes/settings/class-alg-wc-pvbur-settings-general.php' );
-		$this->settings['bulk']    = require_once( 'includes/settings/class-alg-wc-pvbur-settings-bulk.php' );
-		add_action( 'woocommerce_system_status_report', array( $this, 'add_settings_to_status_report' ) );
-		// Version updated
-		if ( get_option( 'alg_wc_pvbur_version', '' ) !== $this->version ) {
-			add_action( 'admin_init', array( $this, 'version_updated' ) );
-		}
 	}
 
 	/**
