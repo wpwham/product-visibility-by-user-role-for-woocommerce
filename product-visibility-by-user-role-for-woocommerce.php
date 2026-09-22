@@ -195,6 +195,9 @@ final class Alg_WC_PVBUR {
 		$this->settings['general'] = require_once( 'includes/settings/class-alg-wc-pvbur-settings-general.php' );
 		$this->settings['bulk']    = require_once( 'includes/settings/class-alg-wc-pvbur-settings-bulk.php' );
 		
+		// Review suggestion
+		require_once( 'includes/class-wpwham-pvbur-review.php' );
+		
 		// 3rd party compatibility
 		require_once( 'includes/class-alg-wc-pvbur-wpml.php' );
 		require_once( 'includes/class-wpwham-pvur-third-party-compatibility.php' );
