@@ -290,9 +290,9 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 		global $sitepress;
 		if ( $sitepress ) {
 			// remove WPML term filters
-			remove_filter('get_terms_args', array( $sitepress, 'get_terms_args_filter' ) );
-			remove_filter('get_term',       array( $sitepress, 'get_term_adjust_id' ) );
-			remove_filter('terms_clauses',  array( $sitepress, 'terms_clauses' ) );
+			remove_filter( 'get_terms_args', array( $sitepress, 'get_terms_args_filter' ) );
+			remove_filter( 'get_term',       array( $sitepress, 'get_term_adjust_id' ) );
+			remove_filter( 'terms_clauses',  array( $sitepress, 'terms_clauses' ) );
 		}
 		if ( ! is_array( $args ) ) {
 			$_taxonomy = $args;
@@ -324,9 +324,9 @@ class Alg_WC_PVBUR_Settings_Bulk extends Alg_WC_PVBUR_Settings_Section {
 		}
 		if ( $sitepress ) {
 			// restore WPML term filters
-			add_filter('terms_clauses',  array( $sitepress, 'terms_clauses' ) );
-			add_filter('get_term',       array( $sitepress, 'get_term_adjust_id' ) );
-			add_filter('get_terms_args', array( $sitepress, 'get_terms_args_filter' ) );
+			add_filter( 'terms_clauses',  array( $sitepress, 'terms_clauses' ) );
+			add_filter( 'get_term',       array( $sitepress, 'get_term_adjust_id' ) );
+			add_filter( 'get_terms_args', array( $sitepress, 'get_terms_args_filter' ) );
 		}
 		return $_terms_options;
 	}
