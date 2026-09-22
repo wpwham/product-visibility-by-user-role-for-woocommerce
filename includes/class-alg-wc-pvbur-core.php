@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Core Class
  *
- * @version 1.8.1
+ * @version 1.8.5
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  * @author  WP Wham
@@ -314,7 +314,7 @@ class Alg_WC_PVBUR_Core {
 	/**
 	 * render_product_column.
 	 *
-	 * @version 1.1.0
+	 * @version 1.8.5
 	 * @since   1.0.0
 	 * @todo    [dev] (maybe) display "bulk settings"
 	 */

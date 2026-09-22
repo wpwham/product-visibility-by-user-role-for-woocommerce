@@ -3,7 +3,7 @@
 Plugin Name: Product Visibility by User Role for WooCommerce
 Plugin URI: https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/
 Description: Display WooCommerce products by customer's user role.
-Version: 1.8.4
+Version: 1.8.5
 Author: WP Wham
 Author URI: https://wpwham.com/
 Text Domain: product-visibility-by-user-role-for-woocommerce
@@ -35,7 +35,7 @@ if ( 'product-visibility-by-user-role-for-woocommerce.php' === basename( __FILE_
 	}
 }
 
-define( 'WPWHAM_PRODUCT_VISIBILITY_BY_USER_ROLE_VERSION', '1.8.4' );
+define( 'WPWHAM_PRODUCT_VISIBILITY_BY_USER_ROLE_VERSION', '1.8.5' );
 
 add_action( 'before_woocommerce_init', function() {
 	if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
@@ -49,7 +49,7 @@ if ( ! class_exists( 'Alg_WC_PVBUR' ) ) :
  * Main Alg_WC_PVBUR Class
  *
  * @class   Alg_WC_PVBUR
- * @version 1.8.4
+ * @version 1.8.5
  * @since   1.0.0
  */
 final class Alg_WC_PVBUR {
@@ -64,7 +64,7 @@ final class Alg_WC_PVBUR {
 	 * @var   string
 	 * @since 1.0.0
 	 */
-	public $version = '1.8.4';
+	public $version = '1.8.5';
 
 	/**
 	 * @var   Alg_WC_PVBUR The single instance of the class
@@ -92,7 +92,7 @@ final class Alg_WC_PVBUR {
 	/**
 	 * Alg_WC_PVBUR Constructor.
 	 *
-	 * @version 1.8.4
+	 * @version 1.8.5
 	 * @since   1.0.0
 	 * @access  public
 	 */
@@ -223,7 +223,7 @@ final class Alg_WC_PVBUR {
 	/**
 	 * Include required core files used in admin and on the frontend.
 	 *
-	 * @version 1.8.4
+	 * @version 1.8.5
 	 * @since   1.0.0
 	 */
 	public function includes() {
