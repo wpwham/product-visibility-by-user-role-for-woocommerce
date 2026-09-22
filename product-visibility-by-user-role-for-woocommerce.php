@@ -186,7 +186,11 @@ final class Alg_WC_PVBUR {
 		$screen = get_current_screen();
 		
 		// check if its a page where we need this
-		if ( $screen && $screen->id ==='edit-product' ) {
+		if (
+			$screen
+			&& $screen->id ==='edit-product'
+			&& get_option( 'alg_wc_pvbur_add_column_visible_user_roles', 'no' ) === 'yes'
+		) {
 			
 			// register & enqueue a dummy handle with false as the source path
 			wp_register_style( 'wpwham-product-visibility-user-role-admin', false );
