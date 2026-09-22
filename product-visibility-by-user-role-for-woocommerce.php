@@ -3,7 +3,7 @@
 Plugin Name: Product Visibility by User Role for WooCommerce
 Plugin URI: https://wpwham.com/products/product-visibility-by-user-role-for-woocommerce/
 Description: Display WooCommerce products by customer's user role.
-Version: 1.8.4
+Version: 1.8.5
 Author: WP Wham
 Author URI: https://wpwham.com/
 Text Domain: product-visibility-by-user-role-for-woocommerce
@@ -35,7 +35,7 @@ if ( 'product-visibility-by-user-role-for-woocommerce.php' === basename( __FILE_
 	}
 }
 
-define( 'WPWHAM_PRODUCT_VISIBILITY_BY_USER_ROLE_VERSION', '1.8.4' );
+define( 'WPWHAM_PRODUCT_VISIBILITY_BY_USER_ROLE_VERSION', '1.8.5' );
 
 add_action( 'before_woocommerce_init', function() {
 	if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
@@ -49,7 +49,7 @@ if ( ! class_exists( 'Alg_WC_PVBUR' ) ) :
  * Main Alg_WC_PVBUR Class
  *
  * @class   Alg_WC_PVBUR
- * @version 1.8.4
+ * @version 1.8.5
  * @since   1.0.0
  */
 final class Alg_WC_PVBUR {
@@ -64,7 +64,7 @@ final class Alg_WC_PVBUR {
 	 * @var   string
 	 * @since 1.0.0
 	 */
-	public $version = '1.8.4';
+	public $version = '1.8.5';
 
 	/**
 	 * @var   Alg_WC_PVBUR The single instance of the class
@@ -92,7 +92,7 @@ final class Alg_WC_PVBUR {
 	/**
 	 * Alg_WC_PVBUR Constructor.
 	 *
-	 * @version 1.8.4
+	 * @version 1.8.5
 	 * @since   1.0.0
 	 * @access  public
 	 */
@@ -107,6 +107,7 @@ final class Alg_WC_PVBUR {
 		
 		// Admin
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'woocommerce_system_status_report', array( $this, 'add_settings_to_status_report' ) );
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'action_links' ) );
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
@@ -176,11 +177,53 @@ final class Alg_WC_PVBUR {
 			);
 		}
 	}
+	
+	/**
+	 * @since   1.8.5
+	 */
+	public function enqueue_styles(){
+		
+		$screen = get_current_screen();
+		
+		// check if its a page where we need this
+		if (
+			$screen
+			&& $screen->id ==='edit-product'
+			&& get_option( 'alg_wc_pvbur_add_column_visible_user_roles', 'no' ) === 'yes'
+		) {
+			
+			// register & enqueue a dummy handle with false as the source path
+			wp_register_style( 'wpwham-product-visibility-user-role-admin', false );
+			wp_enqueue_style( 'wpwham-product-visibility-user-role-admin' );
+			
+			// inject our CSS logic into the dummy handle
+			$css = "
+				/* force the parent container to overflow cleanly */
+				#posts-filter {
+					clear: both;
+					overflow-x: auto !important;
+				}
+				/* give the table breathing room if columns exceed screen width */
+				.wp-list-table.posts {
+					table-layout: auto !important;
+					width: 100% !important;
+				}
+				/* protect our column */
+				.wp-list-table .column-alg_wc_pvbur_user_roles {
+					min-width: 110px !important;
+				}
+			";
+			
+			$css = apply_filters( 'wpwham_product_visibility_by_user_role_admin_custom_css', $css );
+			
+			wp_add_inline_style( 'wpwham-product-visibility-user-role-admin', $css );
+		}
+	}
 
 	/**
 	 * Include required core files used in admin and on the frontend.
 	 *
-	 * @version 1.8.4
+	 * @version 1.8.5
 	 * @since   1.0.0
 	 */
 	public function includes() {
@@ -194,6 +237,9 @@ final class Alg_WC_PVBUR {
 		$this->settings = array();
 		$this->settings['general'] = require_once( 'includes/settings/class-alg-wc-pvbur-settings-general.php' );
 		$this->settings['bulk']    = require_once( 'includes/settings/class-alg-wc-pvbur-settings-bulk.php' );
+		
+		// Review suggestion
+		require_once( 'includes/class-wpwham-pvbur-review.php' );
 		
 		// 3rd party compatibility
 		require_once( 'includes/class-alg-wc-pvbur-wpml.php' );
