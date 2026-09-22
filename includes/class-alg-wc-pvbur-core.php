@@ -316,16 +316,20 @@ class Alg_WC_PVBUR_Core {
 	 *
 	 * @version 1.1.0
 	 * @since   1.0.0
-	 * @todo    [dev] (maybe) full role name (instead of ID)
 	 * @todo    [dev] (maybe) display "bulk settings"
 	 */
 	function render_product_column( $column ) {
 		if ( 'alg_wc_pvbur_user_roles' === $column ) {
 			$html       = '';
 			$product_id = get_the_ID();
+			$all_roles  = alg_wc_pvbur_get_user_roles();
 			if ( $roles = get_post_meta( $product_id, '_' . 'alg_wc_pvbur_visible', true ) ) {
 				if ( is_array( $roles ) && ! empty( $roles ) ) {
-					$html .= '<span style="color:green;">' . implode( ', ', $roles ) . '</span>';
+					$role_names = array();
+					foreach ( $roles as $role ) {
+						$role_names[] = ( isset( $all_roles[ $role ] ) ? "+{$all_roles[ $role ]}" : "+{$role}" );
+					}
+					$html .= '<span style="color:green;">' . implode( ', ', $role_names ) . '</span>';
 				}
 			}
 			if ( $roles = get_post_meta( $product_id, '_' . 'alg_wc_pvbur_invisible', true ) ) {
@@ -333,7 +337,11 @@ class Alg_WC_PVBUR_Core {
 					if ( ! empty ( $html ) ) {
 						$html .= '<br>';
 					}
-					$html .= '<span style="color:red;">' . implode( ', ', $roles ) . '</span>';
+					$role_names = array();
+					foreach ( $roles as $role ) {
+						$role_names[] = ( isset( $all_roles[ $role ] ) ? "&minus;{$all_roles[ $role ]}" : "&minus;{$role}" );
+					}
+					$html .= '<span style="color:red;">' . implode( ', ', $role_names ) . '</span>';
 				}
 			}
 			echo $html;
