@@ -275,7 +275,7 @@ final class Alg_WC_PVBUR {
 		$this->settings['bulk']    = require_once( 'includes/settings/class-alg-wc-pvbur-settings-bulk.php' );
 		add_action( 'woocommerce_system_status_report', array( $this, 'add_settings_to_status_report' ) );
 		// Review suggestion
-		require_once( 'includes/class-alg-wc-pvbur-review.php' );
+		require_once( 'includes/class-wpwham-pvbur-review.php' );
 		// Version updated
 		if ( get_option( 'alg_wc_pvbur_version', '' ) !== $this->version ) {
 			add_action( 'admin_init', array( $this, 'version_updated' ) );
