@@ -327,7 +327,7 @@ class Alg_WC_PVBUR_Core {
 				if ( is_array( $roles ) && ! empty( $roles ) ) {
 					$role_names = array();
 					foreach ( $roles as $role ) {
-						$role_names[] = ( isset( $all_roles[ $role ] ) ? $all_roles[ $role ] : $role );
+						$role_names[] = ( isset( $all_roles[ $role ] ) ? "+{$all_roles[ $role ]}" : "+{$role}" );
 					}
 					$html .= '<span style="color:green;">' . implode( ', ', $role_names ) . '</span>';
 				}
@@ -339,7 +339,7 @@ class Alg_WC_PVBUR_Core {
 					}
 					$role_names = array();
 					foreach ( $roles as $role ) {
-						$role_names[] = ( isset( $all_roles[ $role ] ) ? $all_roles[ $role ] : $role );
+						$role_names[] = ( isset( $all_roles[ $role ] ) ? "&minus;{$all_roles[ $role ]}" : "&minus;{$role}" );
 					}
 					$html .= '<span style="color:red;">' . implode( ', ', $role_names ) . '</span>';
 				}
