@@ -76,13 +76,14 @@ class Alg_WC_PVBUR_Core {
 	 * @since   1.7.3
 	 */
 	public function adjust_layered_nav_query( $query ) {
-		
+		global $wpdb;
+
 		$current_user_roles      = alg_wc_pvbur_get_current_user_all_roles();
 		$cached_post__not_in_key = 'awcpvbur_pni_' . md5( implode( '_', $current_user_roles ) );
-		if ( ( $cached_post__not_in = get_transient( $cached_post__not_in_key ) ) !== false ) {
-			$query['where'] .= " \nAND wp_posts.ID NOT IN ( " . implode( ',', $cached_post__not_in ) . ") ";
+		if ( ! empty( $cached_post__not_in = get_transient( $cached_post__not_in_key ) ) ) {
+			$query['where'] .= " \nAND {$wpdb->posts}.ID NOT IN ( " . implode( ',', $cached_post__not_in ) . ") ";
 		}
-		
+
 		return $query;
 	}
 	
