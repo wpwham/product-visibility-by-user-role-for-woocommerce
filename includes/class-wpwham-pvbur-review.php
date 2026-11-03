@@ -2,8 +2,8 @@
 /**
  * Product Visibility by User Role for WooCommerce - Review Suggestion
  *
- * @version 1.8.4
- * @since   1.8.4
+ * @version 1.8.5
+ * @since   1.8.5
  * @author  WP Wham
  */
 
@@ -16,8 +16,8 @@ class WPWham_PVBUR_Review {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.8.4
-	 * @since   1.8.4
+	 * @version 1.8.5
+	 * @since   1.8.5
 	 */
 	function __construct() {
 		add_action( 'admin_init', array( $this, 'review_suggestion' ) );
@@ -26,19 +26,22 @@ class WPWham_PVBUR_Review {
 	/**
 	 * Review suggestion notice in admin.
 	 *
-	 * @version 1.8.4
-	 * @since   1.8.4
+	 * @version 1.8.5
+	 * @since   1.8.5
 	 */
 	function review_suggestion() {
+		if ( wp_doing_ajax() ) {
+			return;
+		}
+
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
 			return;
 		}
 
-        /* Show this on Product Visibility by User Role settings page only?
+        // Show this on Product Visibility by User Role settings page only
 		if ( ! ( isset( $_GET['page'] ) && $_GET['page'] === 'wc-settings' && isset( $_GET['tab'] ) && $_GET['tab'] === 'alg_wc_pvbur' ) ) {
 			return;
 		}
-        */
 
 		$dismissed = get_option( 'wpwham_pvbur_review_dismissed' );
 		if ( $dismissed === 'permanently' || ( is_numeric( $dismissed ) && $dismissed > time() ) ) {
@@ -88,10 +91,14 @@ class WPWham_PVBUR_Review {
 	/**
 	 * Check if user has at least one product with visibility or invisibility settings.
 	 *
-	 * @version 1.8.4
-	 * @since   1.8.4
+	 * @version 1.8.5
+	 * @since   1.8.5
 	 */
 	function has_minimum_usage() {
+		$cached = get_transient( 'wpwham_pvbur_has_usage' );
+		if ( $cached !== false ) {
+			return $cached === 'yes';
+		}
 		$products = get_posts( array(
 			'post_type'      => 'product',
 			'posts_per_page' => 1,
@@ -102,7 +109,9 @@ class WPWham_PVBUR_Review {
 				array( 'key' => '_alg_wc_pvbur_invisible', 'value' => '', 'compare' => '!=' ),
 			),
 		) );
-		return ! empty( $products );
+		$has_usage = ! empty( $products );
+		set_transient( 'wpwham_pvbur_has_usage', $has_usage ? 'yes' : 'no', DAY_IN_SECONDS );
+		return $has_usage;
 	}
 }
 
