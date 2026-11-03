@@ -38,10 +38,11 @@ class WPWham_PVBUR_Review {
 			return;
 		}
 
-        // Show this on Product Visibility by User Role settings page only
+        /* Show this on Product Visibility by User Role settings page only?
 		if ( ! ( isset( $_GET['page'] ) && $_GET['page'] === 'wc-settings' && isset( $_GET['tab'] ) && $_GET['tab'] === 'alg_wc_pvbur' ) ) {
 			return;
 		}
+		*/
 
 		$dismissed = get_option( 'wpwham_pvbur_review_dismissed' );
 		if ( $dismissed === 'permanently' || ( is_numeric( $dismissed ) && $dismissed > time() ) ) {
