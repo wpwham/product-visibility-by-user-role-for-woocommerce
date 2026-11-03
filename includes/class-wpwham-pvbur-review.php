@@ -99,17 +99,14 @@ class WPWham_PVBUR_Review {
 		if ( $cached !== false ) {
 			return $cached === 'yes';
 		}
-		$products = get_posts( array(
-			'post_type'      => 'product',
-			'posts_per_page' => 1,
-			'fields'         => 'ids',
-			'meta_query'     => array(
-				'relation' => 'OR',
-				array( 'key' => '_alg_wc_pvbur_visible',   'value' => '', 'compare' => '!=' ),
-				array( 'key' => '_alg_wc_pvbur_invisible', 'value' => '', 'compare' => '!=' ),
-			),
-		) );
-		$has_usage = ! empty( $products );
+		global $wpdb;
+		$result = $wpdb->get_var(
+			"SELECT post_id FROM {$wpdb->postmeta}
+			WHERE meta_key IN ( '_alg_wc_pvbur_visible', '_alg_wc_pvbur_invisible' )
+			AND meta_value != ''
+			LIMIT 1"
+		);
+		$has_usage = ! empty( $result );
 		set_transient( 'wpwham_pvbur_has_usage', $has_usage ? 'yes' : 'no', DAY_IN_SECONDS );
 		return $has_usage;
 	}
