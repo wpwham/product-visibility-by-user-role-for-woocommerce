@@ -79,7 +79,7 @@ class WPWham_PVBUR_Review {
 		$dismiss_url = wp_nonce_url( add_query_arg( 'wpwham_pvbur_dismiss_review', '1' ), 'wpwham_pvbur_dismiss' );
 		$later_url = add_query_arg( 'later', '1', $dismiss_url );
 		?>
-		<div class="updated woocommerce-message">
+		<div class="notice notice-info woocommerce-message">
 			<a class="woocommerce-message-close notice-dismiss" href="<?php echo esc_url( $later_url ); ?>"><?php esc_html_e( 'Dismiss', 'product-visibility-by-user-role-for-woocommerce' ); ?></a>
 			<p><?php esc_html_e( 'Finding Product Visibility by User Role useful? We\'d appreciate a 5-star review!', 'product-visibility-by-user-role-for-woocommerce' ); ?></p>
 			<p><a href="<?php echo esc_url( $review_url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Sure, you deserve it', 'product-visibility-by-user-role-for-woocommerce' ); ?></a></p>
