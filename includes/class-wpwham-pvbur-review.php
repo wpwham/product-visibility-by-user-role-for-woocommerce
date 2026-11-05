@@ -2,8 +2,8 @@
 /**
  * Product Visibility by User Role for WooCommerce - Review Suggestion
  *
- * @version 1.8.5
- * @since   1.8.5
+ * @version 1.8.6
+ * @since   1.8.4
  * @author  WP Wham
  */
 
@@ -16,8 +16,8 @@ class WPWham_PVBUR_Review {
 	/**
 	 * Constructor.
 	 *
-	 * @version 1.8.5
-	 * @since   1.8.5
+	 * @version 1.8.4
+	 * @since   1.8.4
 	 */
 	function __construct() {
 		add_action( 'admin_init', array( $this, 'review_suggestion' ) );
@@ -26,8 +26,8 @@ class WPWham_PVBUR_Review {
 	/**
 	 * Review suggestion notice in admin.
 	 *
-	 * @version 1.8.5
-	 * @since   1.8.5
+	 * @version 1.8.6
+	 * @since   1.8.4
 	 */
 	function review_suggestion() {
 		if ( wp_doing_ajax() ) {
@@ -92,8 +92,8 @@ class WPWham_PVBUR_Review {
 	/**
 	 * Check if user has at least one product with visibility or invisibility settings.
 	 *
-	 * @version 1.8.5
-	 * @since   1.8.5
+	 * @version 1.8.6
+	 * @since   1.8.4
 	 */
 	function has_minimum_usage() {
 		$cached = get_transient( 'wpwham_pvbur_has_usage' );

@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Core Class
  *
- * @version 1.8.5
+ * @version 1.8.6
  * @since   1.0.0
  * @author  Algoritmika Ltd.
  * @author  WP Wham
@@ -72,7 +72,7 @@ class Alg_WC_PVBUR_Core {
 	 * Adjusts the count and hides the attribute completely if the count becomes 0.
 	 * See also adjust_layered_nav_counts().
 	 *
-	 * @version 1.7.3
+	 * @version 1.8.6
 	 * @since   1.7.3
 	 */
 	public function adjust_layered_nav_query( $query ) {
