@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Review Suggestion
  *
- * @version 1.8.5
+ * @version 1.8.6
  * @since   1.8.5
  * @author  WP Wham
  */
@@ -26,10 +26,14 @@ class WPWham_PVBUR_Review {
 	/**
 	 * Review suggestion notice in admin.
 	 *
-	 * @version 1.8.5
+	 * @version 1.8.6
 	 * @since   1.8.5
 	 */
 	function review_suggestion() {
+		if ( wp_doing_ajax() ) {
+			return;
+		}
+
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
 			return;
 		}
@@ -38,7 +42,7 @@ class WPWham_PVBUR_Review {
 		if ( ! ( isset( $_GET['page'] ) && $_GET['page'] === 'wc-settings' && isset( $_GET['tab'] ) && $_GET['tab'] === 'alg_wc_pvbur' ) ) {
 			return;
 		}
-        */
+		*/
 
 		$dismissed = get_option( 'wpwham_pvbur_review_dismissed' );
 		if ( $dismissed === 'permanently' || ( is_numeric( $dismissed ) && $dismissed > time() ) ) {
@@ -88,21 +92,24 @@ class WPWham_PVBUR_Review {
 	/**
 	 * Check if user has at least one product with visibility or invisibility settings.
 	 *
-	 * @version 1.8.5
+	 * @version 1.8.6
 	 * @since   1.8.5
 	 */
 	function has_minimum_usage() {
-		$products = get_posts( array(
-			'post_type'      => 'product',
-			'posts_per_page' => 1,
-			'fields'         => 'ids',
-			'meta_query'     => array(
-				'relation' => 'OR',
-				array( 'key' => '_alg_wc_pvbur_visible',   'value' => '', 'compare' => '!=' ),
-				array( 'key' => '_alg_wc_pvbur_invisible', 'value' => '', 'compare' => '!=' ),
-			),
-		) );
-		return ! empty( $products );
+		$cached = get_transient( 'wpwham_pvbur_has_usage' );
+		if ( $cached !== false ) {
+			return $cached === 'yes';
+		}
+		global $wpdb;
+		$result = $wpdb->get_var(
+			"SELECT post_id FROM {$wpdb->postmeta}
+			WHERE meta_key IN ( '_alg_wc_pvbur_visible', '_alg_wc_pvbur_invisible' )
+			AND meta_value != ''
+			LIMIT 1"
+		);
+		$has_usage = ! empty( $result );
+		set_transient( 'wpwham_pvbur_has_usage', $has_usage ? 'yes' : 'no', DAY_IN_SECONDS );
+		return $has_usage;
 	}
 }
 
