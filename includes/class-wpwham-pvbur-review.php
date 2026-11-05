@@ -2,7 +2,7 @@
 /**
  * Product Visibility by User Role for WooCommerce - Review Suggestion
  *
- * @version 1.8.5
+ * @version 1.8.6
  * @since   1.8.5
  * @author  WP Wham
  */
@@ -26,7 +26,7 @@ class WPWham_PVBUR_Review {
 	/**
 	 * Review suggestion notice in admin.
 	 *
-	 * @version 1.8.5
+	 * @version 1.8.6
 	 * @since   1.8.5
 	 */
 	function review_suggestion() {
@@ -92,7 +92,7 @@ class WPWham_PVBUR_Review {
 	/**
 	 * Check if user has at least one product with visibility or invisibility settings.
 	 *
-	 * @version 1.8.5
+	 * @version 1.8.6
 	 * @since   1.8.5
 	 */
 	function has_minimum_usage() {
